@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class GestorVentas extends Model
 {
+<<<<<<< HEAD
     public function nueva(Ventas $v)
     {
         $params = array(
@@ -16,4 +17,7 @@ class GestorVentas extends Model
     	$result = DB::select('call venta_nueva(?,?)',$params);
         return $result;
     }
+=======
+    //probando source tree
+>>>>>>> parent of 9b0d86b... Funcion nueva venta (parametros solo de fecha(varchar) monto(double)
 }
