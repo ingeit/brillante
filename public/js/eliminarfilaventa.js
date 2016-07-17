@@ -6,6 +6,7 @@
 // de jQuery y trabajo sobre el normalmente.
 function eliminarFila(obj){   
 //    $(obj).parents('tr').fadeOut('slow',function(){})
+  $('#total').html(parseInt($('#total').html())-parseInt($(obj).parents('tr').find('#importe').html()));  
   $(obj).parents('tr').remove();
   desabilitarBoton();
 }
