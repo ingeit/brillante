@@ -11,7 +11,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class GestorProductos extends Model
 {
     
-    //puto
     //trolo
     public function alta(Productos $p)
     {
