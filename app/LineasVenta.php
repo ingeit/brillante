@@ -12,7 +12,7 @@ class LineasVenta extends Model
     
     public $timestamps = false; 
       
-    function __construct()
+    function __construct($cantidad)
     {
         $this->lineaCantidad = $cantidad;
     }
