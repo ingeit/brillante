@@ -10,7 +10,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class GestorProductos extends Model
 {
-    
+   //hola mundo
     //tu vieja
     public function alta(Productos $p)
     {
