@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class GestorVentas extends Model
 {
-    
     public function nueva(Ventas $v)
     {
         $params = array(

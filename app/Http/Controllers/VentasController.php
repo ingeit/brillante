@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use \App\GestorProductos;
 use App\Productos;
+use App\Http\Requests\VentasRequest;
+use App\GestorVentas;
+use App\Ventas;
 
 class VentasController extends Controller
 {
@@ -41,9 +44,17 @@ class VentasController extends Controller
     }
 
  
-    public function store(Request $request)
+    public function store(VentasRequest $request)
     {
-        //
+        $gv = new GestorVentas();
+        $v = new Ventas();
+        $v->fill($request->all());// completo los atributos del objeto Ventas
+        $resultado = $gv->nueva($v); // lo agrego a la base de datos
+        foreach ($resultado as $r) { // obtengo el mensaje de la base de datos
+            $mensaje = $r->Mensaje;
+        }
+        Session::flash('mensaje',$mensaje); // mando el mensaje de la base datos a la vista
+        return redirect()->back(); // vuelvo a ventas
     }
 
     public function show($id)
