@@ -37,6 +37,14 @@ class VentasController extends Controller
 
  
     public function create(Request $request)
+    {     
+        foreach ($request as $r){
+            $r->cantidad;
+            $r->id;
+        }
+    }
+    
+     public function agregarLinea(Request $request)
     {      
         $p=new Productos();
         $p->dame($request->consulta);

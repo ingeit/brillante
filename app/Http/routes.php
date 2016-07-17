@@ -27,7 +27,8 @@ Route::get('/home', 'HomeController@index');
 Route::post('productos/filtrado', 'ProductosController@filtrado');
 Route::get('search/autocomplete', 'VentasController@autocomplete');
 
-Route::post('ventas/agregar', 'VentasController@create');
+Route::post('ventas/agregar', 'VentasController@agregarLinea');
+Route::post('ventas/realizarVenta', 'VentasController@create');
 
 
 /*Route::group(['middleware' => 'web'], function () {

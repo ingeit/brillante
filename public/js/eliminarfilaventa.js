@@ -20,7 +20,29 @@ function desabilitarBoton() {
 }
 
 function cargarVenta(){ 
-  $('#tablaVentas').children('tr').each(function() {
-    alert($(this).find('td').html());
+    var productos = [];
+  $('#tablaVentas').children('tr').each(function( i, val) {
+    cantidad = $(this).find('td').eq(0).html();
+    id = $(this).find('td').eq(1).html();
+    productos[i] = {"cantidad": cantidad,"id": id};
+    enviarVenta(productos);
     });
 }
+
+
+function enviarVenta(produc)
+    {
+        $.ajax({ 
+            type: "POST",
+            url: "ventas/realizarVenta",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {productos: produc},
+            dataType: "html",
+            success: function(data)
+                    {       
+                    $("#tablaVentas").empty();    
+                    }
+            });
+    }   
