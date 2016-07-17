@@ -1,0 +1,3 @@
+                 {!! $listaProductos->render() !!}
+                 
+                 
