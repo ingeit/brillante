@@ -6,5 +6,4 @@ $( "#q" ).autocomplete({ //Tomo el input de id = q y uso la funcion ya definida 
           $('#qId').val(ui.item.id);
           
     }
-}); 
-//dfdf
+});

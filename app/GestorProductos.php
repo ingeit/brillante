@@ -10,8 +10,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class GestorProductos extends Model
 {
-    //trolo
-    //hola
     public function alta(Productos $p)
     {
         $params = array(
