@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class GestorVentas extends Model
 {
+    
     public function nueva(Ventas $v)
     {
         $params = array(
@@ -16,4 +17,6 @@ class GestorVentas extends Model
     	$result = DB::select('call venta_nueva(?,?)',$params);
         return $result;
     }
+    
+    
 }
