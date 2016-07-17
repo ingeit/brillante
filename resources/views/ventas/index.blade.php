@@ -33,7 +33,6 @@
                     <table class="table tabla-listaVenta" style="margin-bottom: 0px;">
                         <thead>
                             <tr>
-                                <th>Soy Kevin</th>
                                 <th>Nombre</th>
                                 <th>Precio</th>
                                 <th>Acciones</th>
