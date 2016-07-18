@@ -12,9 +12,10 @@ class GestorVentas extends Model
     {
         $params = array(
             $v->vFecha,
-            $v->vMonto);
+            $v->vMonto,
+            $v->vCadena );
         
-    	$result = DB::select('call venta_nueva(?,?)',$params);
+    	$result = DB::select('call venta_nueva(?,?,?)',$params);
         return $result;
     }
     

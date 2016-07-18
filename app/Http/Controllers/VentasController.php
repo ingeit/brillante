@@ -38,30 +38,44 @@ class VentasController extends Controller
  
     public function create(Request $request)
     {     
+        // cuando doy de alta la venta con un SP, en ese mismo SP llevo el string de las lineas y hago todo de una sola vez
+        // asi se hace.. para evitar problemas de q JUSTO paso algo..
+        // entonces obtengo monto y fecha (para generar una nueva venta y despues generamos el STRING de las lineas contac.
         $monto = $request->total; 
         $fecha = date("d-m-Y H:i:s"); 
-        $v = new Ventas($fecha,$monto);
-        $gv = new GestorVentas();
-        $resultado = $gv->nueva($v); // lo agrego a la base de datos
-        
-        foreach ($resultado as $r) { // obtengo el ID de la venta para ingresar las lineas a ESTA VENTA!
-            $mensaje = $r->id; // en variable mensaje tengo el id venta generada..
-        }
         
         $resultado = $request->productosPOSTajax; //obtengo el envio de datos tipo 
         //POST que envie de ajax con el nombre  productosPOSTajax
         //como se envie, contiene varios varios arrays de arrays (matriz)
         // recorro con un foreach cada fil y obtengo las columnas con el 
         // nombre de cada una.
-        $concat = '';
-        foreach ($resultado as $p){    
-            $concat = $concat.$p['id']."&&".$p['cantidad']."||"; 
+        $cadena = null;
+        
+        foreach ($resultado as $p){
+            //hago este if solo para el formato,para que terminen sin || ( 1|2*2|2 )
+            if ($cadena == null) {
+                $cadena = $cadena.$p['id']."|".$p['cantidad'];
+            }
+            else{
+                $cadena = $cadena."*".$p['id']."|".$p['cantidad'];
+            }
+            
         }
         //concat tiene las lineas de venta primero ID despues cantidad
         // resultado de una concatenacion primero id producto $$ cantidad producto
         // || siguiente producto.
         
-        //dd("id venta",$mensaje, $concat);
+        //Ahora q tenemos el monto fecha (para venta), tenemos el contac de las lineas
+        //Generamos la venta y a su vez las lineas ventas en un solo SP
+        $v = new Ventas($fecha,$monto,$cadena);
+        $gv = new GestorVentas();
+        $result = $gv->nueva($v); // lo agrego a la base de datos
+        
+//        foreach ($result as $r) { // mensaje de error o venta creada con exito, con todas las lineas ventas
+//            $mensaje = $r->id;
+//        }
+//        dd($mensaje);
+        
     }
     
      public function agregarLinea(Request $request)
