@@ -38,10 +38,17 @@ class VentasController extends Controller
  
     public function create(Request $request)
     {     
-        foreach ($request as $r){
-            $r->cantidad;
-            $r->id;
+        $resultado = $request->productosPOSTajax; //obtengo el envio de datos tipo 
+        //POST que envie de ajax con el nombre  productosPOSTajax
+        //como se envie, contiene varios varios arrays de arrays (matriz)
+        // recorro con un foreach cada fil y obtengo las columnas con el 
+        // nombre de cada una.
+        $cancatenacion = '';
+        foreach ($resultado as $p){    
+            $cancatenacion = $cancatenacion.$p['cantidad']."&&".$p['id']."||";
         }
+        // resultado de una concatenacion de por ej de 3 elementos
+        // "1&&1||1&&3||1&&4||" esto va al sp.
     }
     
      public function agregarLinea(Request $request)

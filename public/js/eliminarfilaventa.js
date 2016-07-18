@@ -38,7 +38,7 @@ function enviarVenta(produc)
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {productos: produc},
+            data: {productosPOSTajax: produc},
             dataType: "html",
             success: function(data)
                     {       
