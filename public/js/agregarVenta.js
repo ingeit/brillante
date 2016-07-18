@@ -54,7 +54,7 @@ $(document).ready(function(){
                                     "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
                                 "</tr>"
                                 );
-                            $('#total').html(parseInt($('#total').html())+importe);    
+                            $('#total').html(parseFloat($('#total').html())+importe);    
                     }
             });
     }    
