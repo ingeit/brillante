@@ -10,7 +10,6 @@ class Ventas extends Model
     public $vFecha;
     public $vMonto;
     
-    public $timestamps = false; 
       
     function __construct($fecha, $monto)
     {

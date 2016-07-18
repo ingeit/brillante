@@ -38,20 +38,30 @@ class VentasController extends Controller
  
     public function create(Request $request)
     {     
-        $total = $request->total; 
+        $monto = $request->total; 
+        $fecha = date("d-m-Y H:i:s"); 
+        $v = new Ventas($fecha,$monto);
+        $gv = new GestorVentas();
+        $resultado = $gv->nueva($v); // lo agrego a la base de datos
+        
+        foreach ($resultado as $r) { // obtengo el ID de la venta para ingresar las lineas a ESTA VENTA!
+            $mensaje = $r->id; // en variable mensaje tengo el id venta generada..
+        }
+        
         $resultado = $request->productosPOSTajax; //obtengo el envio de datos tipo 
         //POST que envie de ajax con el nombre  productosPOSTajax
         //como se envie, contiene varios varios arrays de arrays (matriz)
         // recorro con un foreach cada fil y obtengo las columnas con el 
         // nombre de cada una.
-        $cancatenacion = '';
+        $concat = '';
         foreach ($resultado as $p){    
-            $cancatenacion = $cancatenacion.$p['cantidad']."&&".$p['id']."||";
+            $concat = $concat.$p['id']."&&".$p['cantidad']."||"; 
         }
-        // resultado de una concatenacion de por ej de 3 elementos
-        // "1&&1||1&&3||1&&4||" esto va al sp.
-//        dd($cancatenacion);
-        dd($total);
+        //concat tiene las lineas de venta primero ID despues cantidad
+        // resultado de una concatenacion primero id producto $$ cantidad producto
+        // || siguiente producto.
+        
+        //dd("id venta",$mensaje, $concat);
     }
     
      public function agregarLinea(Request $request)

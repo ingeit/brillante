@@ -30,6 +30,8 @@ Route::get('search/autocomplete', 'VentasController@autocomplete');
 Route::post('ventas/agregar', 'VentasController@agregarLinea');
 Route::post('ventas/realizarVenta', 'VentasController@create');
 
+Route::get('lineasVenta','LineasVentaController@create');
+
 
 /*Route::group(['middleware' => 'web'], function () {
 });*/
