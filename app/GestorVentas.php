@@ -18,6 +18,6 @@ class GestorVentas extends Model
     	$result = DB::select('call venta_nueva(?,?,?)',$params);
         return $result;
     }
-    
+
     
 }
