@@ -38,6 +38,7 @@ class VentasController extends Controller
  
     public function create(Request $request)
     {     
+        $total = $request->total; 
         $resultado = $request->productosPOSTajax; //obtengo el envio de datos tipo 
         //POST que envie de ajax con el nombre  productosPOSTajax
         //como se envie, contiene varios varios arrays de arrays (matriz)
@@ -49,6 +50,8 @@ class VentasController extends Controller
         }
         // resultado de una concatenacion de por ej de 3 elementos
         // "1&&1||1&&3||1&&4||" esto va al sp.
+//        dd($cancatenacion);
+        dd($total);
     }
     
      public function agregarLinea(Request $request)

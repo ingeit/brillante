@@ -25,12 +25,13 @@ function cargarVenta(){
     cantidad = $(this).find('td').eq(0).html();
     id = $(this).find('td').eq(1).html();
     productos[i] = {"cantidad": cantidad,"id": id};
-    enviarVenta(productos);
     });
+    var total = parseFloat($('#total').html());
+    enviarVenta(productos,total);
 }
 
 
-function enviarVenta(produc)
+function enviarVenta(produc,total)
     {
         $.ajax({ 
             type: "POST",
@@ -38,11 +39,15 @@ function enviarVenta(produc)
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {productosPOSTajax: produc},
+            data: {productosPOSTajax: produc,total: total},
             dataType: "html",
             success: function(data)
                     {       
-                    $("#tablaVentas").empty();    
+                    $("#tablaVentas").empty();
+                    $('#total').html(0);
+                    $("#q").focus();
+                    $('#realizarVenta').prop('disabled', true);   
+                    $("#myModal").modal('show');
                     }
             });
     }   
