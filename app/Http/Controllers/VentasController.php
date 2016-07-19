@@ -107,6 +107,11 @@ class VentasController extends Controller
         return redirect()->back(); // vuelvo a ventas
     }
 
+    public function mostrar($id,$fecha,$monto)
+    {
+        echo 'el id es: '.$id.' la fecha '.$fecha.'el monto es:'.$monto;
+    }
+    
     public function show($id)
     {
         

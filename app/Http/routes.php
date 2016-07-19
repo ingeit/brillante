@@ -32,6 +32,10 @@ Route::post('ventas/realizarVenta', 'VentasController@create');
 
 Route::get('lineasVenta','LineasVentaController@create');
 
+$router->get('/ventas/{id}/{fecha}/{monto}',[
+    'uses' => 'VentasController@mostrar',
+    'as'   => 'detalleVenta'
+]);
 
 /*Route::group(['middleware' => 'web'], function () {
 });*/
