@@ -16,8 +16,16 @@ use App\Ventas;
 class VentasController extends Controller
 {
     public function index()
-    {
-        return view('ventas.index');
+    {   
+        $seccion=Input::get('seccion');
+        if ($seccion == 'index'){
+            return view('ventas.index');
+        }else{
+            $gestor = new GestorVentas();
+            $listaVenta = $gestor->listar();
+            return view('ventas.lista',compact ('listaVenta'));
+        }
+        
     }
     
     public function autocomplete()
@@ -101,7 +109,9 @@ class VentasController extends Controller
 
     public function show($id)
     {
-        //
+        $gv = new GestorVentas();
+//        $result = $gv->dame($id);
+//        dd($result);
     }
 
  

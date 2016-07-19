@@ -18,6 +18,18 @@ class GestorVentas extends Model
     	$result = DB::select('call venta_nueva(?,?,?)',$params);
         return $result;
     }
+    
+    public function listar(){
+        $data = DB::select('call venta_listar'); 
+        return $data;
+    }
+    
+    public function dame($id){
+        $result = DB::select('call venta_dame(?)',array($id));
+        dd($result);
+        //return $result;
+        
+    }
 
     
 }

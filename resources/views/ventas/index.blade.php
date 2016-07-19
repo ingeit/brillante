@@ -13,21 +13,28 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div>
-                <ul class="list-inline">
-                    <li style="width: 90%;">
+                 <ul class="list-inline">
+                     <li>
+                         <a href="{{ route('ventas.index',['seccion'=>'lista']) }}" class="btn btn-default">Ver Ventas</a>
+                     </li>    
+                </ul>
+            </div>
+            <div>
+                <dl class="list">
+                    <dt style="width: 30%;">
                         <div class="form-group">
                             {{ Form::label('q', 'Agregar Producto a la Venta') }}
                             {{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Ej: Lavandina','class'=> 'form-control','autofocus'])}}
                             {{ Form::hidden('qId', '', ['id' =>  'qId',])}}
                         </div> 
-                    </li>
-                    <li style="width: 10%;float: right;">
-                        <div class="form-group">
+                    </dt>
+                    <dt style="width: 30%;">
+                        <div class="form-group2">
                             {{ Form::label('SelectCant', 'Cantidad') }}
                             {{ Form::text('SelectCant', '', ['id' =>  'SelectCant', 'placeholder' =>  '1','class'=> 'form-control'])}}
                         </div> 
-                    </li>
-                </ul>
+                    </dt>
+                <dl>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">Ventas</div>
