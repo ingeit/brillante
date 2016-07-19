@@ -25,9 +25,9 @@ class GestorVentas extends Model
     }
     
     public function dame($id){
+        
         $result = DB::select('call venta_dame(?)',array($id));
-        dd($result);
-        //return $result;
+        return $result;
         
     }
 
