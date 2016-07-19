@@ -109,7 +109,8 @@ class VentasController extends Controller
 
     public function show($id)
     {
-        $gv = new GestorVentas();
+        dd($id);
+//        $gv = new GestorVentas();
 //        $result = $gv->dame($id);
 //        dd($result);
     }
