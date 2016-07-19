@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 <?php
 
+=======
+>>>>>>> 9653fab41413d3a54aa02d0efd6f2ea0cb19115b
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -107,6 +110,7 @@ class VentasController extends Controller
         return redirect()->back(); // vuelvo a ventas
     }
 
+<<<<<<< HEAD
     public function show($id)
     {
         
@@ -133,3 +137,6 @@ class VentasController extends Controller
         //
     }
 }
+=======
+    
+>>>>>>> 9653fab41413d3a54aa02d0efd6f2ea0cb19115b

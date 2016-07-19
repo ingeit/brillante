@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 <?php
 
+=======
+>>>>>>> 9653fab41413d3a54aa02d0efd6f2ea0cb19115b
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -25,4 +28,8 @@ class Ventas extends Model
    
      
 
+<<<<<<< HEAD
 }
+=======
+    }
+>>>>>>> 9653fab41413d3a54aa02d0efd6f2ea0cb19115b
