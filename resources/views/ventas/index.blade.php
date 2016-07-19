@@ -15,20 +15,20 @@
             <div>
                  <ul class="list-inline">
                      <li>
-                         <a href="{{ route('ventas.index',['seccion'=>'lista']) }}" class="btn btn-default">Ver Ventas</a>
+                         <a href="{{ route('ventas.index',['seccion'=>'lista']) }}" class="btn btn-default">LISTA VENTAS</a>
                      </li>    
                 </ul>
             </div>
             <div>
                 <dl class="list">
-                    <dt style="width: 30%;">
+                    <dt style="width: 100%;">
                         <div class="form-group">
                             {{ Form::label('q', 'Agregar Producto a la Venta') }}
                             {{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Ej: Lavandina','class'=> 'form-control','autofocus'])}}
                             {{ Form::hidden('qId', '', ['id' =>  'qId',])}}
                         </div> 
                     </dt>
-                    <dt style="width: 30%;">
+                    <dt style="width: 100%;">
                         <div class="form-group2">
                             {{ Form::label('SelectCant', 'Cantidad') }}
                             {{ Form::text('SelectCant', '', ['id' =>  'SelectCant', 'placeholder' =>  '1','class'=> 'form-control'])}}
