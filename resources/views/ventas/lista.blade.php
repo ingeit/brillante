@@ -32,7 +32,6 @@
                                     <td>{{$l->idVenta}}</td>
                                     <td>{{$l->fecha}}</td>
                                     <td>{{$l->monto}}</td>
-                                    <!--<td><a style='float:left;' href="{{ route('ventas.show', $l->idVenta) }}">Detalles</a></td>-->
                                     <td><a href="{!! route('detalleVenta', ['id'=>$l->idVenta, 'fecha'=>$l->fecha,'monto'=>$l->monto]) !!}">Detalles</a></td>
                                 </tr>
                                 @endforeach

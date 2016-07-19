@@ -7,6 +7,8 @@
 {{ Html::style('css/style.css')}}
 @endsection
 
+<!-- para trabajar con variables hacemos lo siguiente-->
+<!--{{-- */$total=0;/* --}}-->
 
 @section('content')
 <div class="container">
@@ -14,7 +16,8 @@
         <div class="col-md-10 col-md-offset-1">
 
             <div class="panel panel-default">
-            <div class="panel-heading">Venta Numero XXX FECHA XXXXXXX</div>
+            <div class="panel-heading">VENTA NUMERO: {{$id}}</div>
+            <div class="panel-heading">FECHA: {{$fecha}}</div>
             <div class="panel-body">
                 <table class="table table-hover" style="margin-bottom: 0;margin-top: -12px;">
                     <thead>
@@ -28,9 +31,7 @@
                     </thead>
                 </table>  
                 <table id="data" class="table table-hover">
-                    <tbody id="resultado">
-                        <!-- para trabajar con variables hacemos lo siguiente-->
-                        {{-- */$total=0;/* --}}
+                    <tbody id="resultado">               
                         @foreach ($venta as $v)
                         <tr>
                           <td>{{$v->cantidad}}</td>
@@ -39,14 +40,13 @@
                           <td>{{$v->precio}}</td>
                           <td>{{$importe = ($v->cantidad)*($v->precio)}}</td>
                         </tr>
-                        {{-- */$total=$total+$importe;/* --}}
                         @endforeach
                         <tr>
                           <td></td>
                           <td></td>
                           <td></td>
                           <td bgcolor="337ab7"><font color="#fff">Total</td>
-                          <td bgcolor="337ab7"><font color="#fff">{{$total}}</td>
+                          <td bgcolor="337ab7"><font color="#fff">{{$monto}}</td>
                         </tr>
                     </tbody>
                 </table>

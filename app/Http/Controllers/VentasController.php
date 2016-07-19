@@ -109,15 +109,14 @@ class VentasController extends Controller
 
     public function mostrar($id,$fecha,$monto)
     {
-        echo 'el id es: '.$id.' la fecha '.$fecha.'el monto es:'.$monto;
+        $gv = new GestorVentas();
+        $venta = $gv->dame($id);
+        return view('ventas.detalle',compact('venta','id','fecha','monto'));
     }
     
     public function show($id)
     {
         
-        $gv = new GestorVentas();
-        $venta = $gv->dame($id);
-        return view('ventas.detalle',compact('venta'));
     }
 
  
