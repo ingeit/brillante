@@ -112,6 +112,7 @@ class VentasController extends Controller
         $gv = new GestorVentas();
         $result = $gv->dame($id);
         dd($result);
+//        amo netbeans
     }
 
  
