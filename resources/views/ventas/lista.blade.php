@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @extends('layouts.app')
 
 @section('scripts')
@@ -45,3 +46,8 @@
     </div>
 @endsection
 
+=======
+                 {!! $listaProductos->render() !!}
+                 
+                 
+>>>>>>> parent of 30893c8... Ventas listar

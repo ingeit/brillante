@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 namespace App;
@@ -33,3 +34,28 @@ class GestorVentas extends Model
 
     
 }
+=======
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+
+class GestorVentas extends Model
+{
+    
+    public function nueva(Ventas $v)
+    {
+        $params = array(
+            $v->vFecha,
+            $v->vMonto,
+            $v->vCadena );
+        
+    	$result = DB::select('call venta_nueva(?,?,?)',$params);
+        return $result;
+    }
+
+    
+}
+>>>>>>> parent of 30893c8... Ventas listar
