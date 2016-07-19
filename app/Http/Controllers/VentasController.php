@@ -109,10 +109,10 @@ class VentasController extends Controller
 
     public function show($id)
     {
+        
         $gv = new GestorVentas();
-        $result = $gv->dame($id);
-        dd($result);
-//        amo netbeans
+        $venta = $gv->dame($id);
+        return view('ventas.detalle',compact('venta'));
     }
 
  
