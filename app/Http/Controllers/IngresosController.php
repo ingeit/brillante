@@ -13,17 +13,17 @@ use App\Http\Requests\VentasRequest;
 use App\GestorVentas;
 use App\Ventas;
 
-class VentasController extends Controller
+class IngresosController extends Controller
 {
     public function index()
     {   
         $seccion=Input::get('seccion');
         if ($seccion == 'index'){
-            return view('ventas.index');
+            return view('ingresos.index');
         }else{
             $gestor = new GestorVentas();
             $listaVenta = $gestor->listar();
-            return view('ventas.lista',compact ('listaVenta'));
+            return view('ingresos.lista',compact ('listaVenta'));
         }
         
     }

@@ -52,7 +52,7 @@
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ route('productos.index') }}">Productos</a></li>
                     <li><a href="{{ route('ventas.index',['seccion'=>'index']) }}">Ventas</a></li>
-                    
+                    <li><a href="{{ route('ingresos.index',['seccion'=>'index']) }}">Ingresos</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
