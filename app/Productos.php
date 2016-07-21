@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Productos extends Model
 {
     public $pIdProducto;
+    public $pIdProveedor;
     public $pNombre;
     public $pPrecio;
     public $pEstado;
@@ -33,15 +34,16 @@ class Productos extends Model
         
     }
     
-    function __construct2($nombre, $precio)
+    function __construct2($proveedor, $nombre, $precio)
     {
+        $this->pIdProveedor = $proveedor;
         $this->pNombre = $nombre;
         $this->pPrecio = $precio;
     }
     
     
     protected $fillable = [
-        'nombre', 'precio',
+        'idProveedor', 'nombre', 'precio',
     ];
    
      public function dame($id){
@@ -52,6 +54,7 @@ class Productos extends Model
         // uso fill() para completarlo.
         foreach ($result as $r) {
                 $this->fill([
+                "idProveedor" => $r->idProveedor,
                 "nombre" => $r->nombre,
                 "precio" => $r->precio,
             ]);

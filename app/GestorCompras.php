@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class GestorIngresos extends Model
+class GestorCompras extends Model
 {
     
-    public function nueva(Ingreso $i)
+    public function nueva(Compras $i)
     {
         $params = array(
             $i->vFecha,

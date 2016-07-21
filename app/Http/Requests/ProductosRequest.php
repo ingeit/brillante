@@ -24,6 +24,7 @@ class ProductosRequest extends Request
     public function rules()
     {
         return [
+            'idProveedor' => 'required', 
             'nombre' => 'required', 
             'precio' => 'required'
         ];

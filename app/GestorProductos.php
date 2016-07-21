@@ -14,11 +14,13 @@ class GestorProductos extends Model
     public function alta(Productos $p)
     {
         $params = array(
+            
+            $p->idProveedor,
             $p->nombre,
             $p->precio);
         
         
-    	$result = DB::select('call producto_alta(?,?)',$params);
+    	$result = DB::select('call producto_alta(?,?,?)',$params);
         return $result;
     }
     
@@ -46,11 +48,12 @@ class GestorProductos extends Model
         $params = array(
             
             $p->idProducto,
+            $p->idProveedor,
             $p->nombre,
             $p->precio);
         
         
-    	$result = DB::select('call producto_modificar(?,?,?)',$params);
+    	$result = DB::select('call producto_modificar(?,?,?,?)',$params);
         return $result;
     }
 

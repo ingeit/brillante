@@ -52,7 +52,7 @@
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ route('productos.index') }}">Productos</a></li>
                     <li><a href="{{ route('ventas.index',['seccion'=>'index']) }}">Ventas</a></li>
-                    <li><a href="{{ route('ingresos.index',['seccion'=>'index']) }}">Ingresos</a></li>
+                    <li><a href="{{ route('compras.index',['seccion'=>'index']) }}">Compras</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -83,7 +83,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-    <script src="//codeorigin.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+    <script src="js/js-query/jquery-ui.min.js"></script>
     @yield('scripts')
 </body>
 </html>

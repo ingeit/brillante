@@ -40,9 +40,10 @@ class ProductosController extends Controller
   
     public function create()
     {
+        $proveedores = DB::select('SELECT razonSocial FROM proveedores' );
         Session::put('titulo','Crear Producto');
         Session::put('boton','Crear Producto');
-        return view('productos.form');
+        return view('productos.form',compact('proveedores'));
     }
 
 

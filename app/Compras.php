@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ingreso extends Model
+class Compras extends Model
 {
-    public $vIdIngreso;
+    public $vIdCompra;
     public $vFecha;
     public $vMonto;
     public $vCadena;
