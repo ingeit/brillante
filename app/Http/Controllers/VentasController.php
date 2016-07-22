@@ -50,7 +50,7 @@ class VentasController extends Controller
         // asi se hace.. para evitar problemas de q JUSTO paso algo..
         // entonces obtengo monto y fecha (para generar una nueva venta y despues generamos el STRING de las lineas contac.
         $monto = $request->total; 
-        $fecha = date("d-m-Y H:i:s"); 
+        $fecha = date("d-m-Y H:i"); 
         
         $resultado = $request->productosPOSTajax; //obtengo el envio de datos tipo 
         //POST que envie de ajax con el nombre  productosPOSTajax

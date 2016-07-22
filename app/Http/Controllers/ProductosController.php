@@ -36,19 +36,24 @@ class ProductosController extends Controller
 	}
         return Response::json($results);
     }
-
   
     public function create()
-    {
-        $proveedores = DB::select('SELECT razonSocial FROM proveedores' );
+    {    
+        $consulta = DB::select('SELECT idProveedor,razonSocial FROM proveedores' );
+        
+        $proveedor = array();
+        foreach ($consulta as $c) //Convertimos los proveedores en un array Key => Value de la sig. forma
+        {
+            $proveedor[$c->idProveedor] = $c->razonSocial;
+        }
         Session::put('titulo','Crear Producto');
         Session::put('boton','Crear Producto');
-        return view('productos.form',compact('proveedores'));
+        return View('productos.form', compact('proveedor'));
     }
 
 
     public function store(ProductosRequest $request) //Con ProductosRequest verifico los campos 
-    {                                                // requerdios en el form
+    {                                                // requeridos en el form
         $gp = new GestorProductos();
         $p = new Productos();
         $p->fill($request->all());// completo los atributos del objeto Productos

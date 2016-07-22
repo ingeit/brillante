@@ -26,8 +26,8 @@
                                {{ Form::text('precio',null,['class'=> 'form-control','placeholder'=>'Ingrese el precio del producto']) }}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('proveedores', 'Proveedores'); !!} 
-                               {!! Form::select('proveedores', array( 'nombre' => '{{-- */$p->nombre/* --}}' )) !!}
+                                {!! Form::label('proveedor', 'Proveedor:') !!}
+                                {!! Form::select('idProveedor', $proveedor, null, ['class' => 'form-control']) !!}
                             </div>
                               <button type="submit" style="float:right" class="btn btn-default">{{Session::get('boton')}}</button>
                         {!! Form::close() !!}
