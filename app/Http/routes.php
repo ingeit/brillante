@@ -32,6 +32,8 @@ Route::get('search/autocomplete', 'VentasController@autocomplete');
 
 Route::post('ventas/agregar', 'VentasController@agregarLinea');
 Route::post('ventas/realizarVenta', 'VentasController@create');
+Route::post('compras/agregar', 'ComprasController@agregarLinea');
+Route::post('compras/realizarCompra', 'ComprasController@create');
 
 Route::get('lineasVenta','LineasVentaController@create');
 

@@ -2,8 +2,8 @@
 
 @section('scripts')
 {{ Html::script('js/autocomplete.js')}}
-{{ Html::script('js/agregarVenta.js')}}
-{{ Html::script('js/eliminarfilaventa.js')}}
+{{ Html::script('js/agregarCompra.js')}}
+{{ Html::script('js/eliminarfilacompra.js')}}
 {{ Html::style('css/style.css')}}
 @endsection
 
@@ -15,7 +15,7 @@
             <div>
                  <ul class="list-inline">
                      <li>
-                         <a href="{{ route('ventas.index',['seccion'=>'lista']) }}" class="btn btn-default">LISTA VENTAS</a>
+                         <a href="{{ route('compras.index',['seccion'=>'lista']) }}" class="btn btn-default">LISTA COMPRAS</a>
                      </li>    
                 </ul>
             </div>
@@ -23,7 +23,11 @@
                 <dl class="list">
                     <dt style="width: 100%;">
                         <div class="form-group">
-                            {{ Form::label('q', 'Agregar Producto a la Venta') }}
+                            {!! Form::label('idProveedor', 'Proveedor:') !!}
+                            {!! Form::select('idProveedor', $proveedor, null, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('q', 'Agregar Producto a la Compra') }}
                             {{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Ej: Lavandina','class'=> 'form-control','autofocus'])}}
                             {{ Form::hidden('qId', '', ['id' =>  'qId',])}}
                         </div> 
@@ -37,10 +41,10 @@
                 <dl>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">Ventas</div>
+                <div class="panel-heading">Compras</div>
                 <div class="panel-body">
                     <div  class="table-responsive">              
-                        <table class="table table-striped tabla-listaVenta">
+                        <table class="table table-striped tabla-listaCompra">
                             <thead>
                                 <tr>
                                     <th>Cant</th>
@@ -61,13 +65,13 @@
                                   <td></td>
                                 </tr>
                             </tfoot>
-                            <tbody id="tablaVentas">
+                            <tbody id="tablaCompras">
                             </tbody>
                         </table>
                     </div>
                 </div>     
             </div> 
-            <button type="button" class="btn btn-primary" id="realizarVenta" style="float:right;" onclick="cargarVenta()" disabled="disabled">Realizar Venta</button>
+            <button type="button" class="btn btn-primary" id="realizarCompra" style="float:right;" onclick="cargarCompra()" disabled="disabled">Realizar Compra</button>
         </div>
     </div>
 </div>
@@ -82,7 +86,7 @@
         <h4 class="modal-title">Felicidades!!!</h4>
       </div>
       <div class="modal-body">
-        <p>Venta Realizada con Exito.</p>
+        <p>COMPRA Realizada con Exito.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

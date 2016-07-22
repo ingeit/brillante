@@ -10,8 +10,10 @@ use Illuminate\Support\Facades\Response;
 use \App\GestorProductos;
 use App\Productos;
 use App\Http\Requests\VentasRequest;
-use App\GestorVentas;
+use App\GestorCompras;
+use App\GestorProveedores;
 use App\Ventas;
+use App\Compras;
 
 class ComprasController extends Controller
 {
@@ -19,11 +21,19 @@ class ComprasController extends Controller
     {   
         $seccion=Input::get('seccion');
         if ($seccion == 'index'){
-            return view('compras.index');
+            
+            $gp = new GestorProveedores();
+            $consulta = $gp->buscar('');
+            $proveedor = array();
+            foreach ($consulta as $c) //Convertimos los proveedores en un array Key => Value de la sig. forma
+            {
+                $proveedor[$c->idProveedor] = $c->razonSocial;
+            }
+            return View('compras.index', compact('proveedor'));
         }else{
-            $gestor = new GestorVentas();
-            $listaVenta = $gestor->listar();
-            return view('compras.lista',compact ('listaVenta'));
+            $gestor = new GestorCompras();
+            $listaCompra = $gestor->listar();
+            return view('compras.lista',compact ('listaCompra'));
         }
         
     }
@@ -49,8 +59,9 @@ class ComprasController extends Controller
         // cuando doy de alta la venta con un SP, en ese mismo SP llevo el string de las lineas y hago todo de una sola vez
         // asi se hace.. para evitar problemas de q JUSTO paso algo..
         // entonces obtengo monto y fecha (para generar una nueva venta y despues generamos el STRING de las lineas contac.
+        $idProveedor = $request->idProveedor; 
         $monto = $request->total; 
-        $fecha = date("d-m-Y H:i:s"); 
+        $fecha = date("d-m-Y H:i"); 
         
         $resultado = $request->productosPOSTajax; //obtengo el envio de datos tipo 
         //POST que envie de ajax con el nombre  productosPOSTajax
@@ -75,14 +86,14 @@ class ComprasController extends Controller
         
         //Ahora q tenemos el monto fecha (para venta), tenemos el contac de las lineas
         //Generamos la venta y a su vez las lineas ventas en un solo SP
-        $v = new Ventas($fecha,$monto,$cadena);
-        $gv = new GestorVentas();
-        $result = $gv->nueva($v); // lo agrego a la base de datos
+        $c = new Compras($idProveedor,$fecha,$monto,$cadena);
+        $gc = new GestorCompras();
+        $result = $gc->nueva($c); // lo agrego a la base de datos
         
-//        foreach ($result as $r) { // mensaje de error o venta creada con exito, con todas las lineas ventas
-//            $mensaje = $r->id;
-//        }
-//        dd($mensaje);
+        foreach ($result as $r) { // mensaje de error o venta creada con exito, con todas las lineas ventas
+            $mensaje = $r->id;
+        }
+        dd($mensaje);
         
     }
     

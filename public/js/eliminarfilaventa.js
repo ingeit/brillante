@@ -50,4 +50,4 @@ function enviarVenta(produc,total)
                     $("#myModal").modal('show');
                     }
             });
-    }   
+    }
