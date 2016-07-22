@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\GestorProductos;
 use App\Productos;
+use App\GestorProveedores;
 use App\Http\Requests\ProductosRequest;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
@@ -39,8 +40,8 @@ class ProductosController extends Controller
   
     public function create()
     {    
-        $consulta = DB::select('SELECT idProveedor,razonSocial FROM proveedores' );
-        
+        $gp = new GestorProveedores();
+        $consulta = $gp->buscar('');
         $proveedor = array();
         foreach ($consulta as $c) //Convertimos los proveedores en un array Key => Value de la sig. forma
         {
@@ -61,8 +62,7 @@ class ProductosController extends Controller
         foreach ($resultado as $r) { // obtengo el mensaje de la base de datos
             $mensaje = $r->Mensaje;
         }
-        Session::flash('mensaje',$mensaje); // mando el mensaje de la base datos a la vista
-        return redirect()->back(); // vuelvo al form
+        return redirect()->back()->with('mensaje', $mensaje);
     }
 
   

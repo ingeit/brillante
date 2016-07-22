@@ -20,6 +20,7 @@ Route::resource('productos', 'ProductosController');
 Route::resource('ventas', 'VentasController');
 Route::resource('lineasVenta', 'LineasVentaController');
 Route::resource('compras', 'ComprasController');
+Route::resource('proveedores', 'ProveedoresController');
 
 Route::auth();
 Route::get('/home', 'HomeController@index');

@@ -51,6 +51,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ route('productos.index') }}">Productos</a></li>
+                    <li><a href="{{ route('proveedores.index') }}">Proveedores</a></li>
                     <li><a href="{{ route('ventas.index',['seccion'=>'index']) }}">Ventas</a></li>
                     <li><a href="{{ route('compras.index',['seccion'=>'index']) }}">Compras</a></li>
                 </ul>

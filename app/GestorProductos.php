@@ -56,5 +56,11 @@ class GestorProductos extends Model
     	$result = DB::select('call producto_modificar(?,?,?,?)',$params);
         return $result;
     }
+    
+    public function proveedor_buscar($cadena)
+    {
+        $consulta = DB::select('call proveedor_buscar(?)',array($cadena));
+        return $consulta;
+    }
 
 }
