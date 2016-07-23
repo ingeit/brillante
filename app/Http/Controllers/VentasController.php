@@ -90,6 +90,7 @@ class VentasController extends Controller
     {      
         $p=new Productos();
         $p->dame($request->consulta);
+        $p->precio = ($p->precio)*1.5;
         return Response::json($p); 
     }
 

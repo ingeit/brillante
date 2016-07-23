@@ -24,7 +24,8 @@ function cargarVenta(){
   $('#tablaVentas').children('tr').each(function( i, val) {
     cantidad = $(this).find('td').eq(0).html();
     id = $(this).find('td').eq(1).html();
-    productos[i] = {"cantidad": cantidad,"id": id};
+    precio = $(this).find('td').eq(3).html();
+      productos[i] = {"cantidad": cantidad,"id": id,"precio": precio};
     });
     var total = parseFloat($('#total').html());
     enviarVenta(productos,total);
