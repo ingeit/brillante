@@ -39,6 +39,7 @@ class ComprasController extends Controller
             foreach ($listaCompra as $lc){
                 $idProveedor=($lc->idProveedor);
                 $p->dame($idProveedor);
+                //agregamos un nuevo KEY => VALUE al array asi:
                 $lc->razonSocial = $p->razonSocial;
             }
             return view('compras.lista',compact ('listaCompra'));
