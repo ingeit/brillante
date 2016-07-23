@@ -27,7 +27,7 @@ function cargarCompra(){
     productos[i] = {"cantidad": cantidad,"id": id};
     });
     var total = parseFloat($('#total').html());
-    var idProveedor = parseFloat($('#idProveedor').html());
+    var idProveedor = $('#idProveedor').find(":selected").val();//asi se toma el valor del proveedor
     enviarCompra(productos,total,idProveedor);
 }
 
