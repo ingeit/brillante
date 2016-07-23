@@ -2,8 +2,8 @@
 
 @section('scripts')
 {{ Html::script('js/autocomplete.js')}}
-{{ Html::script('js/agregarVenta.js')}}
-{{ Html::script('js/eliminarfilaventa.js')}}
+{{ Html::script('js/agregarCompra.js')}}
+{{ Html::script('js/eliminarfilacompra.js')}}
 {{ Html::style('css/style.css')}}
 @endsection
 
@@ -16,8 +16,9 @@
         <div class="col-md-10 col-md-offset-1">
 
             <div class="panel panel-default">
-            <div class="panel-heading">VENTA NUMERO: {{$id}}</div>
+            <div class="panel-heading">COMPRA NUMERO: {{$id}}</div>
             <div class="panel-heading">FECHA: {{$fecha}}</div>
+            <div class="panel-heading">PROVEEDOR: {{$razonSocial}}</div>
             <div class="panel-body">
                 <table class="table table-hover" style="margin-bottom: 0;margin-top: -12px;">
                     <thead>
@@ -32,13 +33,13 @@
                 </table>  
                 <table id="data" class="table table-hover">
                     <tbody id="resultado">               
-                        @foreach ($venta as $v)
+                        @foreach ($compra as $c)
                         <tr>
-                          <td>{{$v->cantidad}}</td>
-                          <td>{{$v->idProducto}}</td>
-                          <td>{{$v->nombre}}</td>
-                          <td>{{$v->precio}}</td>
-                          <td>{{$importe = ($v->cantidad)*($v->precio)}}</td>
+                          <td>{{$c->cantidad}}</td>
+                          <td>{{$c->idProducto}}</td>
+                          <td>{{$c->nombre}}</td>
+                          <td>{{$c->precio}}</td>
+                          <td>{{$importe = ($c->cantidad)*($c->precio)}}</td>
                         </tr>
                         @endforeach
                         <tr>
@@ -52,7 +53,7 @@
                 </table>
             </div>
             </div> 
-            <a href="{{ route('ventas.index',['seccion'=>'lista']) }}" type="button" class="btn btn-primary" style="float:right;">Volver Lista Ventas</a>
+            <a href="{{ route('compras.index',['seccion'=>'lista']) }}" type="button" class="btn btn-primary" style="float:right;">Volver Lista Compras</a>
         </div> 
     </div>
 </div>

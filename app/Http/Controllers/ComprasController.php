@@ -12,6 +12,7 @@ use App\Productos;
 use App\Http\Requests\VentasRequest;
 use App\GestorCompras;
 use App\GestorProveedores;
+use App\Proveedores;
 use App\Ventas;
 use App\Compras;
 
@@ -31,8 +32,15 @@ class ComprasController extends Controller
             }
             return View('compras.index', compact('proveedor'));
         }else{
+            $p = new Proveedores();
             $gestor = new GestorCompras();
             $listaCompra = $gestor->listar();
+            //obtenemos el nombre del proveedor para la VISTA
+            foreach ($listaCompra as $lc){
+                $idProveedor=($lc->idProveedor);
+                $p->dame($idProveedor);
+                $lc->razonSocial = $p->razonSocial;
+            }
             return view('compras.lista',compact ('listaCompra'));
         }
         
@@ -118,11 +126,11 @@ class ComprasController extends Controller
 //        return redirect()->back(); // vuelvo a ventas
 //    }
 
-    public function mostrar($id,$fecha,$monto)
+    public function mostrar($id,$fecha,$monto,$razonSocial)
     {
-        $gv = new GestorVentas();
-        $venta = $gv->dame($id);
-        return view('ventas.detalle',compact('venta','id','fecha','monto'));
+        $gc = new GestorCompras();
+        $compra = $gc->dame($id);
+        return view('compras.detalle',compact('compra','id','fecha','monto','razonSocial'));
     }
     
     public function show($id)

@@ -44,6 +44,22 @@ class Proveedores extends Model
     protected $fillable = [
         'razonSocial', 'direccion', 'telefono',
     ];
+    
+    public function dame($id){
+        $result = DB::select('call proveedor_dame(?)',array($id));
+        //el foreach me ayuda a pasar la consulta estructurada de store procedure
+        // a objeto, de esa manera se puede trabajar mas facil y autocompleta los campos
+        // gracias al form::model , el objeto es un Model de la base de datos por eso 
+        // uso fill() para completarlo.
+        foreach ($result as $r) {
+                $this->fill([
+                "razonSocial" => $r->razonSocial,
+                "direccion" => $r->direccion,
+                "telefono" => $r->telefono,
+            ]);
+        
+        }
+    }
    
 
 }

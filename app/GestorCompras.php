@@ -21,12 +21,12 @@ class GestorCompras extends Model
     }
     
     public function listar(){
-        $data = DB::select('call venta_listar'); 
+        $data = DB::select('call compra_listar'); 
         return $data;
     }
     
     public function dame($id){
-//        $result = DB::select('call venta_dame(?)',array($id));
+        $result = DB::select('call compra_dame(?)',array($id));
         return $result;
         
     }

@@ -42,5 +42,10 @@ $router->get('/ventas/{id}/{fecha}/{monto}',[
     'as'   => 'detalleVenta'
 ]);
 
+$router->get('/compras/{id}/{fecha}/{monto}/{proveedor}',[
+    'uses' => 'ComprasController@mostrar',
+    'as'   => 'detalleCompra'
+]);
+
 /*Route::group(['middleware' => 'web'], function () {
 });*/
