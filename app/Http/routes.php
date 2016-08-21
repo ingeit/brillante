@@ -42,7 +42,7 @@ $router->get('/ventas/{id}/{fecha}/{monto}',[
     'as'   => 'detalleVenta'
 ]);
 
-$router->get('/compras/{id}/{fecha}/{monto}/{proveedor}',[
+$router->get('/compras/{id}/{fecha}/{monto}',[
     'uses' => 'ComprasController@mostrar',
     'as'   => 'detalleCompra'
 ]);

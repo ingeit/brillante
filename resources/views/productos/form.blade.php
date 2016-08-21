@@ -29,7 +29,22 @@
                                 {!! Form::label('proveedor', 'Proveedor:') !!}
                                 {!! Form::select('idProveedor', $proveedor, null, ['class' => 'form-control']) !!}
                             </div>
-                              <button type="submit" style="float:right" class="btn btn-default">{{Session::get('boton')}}</button>
+                            <div class="form-group">
+                                {!! Form::label('cotizacion', 'Cotizado en:') !!}
+                                <div class="radio">
+                                    <label>
+                                      <input type="radio" name="cotizacion" id="tipoDeCotizacion1" value="Dolares"> 
+                                      US$ Dolares 
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                      <input type="radio" name="cotizacion" id="tipoDeCotizacion2" value="Pesos">
+                                      $ Pesos
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" style="float:right" class="btn btn-default">{{Session::get('boton')}}</button>
                         {!! Form::close() !!}
                     </div>
                 </div>

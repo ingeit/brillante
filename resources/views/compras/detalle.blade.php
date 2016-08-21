@@ -18,7 +18,6 @@
             <div class="panel panel-default">
             <div class="panel-heading">COMPRA NUMERO: {{$id}}</div>
             <div class="panel-heading">FECHA: {{$fecha}}</div>
-            <div class="panel-heading">PROVEEDOR: {{$razonSocial}}</div>
             <div class="panel-body">
                 <table class="table table-hover" style="margin-bottom: 0;margin-top: -12px;">
                     <thead>

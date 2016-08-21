@@ -19,7 +19,6 @@
                             <tr>
                                 <th>Nº Compra</th>
                                 <th>Fecha</th>
-                                <th>Proveedor</th>
                                 <th>Total $</th>
                                 <th></th>  
                             </tr>
@@ -32,9 +31,8 @@
                                 <tr>
                                     <td>{{$c->idCompra}}</td>
                                     <td>{{$c->fecha}}</td>
-                                    <td>{{$c->razonSocial}}</td>
-                                    <td>{{$c->monto}}</td>
-                                    <td><a href="{!! route('detalleCompra', ['id'=>$c->idCompra, 'fecha'=>$c->fecha,'monto'=>$c->monto, 'razonSocial'=>$c->razonSocial ]) !!}">Detalles</a></td>
+                                    <td>{{$c->monto}}</td> 
+                                    <td><a href="{!! route('detalleCompra', ['id'=>$c->idCompra, 'fecha'=>$c->fecha,'monto'=>$c->monto]) !!}">Detalles</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

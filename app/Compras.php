@@ -7,22 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class Compras extends Model
 {
     public $cIdCompra;
-    public $cIdProveedor;
     public $cFecha;
-    public $cMonto;
-    public $cCadena;
+    public $cMonto; 
+    public $cCadena; 
     
       
-    function __construct($idProveedor, $fecha, $monto, $cadena)
+    function __construct($fecha, $monto, $cadena)
     {
-        $this->cIdProveedor = $idProveedor;
         $this->cFecha = $fecha;
         $this->cMonto = $monto;
         $this->cCadena = $cadena;
     }
     
     protected $fillable = [
-        'idProveedor','fecha', 'monto', 'cadena',
+     'fecha', 'monto', 'cadena',
     ];
    
      

@@ -23,24 +23,24 @@ class ComprasController extends Controller
         $seccion=Input::get('seccion');
         if ($seccion == 'index'){
             
-            $gp = new GestorProveedores();
-            $consulta = $gp->buscar('');
-            $proveedor = array();
-            foreach ($consulta as $c) //Convertimos los proveedores en un array Key => Value de la sig. forma
-            {
-                $proveedor[$c->idProveedor] = $c->razonSocial;
-            }
-            return View('compras.index', compact('proveedor'));
+//            $gp = new GestorProveedores();
+//            $consulta = $gp->buscar('');
+//            $proveedor = array();
+//            foreach ($consulta as $c) //Convertimos los proveedores en un array Key => Value de la sig. forma
+//            {
+//                $proveedor[$c->idProveedor] = $c->razonSocial;
+//            }
+            return View('compras.index');
         }else{
-            $p = new Proveedores();
+            //$p = new Proveedores();
             $gestor = new GestorCompras();
             $listaCompra = $gestor->listar();
             //obtenemos el nombre del proveedor para la VISTA
             foreach ($listaCompra as $lc){
-                $idProveedor=($lc->idProveedor);
-                $p->dame($idProveedor);
+                //$idProveedor=($lc->idProveedor);
+                //$p->dame($idProveedor);
                 //agregamos un nuevo KEY => VALUE al array asi:
-                $lc->razonSocial = $p->razonSocial;
+               // $lc->razonSocial = $p->razonSocial;
             }
             return view('compras.lista',compact ('listaCompra'));
         }
@@ -68,7 +68,7 @@ class ComprasController extends Controller
         // cuando doy de alta la venta con un SP, en ese mismo SP llevo el string de las lineas y hago todo de una sola vez
         // asi se hace.. para evitar problemas de q JUSTO paso algo..
         // entonces obtengo monto y fecha (para generar una nueva venta y despues generamos el STRING de las lineas contac.
-        $idProveedor = $request->idProveedor; 
+//        $idProveedor = $request->idProveedor; 
         $monto = $request->total; 
         $fecha = date("d-m-Y H:i"); 
         
@@ -95,15 +95,15 @@ class ComprasController extends Controller
         
         //Ahora q tenemos el monto fecha (para venta), tenemos el contac de las lineas
         //Generamos la venta y a su vez las lineas ventas en un solo SP
-        $c = new Compras($idProveedor,$fecha,$monto,$cadena);
+        $c = new Compras($fecha,$monto,$cadena); 
+
         $gc = new GestorCompras();
-        $result = $gc->nueva($c); // lo agrego a la base de datos
+        $gc->nueva($c); // lo agrego a la base de datos
         
-        foreach ($result as $r) { // mensaje de error o venta creada con exito, con todas las lineas ventas
-            $mensaje = $r->id;
-        }
-        dd($mensaje);
-        
+//        foreach ($result as $r) { // mensaje de error o venta creada con exito, con todas las lineas ventas
+//            $mensaje = $r->id;
+//        }
+
     }
     
      public function agregarLinea(Request $request)
@@ -127,11 +127,11 @@ class ComprasController extends Controller
 //        return redirect()->back(); // vuelvo a ventas
 //    }
 
-    public function mostrar($id,$fecha,$monto,$razonSocial)
+    public function mostrar($id,$fecha,$monto) 
     {
         $gc = new GestorCompras();
         $compra = $gc->dame($id);
-        return view('compras.detalle',compact('compra','id','fecha','monto','razonSocial'));
+        return view('compras.detalle',compact('compra','id','fecha','monto'));
     }
     
     public function show($id)

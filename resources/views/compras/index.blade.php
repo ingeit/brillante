@@ -21,11 +21,7 @@
             </div>
             <div>
                 <dl class="list">
-                    <dt style="width: 100%;">
-                        <div class="form-group">
-                            {!! Form::label('idProveedor', 'Proveedor:') !!}
-                            {!! Form::select('idProveedor', $proveedor, null, ['class' => 'form-control']) !!}
-                        </div>
+                    <dt style="width: 100%;"> 
                         <div class="form-group">
                             {{ Form::label('q', 'Agregar Producto a la Compra') }}
                             {{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Ej: Lavandina','class'=> 'form-control','autofocus'])}}

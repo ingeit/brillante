@@ -6,17 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class GestorCompras extends Model
-{
-    
+{ 
+     
     public function nueva(Compras $i)
     {
         $params = array(
-            $i->cIdProveedor,
             $i->cFecha,
             $i->cMonto,
-            $i->cCadena );
-        
-    	$result = DB::select('call compra_nueva(?,?,?,?)',$params);
+            $i->cCadena,);
+    	$result = DB::select('call compra_nueva(?,?,?)',$params);
+        dd($result);
         return $result;
     }
     

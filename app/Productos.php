@@ -12,6 +12,7 @@ class Productos extends Model
     public $pNombre;
     public $pPrecio;
     public $pEstado;
+    public $pcotizacion; 
     
     public $timestamps = false; 
       
@@ -43,7 +44,7 @@ class Productos extends Model
     
     
     protected $fillable = [
-        'idProveedor', 'nombre', 'precio',
+        'idProveedor', 'nombre', 'precio','cotizacion',
     ];
    
      public function dame($id){

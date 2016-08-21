@@ -4,9 +4,9 @@
 // de esa manera identifico bien que lo esta llamando.
 // y $(obj) al escibrilo de esa forma, lo coniverto en un objeto
 // de jQuery y trabajo sobre el normalmente.
-function eliminarFila(obj){   
+function eliminarFila(obj){
 //    $(obj).parents('tr').fadeOut('slow',function(){})
-  $('#total').html(parseInt($('#total').html())-parseInt($(obj).parents('tr').find('#importe').html()));  
+  $('#total').html(parseInt($('#total').html())-parseInt($(obj).parents('tr').find('#importe').html()));
   $(obj).parents('tr').remove();
   desabilitarBoton();
 }
@@ -19,7 +19,7 @@ function desabilitarBoton() {
     }
 }
 
-function cargarCompra(){ 
+function cargarCompra(){
     var productos = [];
   $('#tablaCompras').children('tr').each(function( i, val) {
     cantidad = $(this).find('td').eq(0).html();
@@ -27,28 +27,28 @@ function cargarCompra(){
     productos[i] = {"cantidad": cantidad,"id": id};
     });
     var total = parseFloat($('#total').html());
-    var idProveedor = $('#idProveedor').find(":selected").val();//asi se toma el valor del proveedor
-    enviarCompra(productos,total,idProveedor);
+//    var idProveedor = $('#idProveedor').find(":selected").val();//asi se toma el valor del proveedor
+    enviarCompra(productos,total);
 }
 
 
-function enviarCompra(produc,total,idProveedor)
+function enviarCompra(produc,total)
     {
-        $.ajax({ 
+        $.ajax({
             type: "POST",
             url: "compras/realizarCompra",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {productosPOSTajax: produc,total: total, idProveedor: idProveedor},
+            data: {productosPOSTajax: produc,total: total},
             dataType: "html",
             success: function(data)
-                    {       
+                    {
                     $("#tablaCompras").empty();
                     $('#total').html(0);
                     $("#q").focus();
-                    $('#realizarCompra').prop('disabled', true);   
+                    $('#realizarCompra').prop('disabled', true);
                     $("#myModal").modal('show');
                     }
             });
-    }   
+    }
