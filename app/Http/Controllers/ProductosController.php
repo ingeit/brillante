@@ -15,13 +15,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
-class ProductosController extends Controller
+class ProductosController extends Controller 
 {
     public function index()
     {
         $gestor = new GestorProductos();
-        $listaProductos = $gestor->buscar('');
-        return view('productos.index',compact ('listaProductos'));
+        $listaProductos = $gestor->listar();
+        $precioDolar = $gestor->obtenerPrecioDolar();
+        return view('productos.index',compact ('listaProductos','precioDolar'));
     }
     
     public function filtrado(Request $request){ //Se conecta con el js livesearch.js para filtrar la busqueda

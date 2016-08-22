@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 
 class GestorVentas extends Model
 {
-    
     public function nueva(Ventas $v)
     {
         $params = array(
@@ -16,6 +15,7 @@ class GestorVentas extends Model
             $v->vCadena );
         
     	$result = DB::select('call venta_nueva(?,?,?)',$params);
+        dd($result);
         return $result;
     }
     

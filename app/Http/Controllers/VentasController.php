@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Input;
@@ -78,7 +77,6 @@ class VentasController extends Controller
         $v = new Ventas($fecha,$monto,$cadena);
         $gv = new GestorVentas();
         $result = $gv->nueva($v); // lo agrego a la base de datos
-        
 //        foreach ($result as $r) { // mensaje de error o venta creada con exito, con todas las lineas ventas
 //            $mensaje = $r->id;
 //        }

@@ -11,6 +11,10 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div>
+                    <strong>Cotizacion oficial del Dolar provisto por Yahoo!</strong> {{ $precioDolar }}.
+                </div>
+                <br>
+                <div>
                     <ul class="list-inline">
                         <li>
                             <div class="form-group">
@@ -30,22 +34,27 @@
                 <div class="panel panel-default">
                 <div class="panel-heading">Lista de Productos</div>
                 <div class="panel-body">
-                    <table class="table table-hover" style="margin-bottom: 0;margin-top: -12px;">
+                    <table class="table table-striped" style="margin-bottom: 0;margin-top: -12px;">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
                                 <th>Precio</th>
+                                <th>Cotizacion</th>
+                                <th>Stock</th>
                                 <th></th>  
                             </tr>
                         </thead>
                     </table>    
                     <div  class="table-responsive" style="height: 250px;overflow-y: scroll;overflow-x: hidden;">              
-                        <table id="data" class="table table-hover">
+                        <table id="data" class="table table-striped">
                             <tbody id="resultado">
                                 @foreach ($listaProductos as $l)
                                 <tr>
                                     <td>{{$l->nombre}}</td>
                                     <td>{{$l->precio}}</td>
+                                    <td>{{$l->PrecioVenta}}</td>
+                                    <td>{{$l->cotizacion}}</td>
+                                    <td>{{$l->stock}}</td>
                                     <td><a style='float:left;' href="{{route('productos.edit',$l->idProducto)}}">Editar</a></td>
                                 </tr>
                                 @endforeach
@@ -54,7 +63,7 @@
                     </div>
                 </div>     
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 @endsection
