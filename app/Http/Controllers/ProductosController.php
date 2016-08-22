@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
-class ProductosController extends Controller 
+class ProductosController extends Controller
 {
     public function index()
     {
