@@ -9,20 +9,20 @@ use Illuminate\Support\Facades\Response;
 use \App\GestorProductos;
 use App\Productos;
 use App\Http\Requests\VentasRequest;
-use App\GestorVentas;
-use App\Ventas;
+use App\GestorIngresos;
+use App\Ingresos;
 
-class VentasController extends Controller
+class IngresosController extends Controller
 {
     public function index()
     {   
         $seccion=Input::get('seccion');
         if ($seccion == 'index'){
-            return view('ventas.index');
+            return view('ingresos.index');
         }else{
-            $gestor = new GestorVentas();
-            $listaVenta = $gestor->listar();
-            return view('ventas.lista',compact ('listaVenta'));
+            $gestor = new GestorIngresos();
+            $listaIngreso = $gestor->listar();
+            return view('ingresos.lista',compact ('listaIngreso'));
         }
         
     }
@@ -48,7 +48,6 @@ class VentasController extends Controller
         // cuando doy de alta la venta con un SP, en ese mismo SP llevo el string de las lineas y hago todo de una sola vez
         // asi se hace.. para evitar problemas de q JUSTO paso algo..
         // entonces obtengo monto y fecha (para generar una nueva venta y despues generamos el STRING de las lineas contac.
-        $monto = $request->total; 
         $fecha = date("d-m-Y H:i"); 
         
         $resultado = $request->productosPOSTajax; //obtengo el envio de datos tipo 
@@ -61,10 +60,10 @@ class VentasController extends Controller
         foreach ($resultado as $p){
             //hago este if solo para el formato,para que terminen sin || ( 1|2*2|2 )
             if ($cadena == null) {
-                $cadena = $cadena.$p['id']."|".$p['cantidad']."|".$p['lugar'];
+                $cadena = $cadena.$p['id']."|".$p['cantidad'];
             }
             else{
-                $cadena = $cadena."*".$p['id']."|".$p['cantidad']."|".$p['lugar'];
+                $cadena = $cadena."*".$p['id']."|".$p['cantidad'];
             }
             
             
@@ -76,9 +75,11 @@ class VentasController extends Controller
         
         //Ahora q tenemos el monto fecha (para venta), tenemos el contac de las lineas
         //Generamos la venta y a su vez las lineas ventas en un solo SP
-        $v = new Ventas($fecha,$monto,$cadena);
-        $gv = new GestorVentas();
-        $result = $gv->nueva($v); // lo agrego a la base de datos
+        $i = new Ingresos($fecha,$cadena);
+        $gi = new GestorIngresos();
+        $result = $gi->nuevo($i); 
+        
+        //// lo agrego a la base de datos
 //        foreach ($result as $r) { // mensaje de error o venta creada con exito, con todas las lineas ventas
 //            $mensaje = $r->id;
 //        }
@@ -107,11 +108,11 @@ class VentasController extends Controller
 //        return redirect()->back(); // vuelvo a ventas
 //    }
 
-    public function mostrar($id,$fecha,$monto)
+    public function mostrar($id,$fecha)
     {
-        $gv = new GestorVentas();
-        $venta = $gv->dame($id);
-        return view('ventas.detalle',compact('venta','id','fecha','monto'));
+        $gi = new GestorIngresos();
+        $ingreso = $gi->dame($id);
+        return view('ingresos.detalle',compact('ingreso','id','fecha'));
     }
     
     public function show($id)

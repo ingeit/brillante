@@ -2,8 +2,8 @@
 
 @section('scripts')
 {{ Html::script('js/autocomplete.js')}}
-{{ Html::script('js/agregarVenta.js')}}
-{{ Html::script('js/eliminarfilaventa.js')}}
+{{ Html::script('js/agregarIngreso.js')}}
+{{ Html::script('js/eliminarfilaingreso.js')}}
 {{ Html::style('css/style.css')}}
 @endsection
 
@@ -15,7 +15,7 @@
             <div>
                  <ul class="list-inline">
                      <li>
-                         <a href="{{ route('ventas.index',['seccion'=>'lista']) }}" class="btn btn-default">LISTA VENTAS</a>
+                         <a href="{{ route('ingresos.index',['seccion'=>'lista']) }}" class="btn btn-default">LISTA INGRESOS</a>
                      </li>    
                 </ul>
             </div>
@@ -23,7 +23,7 @@
                 <dl class="list">
                     <dt style="width: 100%;">
                         <div class="form-group">
-                            {{ Form::label('q', 'Agregar Producto a la Venta') }}
+                            {{ Form::label('q', 'Producto a Ingresar') }}
                             {{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Ej: Lavandina','class'=> 'form-control','autofocus'])}}
                             {{ Form::hidden('qId', '', ['id' =>  'qId',])}}
                         </div> 
@@ -37,38 +37,25 @@
                 <dl>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">Ventas</div>
+                <div class="panel-heading">Ingresos</div>
                 <div class="panel-body">
                     <div  class="table-responsive">              
-                        <table class="table table-striped tabla-listaVenta">
+                        <table class="table table-striped tabla-listaIngreso">
                             <thead>
                                 <tr>
                                     <th>Cant</th>
                                     <th>Cod</th>
                                     <th>Descripcion</th>
-                                    <th>Unit</th>
-                                    <th>Importe</th>
-                                    <th>Retira En</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td>TOTAL</td>
-                                  <td id="total">0</td>
-                                  <td></td>
-                                </tr>
-                            </tfoot>
-                            <tbody id="tablaVentas">
+                            <tbody id="tablaIngresos">
                             </tbody>
                         </table>
                     </div>
                 </div>     
             </div> 
-            <button type="button" class="btn btn-primary" id="realizarVenta" style="float:right;" onclick="cargarVenta()" disabled="disabled">Realizar Venta</button>
+            <button type="button" class="btn btn-primary" id="realizarIngreso" style="float:right;" onclick="cargarIngreso()" disabled="disabled">Realizar Ingreso</button>
         </div>
     </div>
 </div>
@@ -83,7 +70,7 @@
         <h4 class="modal-title">Felicidades!!!</h4>
       </div>
       <div class="modal-body">
-        <p>Venta Realizada con Exito.</p>
+        <p>Ingreso Realizado con Exito.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

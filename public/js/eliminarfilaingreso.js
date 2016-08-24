@@ -13,42 +13,38 @@ function eliminarFila(obj){
 
 function desabilitarBoton() {
     // Existen elementos?
-    if($('#tablaVentas tr').length === 0)
+    if($('#tablaIngresos tr').length === 0)
     {
-       $('#realizarVenta').prop('disabled', true);
+       $('#tablaIngresos').prop('disabled', true);
     }
 }
 
-function cargarVenta(){ 
+function cargarIngreso(){ 
     var productos = [];
-  $('#tablaVentas').children('tr').each(function( i, val) {
-    lugar = $(this).find('td').eq(5).find(":selected").val();
+  $('#tablaIngresos').children('tr').each(function( i, val) {
     cantidad = $(this).find('td').eq(0).html();
     id = $(this).find('td').eq(1).html();
-    precio = $(this).find('td').eq(3).html();
-      productos[i] = {"cantidad": cantidad,"id": id,"precio": precio,"lugar": lugar};
+      productos[i] = {"cantidad": cantidad,"id": id};
     });
-    var total = parseFloat($('#total').html());
-    enviarVenta(productos,total);
+    enviarIngreso(productos);
 }
 
 
-function enviarVenta(produc,total)
+function enviarIngreso(produc)
     {
         $.ajax({ 
             type: "POST",
-            url: "ventas/realizarVenta",
+            url: "ingresos/realizarIngreso",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {productosPOSTajax: produc,total: total},
+            data: {productosPOSTajax: produc},
             dataType: "html",
             success: function(data)
                     {       
-                    $("#tablaVentas").empty();
-                    $('#total').html(0);
+                    $("#tablaIngresos").empty();
                     $("#q").focus();
-                    $('#realizarVenta').prop('disabled', true);   
+                    $('#realizarIngreso').prop('disabled', true);   
                     $("#myModal").modal('show');
                     }
             });

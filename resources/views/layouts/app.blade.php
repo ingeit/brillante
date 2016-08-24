@@ -54,6 +54,7 @@
                     <li><a href="{{ route('proveedores.index') }}">Proveedores</a></li>
                     <li><a href="{{ route('ventas.index',['seccion'=>'index']) }}">Ventas</a></li>
                     <li><a href="{{ route('compras.index',['seccion'=>'index']) }}">Compras</a></li>
+                    <li><a href="{{ route('ingresos.index',['seccion'=>'index']) }}">Ingreso Local</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

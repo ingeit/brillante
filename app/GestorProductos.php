@@ -45,6 +45,7 @@ class GestorProductos extends Model
     
     public function listar(){
         $precio = $this->obtenerPrecioDolar();
+        $precio = round($precio, 2);
         $data = DB::select('call producto_listar_stock(?)',array($precio)); 
         return $data;
     }

@@ -1,10 +1,10 @@
 $(document).ready(function(){
     
     $("#q,#SelectCant").keydown(function (e){
-        realizarVenta(e);
+        realizarIngreso(e);
     });
         
-    function realizarVenta(e){
+    function realizarIngreso(e){
         switch(e.which) 
         {
             case 13: //detecta el enter
@@ -20,7 +20,7 @@ $(document).ready(function(){
                     $("#qId").val(null);
                     $("#SelectCant").val(null);
                     $("#q").focus();
-                    $('#realizarVenta').prop('disabled', false);     
+                    $('#realizarIngreso').prop('disabled', false);     
                 }
                 break;
                 
@@ -32,7 +32,7 @@ $(document).ready(function(){
     {
         $.ajax({ //defino el formato de AJAX: type, url, headers, data, success
             type: "POST",
-            url: "ventas/agregar",// se fija esta ruta en ROUTES para ir al controller
+            url: "ingresos/agregar",// se fija esta ruta en ROUTES para ir al controller
             //envio token porque laravel lo obliga
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -44,14 +44,11 @@ $(document).ready(function(){
                     {       
                         var jsonResponse = JSON.parse(data);  //parse convierte la consulta (data) en un array
                             importe = jsonResponse.precio*cant;
-                            $("#tablaVentas").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
+                            $("#tablaIngresos").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
                                 "<tr>"+
                                     "<td>"+cant+"</td>"+
                                     "<td>"+id+"</td>"+
                                     "<td>"+jsonResponse.nombre+"</td>"+
-                                    "<td>"+jsonResponse.precio+"</td>"+
-                                    "<td id='importe'>"+importe+"</td>"+
-                                    "<td><select class='form-control'><option value='local'>Local</option><option value='deposito'>Deposito</option></select></td>"+
                                     "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
                                 "</tr>"
                                 );
