@@ -58,7 +58,7 @@
                                     <th>Stock General</th>
                                     <th>Stock Deposito</th>
                                     <th>Stock Local</th>
-                                    <th>Acciones</th>  
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody id="resultado">
