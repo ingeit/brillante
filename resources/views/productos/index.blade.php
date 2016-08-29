@@ -34,19 +34,34 @@
                 <div class="panel panel-default">
                 <div class="panel-heading">Lista de Productos</div>
                 <div class="panel-body">
-                    <table class="table table-striped" style="margin-bottom: 0;margin-top: -12px;">
+<!--                    <table class="table table-striped" style="margin-bottom: 0;margin-top: -12px;">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
                                 <th>Precio</th>
+                                <th>Precio Venta</th>
                                 <th>Cotizacion</th>
-                                <th>Stock</th>
-                                <th></th>  
+                                <th>Stock Global</th>
+                                <th>Stock Deposito</th>
+                                <th>Stock Local</th>
+                                <th>Acciones</th>  
                             </tr>
                         </thead>
-                    </table>    
+                    </table>   -->
                     <div  class="table-responsive" style="height: 250px;overflow-y: scroll;overflow-x: hidden;">              
                         <table id="data" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                    <th>Precio Venta</th>
+                                    <th>Cotizacion</th>
+                                    <th>Stock General</th>
+                                    <th>Stock Deposito</th>
+                                    <th>Stock Local</th>
+                                    <th>Acciones</th>  
+                                </tr>
+                            </thead>
                             <tbody id="resultado">
                                 @foreach ($listaProductos as $l)
                                 <tr>
@@ -55,6 +70,8 @@
                                     <td>{{$l->PrecioVenta}}</td>
                                     <td>{{$l->cotizacion}}</td>
                                     <td>{{$l->stock}}</td>
+                                    <td>{{$l->stockDeposito}}</td>
+                                    <td>{{$l->stockLocal}}</td>
                                     <td><a style='float:left;' href="{{route('productos.edit',$l->idProducto)}}">Editar</a></td>
                                 </tr>
                                 @endforeach
