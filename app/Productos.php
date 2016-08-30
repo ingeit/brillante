@@ -11,8 +11,9 @@ class Productos extends Model
     public $pIdProveedor;
     public $pNombre;
     public $pPrecio;
+    public $pcotizacion;
+    public $pGanancia;
     public $pEstado;
-    public $pcotizacion; 
     
     public $timestamps = false; 
       
@@ -35,16 +36,17 @@ class Productos extends Model
         
     }
     
-    function __construct2($proveedor, $nombre, $precio)
+    function __construct2($proveedor, $nombre, $precio, $ganancia)
     {
         $this->pIdProveedor = $proveedor;
         $this->pNombre = $nombre;
         $this->pPrecio = $precio;
+        $this->pGanancia = $ganancia;
     }
     
     
     protected $fillable = [
-        'idProveedor', 'nombre', 'precio','cotizacion',
+        'idProveedor', 'nombre', 'precio','cotizacion','ganancia',
     ];
    
      public function dame($id){
@@ -58,6 +60,7 @@ class Productos extends Model
                 "idProveedor" => $r->idProveedor,
                 "nombre" => $r->nombre,
                 "precio" => $r->precio,
+                "ganancia" => $r->ganancia,
             ]);
                 $this->pIdProducto = $r->idProducto;
         }
