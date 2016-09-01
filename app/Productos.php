@@ -46,7 +46,7 @@ class Productos extends Model
     
     
     protected $fillable = [
-        'idProveedor', 'nombre', 'precio','cotizacion','ganancia',
+        'idProveedor', 'nombre', 'precio','cotizacion','ganancia'
     ];
    
      public function dame($id){

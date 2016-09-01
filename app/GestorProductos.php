@@ -75,7 +75,7 @@ class GestorProductos extends Model
             $p->ganancia,);
         
         
-    	$result = DB::select('call producto_modificar(?,?,?,?)',$params);
+    	$result = DB::select('call producto_modificar(?,?,?,?,?)',$params);
         return $result;
     }
     

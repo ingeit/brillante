@@ -26,7 +26,8 @@ class ProductosRequest extends Request
         return [
             'idProveedor' => 'required', 
             'nombre' => 'required', 
-            'precio' => 'required'
+            'precio' => 'required',
+            'ganancia' => 'required'
         ];
     }
 }
