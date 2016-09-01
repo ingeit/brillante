@@ -78,9 +78,16 @@ class ProductosController extends Controller
         Session::flash('edicion','test');//Variable que envio a la vista para ver si se trata de un edit or create
         $data = new Productos();
         $data->dame($id); //Busco el Prodcuto por id en la base de datos
+        $gp = new GestorProveedores();
+        $consulta = $gp->buscar('');
+        $proveedor = array();
+        foreach ($consulta as $c) //Convertimos los proveedores en un array Key => Value de la sig. forma
+        {
+            $proveedor[$c->idProveedor] = $c->razonSocial;
+        }
         Session::put('titulo','Modificar Producto');
         Session::put('boton','Modificar Producto');
-        return view('productos.form',compact('data'));
+        return view('productos.form',compact('data','proveedor'));
     }
 
   
