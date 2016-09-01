@@ -19,31 +19,31 @@
                         @endif
                             <div class="form-group">
                                 {!! Form::label('nombre', 'Nombre del Producto'); !!} 
-                                {{ Form::text('nombre',null,['autofocus', 'class'=> 'form-control','placeholder'=>'Ingrese el nombre del producto']) }}
+                                {{ Form::text('nombre',null,['autofocus','required', 'class'=> 'form-control','placeholder'=>'Ingrese el nombre del producto']) }}
                             </div>
                             <div class="form-group">
                                {!! Form::label('precio', 'Precio del Producto'); !!} 
-                               {{ Form::text('precio',null,['class'=> 'form-control','placeholder'=>'Ingrese el precio del producto']) }}
+                               {{ Form::text('precio',null,['class'=> 'form-control','required','placeholder'=>'Ingrese el precio del producto']) }}
                             </div>
                             <div class="form-group">
                                {!! Form::label('ganancia', 'Ganancia del Producto (%)'); !!} 
-                               {{ Form::text('ganancia',null,['class'=> 'form-control','placeholder'=>'Ingrese la ganancia del producto sin "%"']) }}
+                               {{ Form::text('ganancia',null,['class'=> 'form-control','required','placeholder'=>'Ingrese la ganancia del producto sin "%"']) }}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('proveedor', 'Proveedor:') !!}
-                                {!! Form::select('idProveedor', $proveedor, null, ['class' => 'form-control']) !!}
+                                {!! Form::select('idProveedor', $proveedor, null, ['class' => 'form-control','required', 'placeholder' => 'Elija un Proveedor']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('cotizacion', 'Cotizado en:') !!}
                                 <div class="radio">
                                     <label>
-                                      <input type="radio" name="cotizacion" id="tipoDeCotizacion1" value="Dolares"> 
+                                      <input type="radio" name="cotizacion"  id="tipoDeCotizacion1" value="Dolares" required> 
                                       US$ Dolares 
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                      <input type="radio" name="cotizacion" id="tipoDeCotizacion2" value="Pesos">
+                                      <input type="radio" name="cotizacion" id="tipoDeCotizacion2" value="Pesos" required>
                                       $ Pesos
                                     </label>
                                 </div>

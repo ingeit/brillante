@@ -27,7 +27,8 @@ class ProductosRequest extends Request
             'idProveedor' => 'required', 
             'nombre' => 'required', 
             'precio' => 'required',
-            'ganancia' => 'required'
+            'ganancia' => 'required',
+            'cotizacion' => 'required'
         ];
     }
 }
