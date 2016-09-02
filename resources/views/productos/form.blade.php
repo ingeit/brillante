@@ -37,13 +37,14 @@
                                 {!! Form::label('cotizacion', 'Cotizado en:') !!}
                                 <div class="radio">
                                     <label>
-                                      <input type="radio" name="cotizacion"  id="tipoDeCotizacion1" value="Dolares" required> 
+                                      {{ Form::radio('cotizacion', 'Dolares', 0,['class' => 'field']) }}
                                       US$ Dolares 
                                     </label>
+                                   
                                 </div>
                                 <div class="radio">
                                     <label>
-                                      <input type="radio" name="cotizacion" id="tipoDeCotizacion2" value="Pesos" required>
+                                      {{ Form::radio('cotizacion', 'Pesos', 0,['class' => 'field']) }}
                                       $ Pesos
                                     </label>
                                 </div>

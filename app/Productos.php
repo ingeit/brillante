@@ -61,6 +61,7 @@ class Productos extends Model
                 "nombre" => $r->nombre,
                 "precio" => $r->precio,
                 "ganancia" => $r->ganancia,
+                "cotizacion" => $r->cotizacion,
             ]);
                 $this->pIdProducto = $r->idProducto;
         }
