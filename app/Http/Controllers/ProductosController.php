@@ -16,20 +16,20 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
 class ProductosController extends Controller
-{
+{  
     public function index()
     {
         $gestor = new GestorProductos();
-        $listaProductos = $gestor->listar();
+        $listaProductos = $gestor->listar('');
         $precioDolar = $gestor->obtenerPrecioDolar();
         return view('productos.index',compact ('listaProductos','precioDolar'));
     }
     
     public function filtrado(Request $request){ //Se conecta con el js livesearch.js para filtrar la busqueda
-   
-        $queries = DB::table('productos')
-		->where('nombre', 'LIKE', '%'.$request->consulta.'%')->get();
         
+        $cadena=$request->consulta;
+        $gestor = new GestorProductos();
+        $queries = $gestor->listar($cadena);
         $results = array(); 
         
         foreach ($queries as $query)
