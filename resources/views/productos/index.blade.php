@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('scripts')
-{{ Html::script('js/liveSearch.js')}}
+{{ Html::script('js/liveSearchLocal.js')}}
 {{ Html::script('js/highlighttable.js')}}
 {{ Html::style('css/style.css')}}
 @endsection

@@ -26,17 +26,11 @@ class ProductosController extends Controller
     }
     
     public function filtrado(Request $request){ //Se conecta con el js livesearch.js para filtrar la busqueda
-        
         $cadena=$request->consulta;
         $gestor = new GestorProductos();
         $queries = $gestor->listar($cadena);
         $results = array(); 
-        
-        foreach ($queries as $query)
-	{
-	    $results[] = ['nombre' => $query->nombre,'precio' => $query->precio];
-	}
-        return Response::json($results);
+        return Response::json($queries);
     }
   
     public function create()

@@ -22,6 +22,7 @@ $(document).ready(function(){
                             source: productos, //array creado arriba, ya no mas busqueda todo el tiempo
                             minLength: 1,     //caracter minimo para empezar a autocompletar
                             cacheLength: 0, //evita que se guarde el cache
+                            delay: 0,
                             select: function(event, ui) {
                                   $('#q').val(ui.item.value);
                                   $('#qId').val(ui.item.id);
