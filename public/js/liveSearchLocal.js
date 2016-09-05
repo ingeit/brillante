@@ -37,7 +37,7 @@ $(document).ready(function(){ //$(document) toma la pagina entera como variable 
                             "<td>"+v.stock+"</td>"+
                             "<td>"+v.stockDeposito+"</td>"+
                             "<td>"+v.stockLocal+"</td>"+
-                            "<td><a style='float:left;' href='productos/"+v.idProducto+"/edit'>Editar</a></td>"+
+                            "<td><a style='float:left;' href='productos/"+v.idProducto+"/edit'>Editar/Eliminar</a></td>"+
                         "</tr>"
                         );
                     }     

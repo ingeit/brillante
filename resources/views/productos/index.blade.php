@@ -74,7 +74,7 @@
                                     <td>{{$l->stock}}</td>
                                     <td>{{$l->stockDeposito}}</td>
                                     <td>{{$l->stockLocal}}</td>
-                                    <td><a style='float:left;' href="{{route('productos.edit',$l->idProducto)}}">Editar</a></td>
+                                    <td><a style='float:left;' href="{{route('productos.edit',$l->idProducto)}}">Editar/Eliminar</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
