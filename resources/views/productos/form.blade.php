@@ -13,6 +13,9 @@
                     <div class="panel-heading">{{Session::get('titulo')}}</div>
                     <div class="panel-body">
                         @if(Session::has('edicion'))
+                            {!! Form::open(['route' => ['productos.destroy',$data->pIdProducto],'method'=>'delete']) !!}
+                                <button style="float:right" class="btn btn-danger" type="submit">Eliminar</button>
+                            {!! Form::close() !!}
                             {!! Form::model($data,['route' => ['productos.update',$data->pIdProducto],'method'=>'PUT']) !!}
                         @else
                             {!! Form::open(array('route' => 'productos.store')) !!}
@@ -50,11 +53,6 @@
                                 </div>
                             </div>
                             <button type="submit" style="float:right" class="btn btn-default">{{Session::get('boton')}}</button>
-                            @if(Session::has('edicion'))
-                                {!! Form::open(['route' => ['productos.destroy',$data->pIdProducto],'method'=>'delete']) !!}
-                                        <button style="float:right" class="btn btn-danger" type="submit">Eliminar</button>
-                                {!! Form::close() !!}
-                            @endif
                         {!! Form::close() !!}
                     </div>
                 </div>
