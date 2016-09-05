@@ -55,7 +55,6 @@
                                     <th>Nombre</th>
                                     <th>Precio</th>
                                     <th>Precio Venta</th>
-                                    <th>Cotizacion</th>
                                     <th>Stock General</th>
                                     <th>Stock Deposito</th>
                                     <th>Stock Local</th>
@@ -66,9 +65,12 @@
                                 @foreach ($listaProductos as $l)
                                 <tr>
                                     <td>{{$l->nombre}}</td>
-                                    <td>{{$l->precio}}</td>
-                                    <td>{{$l->PrecioVenta}}</td>
-                                    <td>{{$l->cotizacion}}</td>
+                                    @if($l->cotizacion=='Dolares')
+                                    <td>u$s {{$l->precio}}</td>
+                                    @else
+                                    <td>$ {{$l->precio}}</td>
+                                    @endif
+                                    <td>$ {{$l->PrecioVenta}}</td>
                                     <td>{{$l->stock}}</td>
                                     <td>{{$l->stockDeposito}}</td>
                                     <td>{{$l->stockLocal}}</td>

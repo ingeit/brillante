@@ -13,14 +13,12 @@
                     <div class="panel-heading">{{Session::get('titulo')}}</div>
                     <div class="panel-body">
                         @if(Session::has('edicion'))
-                        {!! Form::model($data,['route' => ['productos.update',$data->pIdProducto],'method'=>'PUT']) !!}
-                        
-                        {!! Form::open(['route' => ['productos.destroy',$data->pIdProducto],'method'=>'delete']) !!}
-                                <button style="float:right" class="btn btn-danger" type="submit">Eliminar</button>
-                        {!! Form::close() !!}
-                            
+                            {!! Form::open(['route' => ['productos.destroy',$data->pIdProducto],'method'=>'delete']) !!}
+                                    <button style="float:right" class="btn btn-danger" type="submit">Eliminar</button>
+                            {!! Form::close() !!}
+                            {!! Form::model($data,['route' => ['productos.update',$data->pIdProducto],'method'=>'PUT']) !!}
                         @else
-                        {!! Form::open(array('route' => 'productos.store')) !!}
+                            {!! Form::open(array('route' => 'productos.store')) !!}
                         @endif
                             <div class="form-group">
                                 {!! Form::label('nombre', 'Nombre del Producto'); !!} 

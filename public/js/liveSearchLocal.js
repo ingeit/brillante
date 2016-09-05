@@ -23,13 +23,17 @@ $(document).ready(function(){ //$(document) toma la pagina entera como variable 
                 var cadena = new RegExp(productoBuscado,"i"); //RegExp simula en LIKE % en la BD y el i es el metodo de busqueda
                 $("#resultado").empty(); //borramos la lista de productos
                 $.each(jsonResponse, function(i, v) {
+                    if(v.cotizacion === 'Dolares'){
+                        var signo = "u$s";
+                    }else {
+                        var signo = "$";
+                    }
                     if (v.nombre.search(cadena) !== -1) { // v es cada elemento de json
                         $("#resultado").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
                         "<tr>"+
                             "<td>"+v.nombre+"</td>"+
-                            "<td>"+v.precio+"</td>"+
+                            "<td>"+signo+" "+v.precio+"</td>"+
                             "<td>"+v.PrecioVenta+"</td>"+
-                            "<td>"+v.cotizacion+"</td>"+
                             "<td>"+v.stock+"</td>"+
                             "<td>"+v.stockDeposito+"</td>"+
                             "<td>"+v.stockLocal+"</td>"+

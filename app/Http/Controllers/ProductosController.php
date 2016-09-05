@@ -105,6 +105,8 @@ class ProductosController extends Controller
 
     public function destroy($id)
     {
-        dd($id);
+        $gp = new GestorProductos();
+        $resultado = $gp->baja($id);
+        dd($resultado);
     }
 }
