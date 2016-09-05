@@ -14,6 +14,7 @@
                     <div class="panel-body">
                         @if(Session::has('edicion'))
                         {!! Form::model($data,['route' => ['productos.update',$data->pIdProducto],'method'=>'PUT']) !!}
+                        <a style="float:right" class="btn btn-danger" href="{{ route('productos.destroy',[$data->pIdProducto]) }}">Eliminar</a>
                         @else
                         {!! Form::open(array('route' => 'productos.store')) !!}
                         @endif

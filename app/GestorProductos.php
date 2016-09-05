@@ -83,4 +83,11 @@ class GestorProductos extends Model
         return $result;
     }
     
+    public function baja($id)
+    {
+        $parametro = array($id);
+        $result = DB::select('call producto_baja(?)',$parametro); 
+        return $result;
+    }
+    
 }
