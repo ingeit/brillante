@@ -36,5 +36,4 @@ class GestorVentas extends Model
         
     }
 
-    
 }

@@ -63,7 +63,10 @@
         <h4 class="modal-title">COBRAR VENTA</h4>
       </div>
       <div class="modal-body">
-          <p></p>
+          <ul class="list-group" id="listaModal">            
+          </ul>
+          <ul class="list-group" id="listaModalTotal">            
+          </ul>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

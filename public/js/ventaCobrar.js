@@ -17,10 +17,26 @@ $(document).on("click", ".open-venta", function () {
 //      },
         //esto no se ejecuta hasta que data vaya a la consulta en el controlador a la DB y vuelva con resultados
         //recien ahi, se ejecuta success con los datos en DATA
-        success: function(data){ // SUCCES nos va a servir para simplemente LISTAR PRODUCTOS, 
-            var jsonResponse = JSON.parse(data); //parseo la busqueda
-            console.log(jsonResponse);
-            //comprobamos si se pulsa una tecla
+        success: function(data){ // SUCCES nos va a servir para simplemente LISTAR PRODUCTOS,   
+            var venta = JSON.parse(data);  //parse convierte la consulta (data) en un array
+              //  importe = jsonResponse.precio*cant
+              $("#listaModal").empty(); // resultado hace referencia a la tabla <tbody> LISTAR de los productos, 
+              var total = 0; 
+              var subtotal;
+              $.each(venta, function(index) {
+                    subtotal = venta[index].cantidad*venta[index].precio;
+                    total = total + subtotal;
+                    $("#listaModal").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
+                        "<li class='list-group-item'>"+venta[index].cantidad+" x "+venta[index].nombre+" = $ "+subtotal+"</li>"
+                    );
+              });
+              $("#listaModalTotal").empty();
+              $("#listaModalTotal").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
+                        "<li class='list-group-item'>TOTAL: $ "+total+"</li>"
+                    );
+              
+                //$('#total').html(parseFloat($('#total').html())+importe);    
+                    
               
         }
     });
