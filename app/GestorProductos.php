@@ -90,4 +90,12 @@ class GestorProductos extends Model
         return $result;
     }
     
+    public function damePrecios($id)
+    {
+        $precio = $this->obtenerPrecioDolar();
+        $params = array($id,$precio);
+        $result = DB::select('call producto_damePrecios(?,?)',$params); 
+        return $result;
+    }
+    
 }
