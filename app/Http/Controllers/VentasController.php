@@ -119,6 +119,21 @@ class VentasController extends Controller
         return view('ventas.detalle',compact('venta','id','fecha','monto'));
     }
     
+    public function cobrar($id,$monto)
+    {
+        $gv = new GestorVentas();
+        $venta = $gv->cobrar($id);
+        return view('ventas.detalle',compact('venta','id','fecha','monto'));
+    }    
+    
+    public function cobrarModal(Request $request) // como vengo de AJAX, tiene que ser un REQUEST
+    {
+        $id=$request->consulta;
+        $gv = new GestorVentas();
+        $resultado = $gv->dame($id);
+        return Response::json($resultado); 
+    }
+    
     public function show($id)
     {
         

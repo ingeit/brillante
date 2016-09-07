@@ -29,6 +29,12 @@ class GestorVentas extends Model
         return $result;
         
     }
+    
+    public function cobrar($id){
+        $result = DB::select('call venta_cobrar(?)',array($id));
+        return $result;
+        
+    }
 
     
 }

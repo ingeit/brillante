@@ -28,6 +28,7 @@ Route::get('/home', 'HomeController@index');
 
 //Autocompletar y filtrar con el input
 Route::post('productos/filtrado', 'ProductosController@filtrado');
+Route::post('ventas/cobrarModal', 'VentasController@cobrarModal');
 Route::get('search/autocomplete', 'VentasController@autocomplete');
 
 Route::post('ventas/agregar', 'VentasController@agregarLinea');

@@ -2,6 +2,7 @@
 
 @section('scripts')
 {{ Html::script('js/liveSearch.js')}}
+{{ Html::script('js/ventaCobrar.js')}}
 {{ Html::script('js/highlighttable.js')}}
 {{ Html::style('css/style.css')}}
 @endsection
@@ -33,6 +34,14 @@
                                     <td>{{$l->fecha}}</td>
                                     <td>{{$l->monto}}</td>
                                     <td><a href="{!! route('detalleVenta', ['id'=>$l->idVenta, 'fecha'=>$l->fecha,'monto'=>$l->monto]) !!}">Detalles</a></td>
+                                    @if($l->estado == 'I')<!-- estado = I = Impaga; P = pagada--> 
+                                        <!-- Button trigger modal -->
+                                        <td>
+                                            <button type="button" class="open-venta btn btn-primary btn-sm" data-monto="{{$l->monto}}" data-venta="{{$l->idVenta}}" data-toggle="modal" data-target="#myModal">
+                                              Cobrar
+                                            </button>
+                                        </td>
+                                    @endif
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -43,5 +52,27 @@
             </div>
         </div>
     </div>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">COBRAR VENTA</h4>
+      </div>
+      <div class="modal-body">
+          <p></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 @endsection
 
