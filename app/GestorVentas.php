@@ -7,14 +7,15 @@ use Illuminate\Support\Facades\DB;
 
 class GestorVentas extends Model
 {
-    public function nueva(Ventas $v)
+    public function nueva(Ventas $v,$precioDolar)
     {
         $params = array(
             $v->vFecha,
             $v->vMonto,
-            $v->vCadena );
+            $v->vCadena,
+            $precioDolar );
         
-    	$result = DB::select('call venta_nueva(?,?,?)',$params);
+    	$result = DB::select('call venta_nueva(?,?,?,?)',$params);
         dd($result);
         return $result;
     }

@@ -10,8 +10,8 @@ class Ventas extends Model
     public $vFecha;
     public $vMonto;
     public $vCadena;
+
     
-      
     function __construct($fecha, $monto, $cadena)
     {
         $this->vFecha = $fecha;
