@@ -126,7 +126,8 @@ class VentasController extends Controller
         //sirve para actualizar el estado Impago a Pago de una venta.
         $gv = new GestorVentas();
         $venta = $gv->cobrar($id);
-        dd($venta);
+        $listaVenta = $gv->listar();
+        return view('ventas.lista',compact ('listaVenta'));
     }    
     
     public function cobrarModal(Request $request) // Sirve para generar el modal, como vengo de AJAX, tiene que ser un REQUEST

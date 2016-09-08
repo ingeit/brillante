@@ -18,12 +18,10 @@ $(document).on("click", ".open-venta", function () {
         //esto no se ejecuta hasta que data vaya a la consulta en el controlador a la DB y vuelva con resultados
         //recien ahi, se ejecuta success con los datos en DATA
         success: function(data){ // SUCCES nos va a servir para simplemente LISTAR PRODUCTOS,   
-            $("#botonCobrar").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
-                  "<a href=href='ventas/cobrar/"+idVenta+"' type='button' 'method'='get' class='btn btn-success' >Cobrar</a>"
-                );
-                    
-            
-            var venta = JSON.parse(data);  //parse convierte la consulta (data) en un array
+             id = parseInt(idVenta);
+            document.getElementById('botonCobrar').setAttribute('href', 'ventas/cobrar/' + id);
+   
+                var venta = JSON.parse(data);  //parse convierte la consulta (data) en un array
               //  importe = jsonResponse.precio*cant
               $("#listaModal").empty(); // resultado hace referencia a la tabla <tbody> LISTAR de los productos, 
               var total = 0; 

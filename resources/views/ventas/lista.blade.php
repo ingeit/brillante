@@ -37,8 +37,14 @@
                                     @if($l->estado == 'I')<!-- estado = I = Impaga; P = pagada--> 
                                         <!-- Button trigger modal -->
                                         <td>
-                                            <button type="button" class="open-venta btn btn-primary btn-sm" data-monto="{{$l->monto}}" data-venta="{{$l->idVenta}}" data-toggle="modal" data-target="#myModal">
+                                            <button type="button" class="open-venta btn btn-danger btn-sm" data-monto="{{$l->monto}}" data-venta="{{$l->idVenta}}" data-toggle="modal" data-target="#myModal">
                                               Cobrar
+                                            </button>
+                                        </td>
+                                    @else
+                                        <td>
+                                            <button type="button" class="btn btn-primary disabled btn-sm" >
+                                              Cobrada
                                             </button>
                                         </td>
                                     @endif
@@ -78,7 +84,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <a id="botonCobrar"></a>
+        <a class="btn btn-success" id="botonCobrar">Cobrar</a>
       </div>
     </div>
 
