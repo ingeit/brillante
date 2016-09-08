@@ -47,10 +47,8 @@ class GestorProductos extends Model
     public function listar($cadena){ //la funcion listado completo ahora lleva el precio dolar y una cadena vacia 
         //para devolver TODOS los productos, pero ssi queremos un producto especifico mandamos al SP el nombre 
         //y obtenemoss solo ese producto COMPLETO!, esto lo hice para poder hacer el LIVESEARCH mas facil
-        $precio = $this->obtenerPrecioDolar();
-        $precio = round($precio, 2);
-        $params = array($precio,$cadena);
-        $data = DB::select('call producto_listado_completo(?,?)',$params); 
+        $params = array($cadena);
+        $data = DB::select('call producto_listado_completo(?)',$params); 
         return $data;
     }
     
@@ -90,12 +88,5 @@ class GestorProductos extends Model
         return $result;
     }
     
-    public function damePrecios($id)
-    {
-        $precio = $this->obtenerPrecioDolar();
-        $params = array($id,$precio);
-        $result = DB::select('call producto_damePrecios(?,?)',$params); 
-        return $result;
-    }
     
 }

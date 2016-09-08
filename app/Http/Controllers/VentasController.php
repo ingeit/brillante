@@ -95,9 +95,9 @@ class VentasController extends Controller
     
      public function agregarLinea(Request $request)
     {      
-        $p=new GestorProductos();
-        $consulta = $p->damePrecios($request->consulta);
-        return Response::json($consulta); 
+        $p=new Productos();
+        $p->dame($request->consulta);
+        return Response::json($p); 
     }
 
  

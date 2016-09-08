@@ -14,6 +14,10 @@ class Productos extends Model
     public $pcotizacion;
     public $pGanancia;
     public $pEstado;
+    public $pPrecioVenta;
+    public $pStock;
+    public $pStockDeposito;
+    public $pStockLocal;
     
     public $timestamps = false; 
       
@@ -46,7 +50,7 @@ class Productos extends Model
     
     
     protected $fillable = [
-        'idProveedor', 'nombre', 'precio','cotizacion','ganancia'
+        'idProveedor', 'nombre', 'precio','cotizacion','ganancia','pPrecioVenta','pIdProducto','pStock','pStockDeposito','pStockLocal'
     ];
    
      public function dame($id){
@@ -62,8 +66,12 @@ class Productos extends Model
                 "precio" => $r->precio,
                 "ganancia" => $r->ganancia,
                 "cotizacion" => $r->cotizacion,
+                "pPrecioVenta" => $r->PrecioVenta,
+                "pIdProducto" => $r->idProducto,
+                "pStock" => $r->stock,
+                "pStockDeposito" => $r->stockDeposito,
+                "pStockLocal" => $r->stockLocal,  
             ]);
-                $this->pIdProducto = $r->idProducto;
         }
     }
 
