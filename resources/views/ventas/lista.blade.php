@@ -67,9 +67,18 @@
           </ul>
           <ul class="list-group" id="listaModalTotal">            
           </ul>
+            <div class="form-group">
+                 {{ Form::label('pago', 'Paga con: $') }}
+                 {{ Form::number('pago', '', ['id' =>  'pago', 'step' => 'any','class'=> 'form-control','placeholder'=>'Opcional','autofocus'])}}
+                 <ul class="list-group" id="vuelto">            
+                   </ul>
+             </div> 
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <a id="botonCobrar"></a>
       </div>
     </div>
 

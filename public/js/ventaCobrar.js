@@ -18,6 +18,11 @@ $(document).on("click", ".open-venta", function () {
         //esto no se ejecuta hasta que data vaya a la consulta en el controlador a la DB y vuelva con resultados
         //recien ahi, se ejecuta success con los datos en DATA
         success: function(data){ // SUCCES nos va a servir para simplemente LISTAR PRODUCTOS,   
+            $("#botonCobrar").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
+                  "<a href=href='ventas/cobrar/"+idVenta+"' type='button' 'method'='get' class='btn btn-success' >Cobrar</a>"
+                );
+                    
+            
             var venta = JSON.parse(data);  //parse convierte la consulta (data) en un array
               //  importe = jsonResponse.precio*cant
               $("#listaModal").empty(); // resultado hace referencia a la tabla <tbody> LISTAR de los productos, 
@@ -33,11 +38,36 @@ $(document).on("click", ".open-venta", function () {
               $("#listaModalTotal").empty();
               $("#listaModalTotal").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
                         "<li class='list-group-item'>TOTAL: $ "+total+"</li>"
-                    );
-              
-                //$('#total').html(parseFloat($('#total').html())+importe);    
-                    
-              
+                );
+                $("#pago").empty();
+                $("#pago").keyup(function (e){
+                    vuelto(e);
+                });
+                
+                    function vuelto(e){ 
+                        $("#pago").keydown(function (e){  //para deshabilitar el ENTER o hacer alguna accion!!!
+                                var enter = e.keyCode || e.which;
+                                if (enter === 13) { 
+                                  e.preventDefault();
+                                  return false;
+                                }
+                             });
+                        var pago=0;
+                        pago=$("#pago").val();
+                        
+                        if(pago <= total){
+                            $("#vuelto").empty();
+                        }else{
+                            v = pago - total;
+                            $("#vuelto").empty();
+                            $("#vuelto").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
+                                        "<li class='list-group-item'>VUELTO:$ "+v+"</li>"
+                                    );     
+                        }
+                    }
+                
+                
+
         }
     });
     
