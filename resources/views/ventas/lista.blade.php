@@ -37,8 +37,14 @@
                                     @if($l->estado == 'I')<!-- estado = I = Impaga; P = pagada--> 
                                         <!-- Button trigger modal -->
                                         <td>
-                                            <button type="button" class="open-venta btn btn-primary btn-sm" data-monto="{{$l->monto}}" data-venta="{{$l->idVenta}}" data-toggle="modal" data-target="#myModal">
+                                            <button type="button" class="open-venta btn btn-danger btn-sm" data-monto="{{$l->monto}}" data-venta="{{$l->idVenta}}" data-toggle="modal" data-target="#myModal">
                                               Cobrar
+                                            </button>
+                                        </td>
+                                    @else
+                                        <td>
+                                            <button type="button" class="btn btn-primary disabled btn-sm" >
+                                              Cobrada
                                             </button>
                                         </td>
                                     @endif
@@ -67,9 +73,18 @@
           </ul>
           <ul class="list-group" id="listaModalTotal">            
           </ul>
+            <div class="form-group">
+                 {{ Form::label('pago', 'Paga con: $') }}
+                 {{ Form::number('pago', '', ['id' =>  'pago', 'step' => 'any','class'=> 'form-control','placeholder'=>'Opcional','autofocus'])}}
+                 <ul class="list-group" id="vuelto">            
+                   </ul>
+             </div> 
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <a class="btn btn-success" id="botonCobrar">Cobrar</a>
       </div>
     </div>
 

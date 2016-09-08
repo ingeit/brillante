@@ -29,6 +29,7 @@ Route::get('/home', 'HomeController@index');
 //Autocompletar y filtrar con el input
 Route::post('productos/filtrado', 'ProductosController@filtrado');
 Route::post('ventas/cobrarModal', 'VentasController@cobrarModal');
+Route::post('ventas/cobrar', 'VentasController@cobrar');
 Route::get('search/autocomplete', 'VentasController@autocomplete');
 
 Route::post('ventas/agregar', 'VentasController@agregarLinea');
@@ -39,6 +40,12 @@ Route::post('compras/agregar', 'ComprasController@agregarLinea');
 Route::post('compras/realizarCompra', 'ComprasController@create');
 
 Route::get('lineasVenta','LineasVentaController@create');
+
+$router->get('/ventas/cobrar/{id}',[
+    'uses' => 'VentasController@cobrar',
+    'as'   => 'cobrarVenta'
+]);
+
 
 $router->get('/ventas/{id}/{fecha}/{monto}',[
     'uses' => 'VentasController@mostrar',
