@@ -45,6 +45,9 @@ $(document).ready(function(){
                         var jsonResponse = JSON.parse(data);  //parse convierte la consulta (data) en un array
                             console.log(jsonResponse);
                             importe = jsonResponse.pPrecioVenta*cant;
+                            importe = importe.toFixed(2);
+                            importe = parseFloat(importe);
+                            
                             $("#tablaVentas").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
                                 "<tr>"+
                                     "<td>"+cant+"</td>"+
@@ -56,7 +59,8 @@ $(document).ready(function(){
                                     "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
                                 "</tr>"
                                 );
-                            $('#total').html(parseFloat($('#total').html())+importe);    
+                            $('#total').html((parseFloat($('#total').html())+importe).toFixed(2));
+   
                     }
             });
     }    

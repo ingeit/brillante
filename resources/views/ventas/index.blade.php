@@ -57,7 +57,7 @@
                                   <td></td>
                                   <td></td>
                                   <td></td>
-                                  <td>TOTAL</td>
+                                  <td align="right" >TOTAL: $</td>
                                   <td id="total">0</td>
                                   <td></td>
                                 </tr>
