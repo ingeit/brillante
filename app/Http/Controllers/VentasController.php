@@ -81,11 +81,9 @@ class VentasController extends Controller
         
         //Ahora q tenemos el monto fecha (para venta), tenemos el contac de las lineas
         //Generamos la venta y a su vez las lineas ventas en un solo SP
-        $gestor = new GestorProductos();
-        $precioDolar = $gestor->obtenerPrecioDolar();
         $v = new Ventas($fecha,$monto,$cadena);
         $gv = new GestorVentas();
-        $result = $gv->nueva($v,$precioDolar); // lo agrego a la base de datos
+        $result = $gv->nueva($v); // lo agrego a la base de datos
 //        foreach ($result as $r) { // mensaje de error o venta creada con exito, con todas las lineas ventas
 //            $mensaje = $r->id;
 //        }
