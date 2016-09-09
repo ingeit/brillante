@@ -13,9 +13,6 @@
                     <div class="panel-heading">{{Session::get('titulo')}}</div>
                     <div class="panel-body">
                         @if(Session::has('edicion'))
-                            {!! Form::open(['route' => ['productos.destroy',$data->pIdProducto],'method'=>'delete']) !!}
-                                <button style="float:right" class="btn btn-danger" type="submit">Eliminar</button>
-                            {!! Form::close() !!}
                             {!! Form::model($data,['route' => ['productos.update',$data->pIdProducto],'method'=>'PUT']) !!}
                         @else
                             {!! Form::open(array('route' => 'productos.store')) !!}
@@ -43,7 +40,6 @@
                                       {{ Form::radio('cotizacion', 'Dolares', 0,['class' => 'field']) }}
                                       US$ Dolares 
                                     </label>
-                                   
                                 </div>
                                 <div class="radio">
                                     <label>
