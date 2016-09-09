@@ -35,5 +35,12 @@ class GestorVentas extends Model
         return $result;
         
     }
+        
+    public function baja($id)
+    {
+        $parametro = array($id);
+        $result = DB::select('call venta_eliminar(?)',$parametro); 
+        return $result;
+    }
 
 }

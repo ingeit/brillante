@@ -155,6 +155,8 @@ class VentasController extends Controller
    
     public function destroy($id)
     {
-        //
+        $gv = new GestorVentas();
+        $resultado = $gv->baja($id);
+        dd($resultado);
     }
 }

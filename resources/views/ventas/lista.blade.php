@@ -48,6 +48,11 @@
                                             </button>
                                         </td>
                                     @endif
+                                    <td>
+                                    {!! Form::open(['route' => ['ventas.destroy',$l->idVenta],'method'=>'delete']) !!}
+                                        <button style="float:right" class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                                    {!! Form::close() !!}
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
