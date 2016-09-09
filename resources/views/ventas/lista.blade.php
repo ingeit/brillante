@@ -32,7 +32,7 @@
                                 <tr>
                                     <td>{{$l->idVenta}}</td>
                                     <td>{{$l->fecha}}</td>
-                                    <td>{{$l->monto}}</td>
+                                    <td>$ {{$l->monto}}</td>
                                     <td><a href="{!! route('detalleVenta', ['id'=>$l->idVenta, 'fecha'=>$l->fecha,'monto'=>$l->monto]) !!}">Detalles</a></td>
                                     @if($l->estado == 'I')<!-- estado = I = Impaga; P = pagada--> 
                                         <!-- Button trigger modal -->

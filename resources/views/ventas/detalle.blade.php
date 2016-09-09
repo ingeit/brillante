@@ -37,8 +37,8 @@
                           <td>{{$v->cantidad}}</td>
                           <td>{{$v->idProducto}}</td>
                           <td>{{$v->nombre}}</td>
-                          <td>{{$v->precio}}</td>
-                          <td>{{$importe = ($v->cantidad)*($v->precio)}}</td>
+                          <td>$ {{$v->precio}}</td>
+                          <td>$ {{$importe = ($v->cantidad)*($v->precio)}}</td>
                         </tr>
                         @endforeach
                         <tr>
@@ -46,7 +46,7 @@
                           <td></td>
                           <td></td>
                           <td bgcolor="337ab7"><font color="#fff">Total</td>
-                          <td bgcolor="337ab7"><font color="#fff">{{$monto}}</td>
+                          <td bgcolor="337ab7"><font color="#fff">$ {{$monto}}</td>
                         </tr>
                     </tbody>
                 </table>
