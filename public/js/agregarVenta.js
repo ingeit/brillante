@@ -44,8 +44,9 @@ $(document).ready(function(){
                     {       
                         var jsonResponse = JSON.parse(data);  //parse convierte la consulta (data) en un array
                             console.log(jsonResponse);
-                            var importe = jsonResponse.pPrecioVenta*cant;
-                            importe = (importe).toFixed(2);
+                            importe = jsonResponse.pPrecioVenta*cant;
+                            importe = importe.toFixed(2);
+                            importe = parseFloat(importe);
                             
                             $("#tablaVentas").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
                                 "<tr>"+

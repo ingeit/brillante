@@ -43,15 +43,16 @@ $(document).ready(function(){
             success: function(data)
                     {       
                         var jsonResponse = JSON.parse(data);  //parse convierte la consulta (data) en un array
-                            var importe = jsonResponse.precio*cant;
-                            importe = (importe).toFixed(2);
+                            importe = jsonResponse.precio*cant;                            
+                            importe = importe.toFixed(2);
+                            importe = parseFloat(importe);
                             $("#tablaCompras").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
                                 "<tr>"+
                                     "<td>"+cant+"</td>"+
                                     "<td>"+id+"</td>"+
                                     "<td>"+jsonResponse.nombre+"</td>"+
-                                    "<td>"+jsonResponse.precio+"</td>"+
-                                    "<td id='importe'>"+importe+"</td>"+
+                                    "<td>$ "+jsonResponse.precio+"</td>"+
+                                    "<td id='importe'>$ "+importe+"</td>"+
                                     "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
                                 "</tr>"
                                 );
