@@ -44,9 +44,9 @@ class GestorProductos extends Model
         return $data;
     }
     
-    public function listar($cadena){ //la funcion listado completo ahora lleva el precio dolar y una cadena vacia 
+    public function listar($cadena){ //la funcion listado completo ahora una cadena vacia 
         //para devolver TODOS los productos, pero ssi queremos un producto especifico mandamos al SP el nombre 
-        //y obtenemoss solo ese producto COMPLETO!, esto lo hice para poder hacer el LIVESEARCH mas facil
+        //y obtenemoss solo ese producto COMPLETO!, esto lo hice para poder hacer el LIVESEARCH mas facil =)
         $params = array($cadena);
         $data = DB::select('call producto_listado_completo(?)',$params); 
         return $data;
