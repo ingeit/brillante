@@ -5,7 +5,9 @@ $(document).on("click", ".open-venta", function () {
     
 //    $(".form-group #pago").focus();
     $("#pago").val('');
-    
+    $('#myModal').on('shown.bs.modal', function () {
+        $("#pago").focus();
+    })
     $("#vuelto").empty();
     $("#listaModal").empty(); // resultado hace referencia a la tabla <tbody> LISTAR de los productos, 
     
@@ -39,7 +41,8 @@ $(document).on("click", ".open-venta", function () {
 
             $("#listaModalTotal span").empty();
             $("#listaModalTotal span").html(total);
-              
+             
+            
             
             $("#pago").keyup(function (e){
                 vuelto(e);

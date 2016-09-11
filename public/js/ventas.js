@@ -71,22 +71,31 @@ $(document).ready(function(){
                 {  
                     $.each(jsonResponse, function(index) { //la variable value es el nombre
                         if(jsonResponse[index].idProducto === id){
-                            importe = jsonResponse[index].PrecioVenta*cant;
-                            importe = importe.toFixed(2);
-                            importe = parseFloat(importe);
+                            
+                            //controlo que cantidad no supere el stock disponible
+                            if (cant <= jsonResponse[index].stock )
+                            {
+                                importe = jsonResponse[index].PrecioVenta*cant;
+                                importe = importe.toFixed(2);
+                                importe = parseFloat(importe);
 
-                            $("#tablaVentas").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
-                                "<tr>"+
-                                    "<td>"+cant+"</td>"+
-                                    "<td>"+id+"</td>"+
-                                    "<td>"+jsonResponse[index].nombre+"</td>"+
-                                    "<td>$ "+jsonResponse[index].PrecioVenta+"</td>"+
-                                    "<td id='importe'>$ "+importe+"</td>"+
-                                    "<td><select class='form-control'><option value='local'>Local</option><option value='deposito'>Deposito</option></select></td>"+
-                                    "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
-                                "</tr>"
-                                );
-                            $('#total').html((parseFloat($('#total').html())+importe).toFixed(2));
+                                $("#tablaVentas").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
+                                    "<tr>"+
+                                        "<td>"+cant+"</td>"+
+                                        "<td>"+id+"</td>"+
+                                        "<td>"+jsonResponse[index].nombre+"</td>"+
+                                        "<td>$ "+jsonResponse[index].PrecioVenta+"</td>"+
+                                        "<td id='importe'>$ "+importe+"</td>"+
+                                        "<td><select class='form-control'><option value='local'>Local</option><option value='deposito'>Deposito</option></select></td>"+
+                                        "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
+                                    "</tr>"
+                                    );
+                                $('#total').html((parseFloat($('#total').html())+importe).toFixed(2));
+                            }
+                            else{
+                                alert("Stock no disponible");
+                            }
+                                
                         }
                     });
                 }    
