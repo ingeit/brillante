@@ -38,7 +38,7 @@
                           <td>{{$v->idProducto}}</td>
                           <td>{{$v->nombre}}</td>
                           <td>$ {{$v->precio}}</td>
-                          <td>$ {{$importe = ($v->cantidad)*($v->precio)}}</td>
+                          <td>$ {{$importe = number_format(($v->cantidad)*($v->precio), 2, '.', '')}}</td><!-- muestra 2 decimales!-->
                         </tr>
                         @endforeach
                         <tr>

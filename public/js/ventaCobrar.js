@@ -24,11 +24,15 @@ $(document).on("click", ".open-venta", function () {
                 var venta = JSON.parse(data);  //parse convierte la consulta (data) en un array
               //  importe = jsonResponse.precio*cant
               $("#listaModal").empty(); // resultado hace referencia a la tabla <tbody> LISTAR de los productos, 
-              var total = 0; 
+              var t = 0; 
+              var total;
               var subtotal;
               $.each(venta, function(index) {
-                    subtotal = venta[index].cantidad*venta[index].precio;
-                    total = total + subtotal;
+                    var st = venta[index].cantidad*venta[index].precio;
+                        subtotal = (st).toFixed(2);
+                    t = t + st;
+                        total = (t).toFixed(2);
+                        
                     $("#listaModal").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
                         "<li class='list-group-item'>"+venta[index].cantidad+" x "+venta[index].nombre+" = $ "+subtotal+"</li>"
                     );

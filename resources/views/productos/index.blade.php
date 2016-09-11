@@ -77,7 +77,7 @@
                                     <td><a style='float:left;' href="{{route('productos.edit',$l->idProducto)}}">Editar</a></td>
                                     <td>
                                     {!! Form::open(['method' => 'delete', 'action' => ['ProductosController@destroy', $l->idProducto]]) !!}
-                                    {!! Form::button('<button type="button" class="glyphicon glyphicon-trash"></button>', ['type' => 'submit', 'class' => 'btn btn-link']) !!}
+                                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-link']) !!}
                                     {!! Form::close() !!}
                                     </td>
                                 </tr>

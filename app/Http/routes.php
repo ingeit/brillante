@@ -32,7 +32,7 @@ Route::post('ventas/cobrarModal', 'VentasController@cobrarModal');
 Route::post('ventas/cobrar', 'VentasController@cobrar');
 Route::get('search/autocomplete', 'VentasController@autocomplete');
 
-Route::post('ventas/agregar', 'VentasController@agregarLinea');
+
 Route::post('ventas/realizarVenta', 'VentasController@create');
 Route::post('ingresos/agregar', 'IngresosController@agregarLinea');
 Route::post('ingresos/realizarIngreso', 'IngresosController@create');

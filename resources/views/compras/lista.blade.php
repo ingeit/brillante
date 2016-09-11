@@ -31,7 +31,7 @@
                                 <tr>
                                     <td>{{$c->idCompra}}</td>
                                     <td>{{$c->fecha}}</td>
-                                    <td>{{$c->monto}}</td> 
+                                    <td>$ {{$c->monto}}</td> 
                                     <td><a href="{!! route('detalleCompra', ['id'=>$c->idCompra, 'fecha'=>$c->fecha,'monto'=>$c->monto]) !!}">Detalles</a></td>
                                 </tr>
                                 @endforeach
