@@ -28,7 +28,11 @@ $(document).on("click", ".open-venta", function () {
               var subtotal;
               $.each(venta, function(index) {
                     subtotal = venta[index].cantidad*venta[index].precio;
+                        subtotal = subtotal.toFixed(2);
+                        subtotal = parseFloat(subtotal);
                     total = total + subtotal;
+                        total = total.toFixed(2);
+                        total = parseFloat(total);
                     $("#listaModal").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
                         "<li class='list-group-item'>"+venta[index].cantidad+" x "+venta[index].nombre+" = $ "+subtotal+"</li>"
                     );
