@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('scripts')
-{{ Html::script('js/autocomplete.js')}}
-{{ Html::script('js/agregarVenta.js')}}
-{{ Html::script('js/eliminarfilaventa.js')}}
 {{ Html::style('css/style.css')}}
 @endsection
 
@@ -16,8 +13,8 @@
         <div class="col-md-10 col-md-offset-1">
 
             <div class="panel panel-default">
-            <div class="panel-heading">VENTA NUMERO: {{$id}}</div>
-            <div class="panel-heading">FECHA: {{$fecha}}</div>
+            <div class="panel-heading">VENTA NUMERO: {{$venta[0]->idVenta}}</div>
+            <div class="panel-heading">FECHA: {{$venta[0]->fecha}}</div>
             <div class="panel-body">
                 <table class="table table-hover" style="margin-bottom: 0;margin-top: -12px;">
                     <thead>
@@ -46,7 +43,7 @@
                           <td></td>
                           <td></td>
                           <td bgcolor="337ab7"><font color="#fff">Total</td>
-                          <td bgcolor="337ab7"><font color="#fff">$ {{$monto}}</td>
+                          <td bgcolor="337ab7"><font color="#fff">$ {{$venta[0]->monto}}</td>
                         </tr>
                     </tbody>
                 </table>

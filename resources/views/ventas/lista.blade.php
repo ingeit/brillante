@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('scripts')
-{{ Html::script('js/liveSearch.js')}}
 {{ Html::script('js/ventaCobrar.js')}}
-{{ Html::script('js/highlighttable.js')}}
 {{ Html::style('css/style.css')}}
 @endsection
 
@@ -34,26 +32,20 @@
                                     <td>{{$l->fecha}}</td>
                                     <td>$ {{$l->monto}}</td>
                                     <td>
-                                        {!! Form::open(['action' => ['VentasController@mostrar2']]) !!}
-                                        {{ Form::hidden('idDetalle',$l->idVenta, ['id' =>  'qId',])}} 
-                                        <button style="float:right" class="btn btn-danger btn-sm" type="submit">Detalles</button>
+                                        {!! Form::open(['action' => ['VentasController@mostrar']]) !!}
+                                        {{ Form::hidden('idVenta',$l->idVenta)}} 
+                                            <button style="float:right" class="btn btn-danger btn-sm" type="submit">Detalles</button>
                                         {!! Form::close() !!}
                                         <!--<a href="{!! route('detalleVenta', ['id'=>$l->idVenta, 'fecha'=>$l->fecha,'monto'=>$l->monto]) !!}">Detalles</a>-->
                                     </td>
-                                    @if($l->estado == 'I')<!-- estado = I = Impaga; P = pagada--> 
-                                        <!-- Button trigger modal -->
                                         <td>
-                                            <button type="button" class="open-venta btn btn-danger btn-sm" data-monto="{{$l->monto}}" data-venta="{{$l->idVenta}}" data-toggle="modal" data-target="#myModal">
+                                             @if($l->estado == 'I')<!-- estado = I = Impaga; P = pagada--> 
+                                        <!-- Button trigger modal -->
+                                            <button type="button" id="esImpaga{{$l->idVenta}}" class="open-venta btn btn-danger btn-sm" data-monto="{{$l->monto}}" data-venta="{{$l->idVenta}}" data-toggle="modal" data-target="#myModal">
                                               Cobrar
                                             </button>
+                                             @endif
                                         </td>
-                                    @else
-                                        <td>
-                                            <button type="button" class="btn btn-primary disabled btn-sm" >
-                                              Cobrada
-                                            </button>
-                                        </td>
-                                    @endif
                                     <td>
                                     {!! Form::open(['route' => ['ventas.destroy',$l->idVenta],'method'=>'delete']) !!}
                                         <button style="float:right" class="btn btn-danger btn-sm" type="submit">Eliminar</button>
@@ -80,22 +72,22 @@
         <h4 class="modal-title">COBRAR VENTA</h4>
       </div>
       <div class="modal-body">
-          <ul class="list-group" id="listaModal">            
-          </ul>
-          <ul class="list-group" id="listaModalTotal">            
-          </ul>
-            <div class="form-group">
-                 {{ Form::label('pago', 'Paga con: $') }}
-                 {{ Form::number('pago', '', ['id' =>  'pago', 'step' => 'any','class'=> 'form-control','placeholder'=>'Opcional','autofocus'])}}
-                 <ul class="list-group" id="vuelto">            
-                   </ul>
-             </div> 
+          
+        <ul class="list-group" id="listaModal"></ul>
+        
+        <p class="list-group" id="listaModalTotal">Total: $ <span></span></p>
+          
+        <div class="form-group">
+            {{ Form::label('pago', 'Paga con: $') }}
+            {{ Form::number('pago', '', ['id' =>  'pago', 'step' => 'any','class'=> 'form-control','placeholder'=>'Opcional'])}}
+            <p class="list-group" id="vuelto"></p>
+        </div> 
 
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <a class="btn btn-success" id="botonCobrar">Cobrar</a>
+        <a class="btn btn-success" id="botonCobrar" data-idventa="" onclick="cobrar(this)">Cobrar</a>
       </div>
     </div>
 

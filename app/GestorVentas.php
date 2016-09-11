@@ -15,7 +15,6 @@ class GestorVentas extends Model
             $v->vCadena,);
         
     	$result = DB::select('call venta_nueva(?,?,?)',$params);
-        dd($result);
         return $result;
     }
     
@@ -26,8 +25,7 @@ class GestorVentas extends Model
     
     public function dame($id){
         $result = DB::select('call venta_dame(?)',array($id));
-        return $result;
-        
+        return $result;   
     }
     
     public function cobrar($id){

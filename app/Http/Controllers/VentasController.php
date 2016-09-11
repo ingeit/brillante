@@ -106,25 +106,19 @@ class VentasController extends Controller
 //        return redirect()->back(); // vuelvo a ventas
 //    }
 
-    public function mostrar($id,$fecha,$monto)
-    {
+    public function mostrar(Request $r)
+    {   
         $gv = new GestorVentas();
-        $venta = $gv->dame($id);
-        return view('ventas.detalle',compact('venta','id','fecha','monto'));
+        $venta = $gv->dame($r->idVenta);
+        return view('ventas.detalle',compact('venta'));
     }
     
-    public function mostrar2(Request $request)
-    {
-        
-        dd($request->all());
-    }
-    
-    public function cobrar($id)
+    public function cobrar(Request $r)
     {
         //sirve para actualizar el estado Impago a Pago de una venta.
         $gv = new GestorVentas();
-        $venta = $gv->cobrar($id);
-        return redirect()->action('VentasController@index');
+        $venta = $gv->cobrar($r->idVenta);
+        return $venta;
     }    
     
     public function cobrarModal(Request $request) // Sirve para generar el modal, como vengo de AJAX, tiene que ser un REQUEST
