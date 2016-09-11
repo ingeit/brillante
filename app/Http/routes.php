@@ -47,8 +47,13 @@ $router->get('/ventas/cobrar/{id}',[
 ]);
 
 
-$router->get('/ventas/{id}/{fecha}/{monto}',[
-    'uses' => 'VentasController@mostrar',
+//$router->get('/ventas/{id}/{fecha}/{monto}',[
+//    'uses' => 'VentasController@mostrar',
+//    'as'   => 'detalleVenta'
+//]);
+
+$router->post('/ventas/detalles/',[
+    'uses' => 'VentasController@mostrar2',
     'as'   => 'detalleVenta'
 ]);
 
