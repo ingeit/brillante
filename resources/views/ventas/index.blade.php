@@ -24,6 +24,7 @@
                             {{ Form::label('q', 'Agregar Producto a la Venta') }}
                             {{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Ej: Lavandina','class'=> 'form-control','autofocus'])}}
                             {{ Form::hidden('qId', '', ['id' =>  'qId',])}}
+                            <p id="stock"></p>
                         </div> 
                     </dt>
                     <dt style="width: 100%;">

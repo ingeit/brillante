@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\GestorProveedores;
 use App\Proveedores;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 
 class ProveedoresController extends Controller
@@ -20,8 +21,9 @@ class ProveedoresController extends Controller
 
     public function create()
     {
-        $titulo= "Crear Proveedor";
-        return View('proveedores.form',compact('titulo'));
+        Session::put('titulo','Crear Proveedor');
+        Session::put('boton','Crear Proveedor');
+        return View('proveedores.form');
     }
 
     
@@ -56,7 +58,12 @@ class ProveedoresController extends Controller
      */
     public function edit($id)
     {
-        //
+        Session::flash('edicion','test');//Variable que envio a la vista para ver si se trata de un edit or create
+        $data = new Proveedores();
+        $data->dame($id); //Busco el Prodcuto por id en la base de datos
+        Session::put('titulo','Modificar Producto');
+        Session::put('boton','Modificar Producto');
+        return view('proveedores.form',compact('data'));
     }
 
     /**
@@ -79,6 +86,8 @@ class ProveedoresController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $gp = new GestorProveedores();
+        $resultado = $gp->baja($id);
+        dd($resultado);
     }
 }

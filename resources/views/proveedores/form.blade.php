@@ -10,12 +10,12 @@
                     </div>           
                 @endif
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ $titulo }}</div>
+                    <div class="panel-heading">{{Session::get('titulo')}}</div>
                     <div class="panel-body">
                         @if(Session::has('edicion'))
-                        {!! Form::model($data,['route' => ['proveedores.update',$data->pIdProveedor],'method'=>'PUT']) !!}
+                            {!! Form::model($data,['route' => ['proveedores.update',$data->pIdProveedor],'method'=>'PUT']) !!}
                         @else
-                        {!! Form::open(array('route' => 'proveedores.store')) !!}
+                            {!! Form::open(array('route' => 'proveedores.store')) !!}
                         @endif
                             <div class="form-group">
                                 {!! Form::label('razonSocial', 'Razon Social del Proveedor:'); !!} 
@@ -29,7 +29,7 @@
                                 {!! Form::label('telefono', 'Telefono del Proveedor:') !!}
                                 {{ Form::text('telefono',null,['class'=> 'form-control','placeholder'=>'Ingrese el telefono del proveedor']) }}
                             </div>
-                              <button type="submit" style="float:right" class="btn btn-default">{{ $titulo }}</button>
+                              <button type="submit" style="float:right" class="btn btn-default">{{Session::get('boton')}}</button>
                         {!! Form::close() !!}
                     </div>
                 </div>

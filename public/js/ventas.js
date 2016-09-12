@@ -35,7 +35,19 @@ $(document).ready(function(){
                     switch(e.which) 
                     {
                         case 13: //detecta el enter
+                            //muestro el stock y despues salto a FOCUS EN CANTIDAD
+                            //la variable value es el nombre
+                            var id = $('#qId').val();
+                            $.each(jsonResponse, function(index) { //la variable value es el nombre
+                                if(id === jsonResponse[index].idProducto)
+                                {
+                                    $("#stock").html("Stock Total: "+jsonResponse[index].stock+" - Local: "+jsonResponse[index].stockLocal+" - Deposito: "+jsonResponse[index].stockDeposito);
+                                }
+                            });
                             $("#SelectCant").focus();
+                        break;
+                        case 8: //detecta el borrar
+                            $("#stock").html(null);                 
                         break;
                     }
                 });
@@ -49,6 +61,7 @@ $(document).ready(function(){
                     switch(e.which) 
                     {
                         case 13: //detecta el enter
+                            $("#stock").html(null);
                             id=$("#qId").val();
                             cant = $("#SelectCant").val();
                             if(cant === ''){
@@ -70,18 +83,18 @@ $(document).ready(function(){
                 function busqueda(id,cant)
                 {  
                     $.each(jsonResponse, function(index) { //la variable value es el nombre
-                        if(jsonResponse[index].idProducto === id){
-                            
+                        if(jsonResponse[index].idProducto === id){                            
                             //controlo que cantidad no supere el stock disponible
-                            if (cant <= jsonResponse[index].stock )
+                            var cantidad = parseFloat(cant);
+                            if (cantidad <= jsonResponse[index].stock )
                             {
-                                importe = jsonResponse[index].PrecioVenta*cant;
+                                importe = jsonResponse[index].PrecioVenta*cantidad;
                                 importe = importe.toFixed(2);
                                 importe = parseFloat(importe);
-
+                                
                                 $("#tablaVentas").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
                                     "<tr>"+
-                                        "<td>"+cant+"</td>"+
+                                        "<td>"+cantidad+"</td>"+
                                         "<td>"+id+"</td>"+
                                         "<td>"+jsonResponse[index].nombre+"</td>"+
                                         "<td>$ "+jsonResponse[index].PrecioVenta+"</td>"+

@@ -29,5 +29,12 @@ class GestorProveedores extends Model
         $consulta = DB::select('call proveedor_buscar(?)',array($cadena));
         return $consulta;
     }
+    
 
+     public function baja($id)
+    {
+        $parametro = array($id);
+        $result = DB::select('call proveedor_baja(?)',$parametro); 
+        return $result;
+    }
 }

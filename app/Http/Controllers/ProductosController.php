@@ -85,12 +85,11 @@ class ProductosController extends Controller
     }
 
   
-    public function update(ProductosRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $gp = new GestorProductos();
         $p = new Productos();
         $p->fill($request->all());// completo los atributos del objeto Productos
-        
         $p->idProducto=$id;
         
         $resultado = $gp->modificar($p); // lo agrego a la base de datos

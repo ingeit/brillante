@@ -38,10 +38,12 @@
                                     <td>{{$p->razonSocial}}</td>
                                     <td>{{$p->direccion}}</td>
                                     <td>{{$p->telefono}}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
                                     <td><a style='float:left;' href="{{route('proveedores.edit',$p->idProveedor)}}">Editar</a></td>
+                                    <td>
+                                    {!! Form::open(['method' => 'delete', 'action' => ['ProveedoresController@destroy', $p->idProveedor]]) !!}
+                                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-link']) !!}
+                                    {!! Form::close() !!}
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
