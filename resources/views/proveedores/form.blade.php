@@ -13,7 +13,7 @@
                     <div class="panel-heading">{{Session::get('titulo')}}</div>
                     <div class="panel-body">
                         @if(Session::has('edicion'))
-                            {!! Form::model($data,['route' => ['proveedores.update',$data->pIdProveedor],'method'=>'PUT']) !!}
+                            {!! Form::model($data,['route' => ['proveedores.update',$data->pIdProveedor],'_method'=>'PUT']) !!}
                         @else
                             {!! Form::open(array('route' => 'proveedores.store')) !!}
                         @endif

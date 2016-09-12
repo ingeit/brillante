@@ -13,8 +13,7 @@
                     <div class="panel-heading">{{Session::get('titulo')}}</div>
                     <div class="panel-body">
                         @if(Session::has('edicion'))
-                           
-                            {{ Form::model($data, array('route' => array('productos.update', $data->pIdProducto), 'files' => true,'method' => 'PUT')) }}
+                            {!! Form::model($data, array('route' => array('productos.update', $data->pIdProducto), 'files' => true,'_method' => 'PUT')) !!}
                         @else
                             {!! Form::open(array('route' => 'productos.store')) !!}
                         @endif
