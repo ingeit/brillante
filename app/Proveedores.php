@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 
 class Proveedores extends Model
 {
-    public $pIdProveedor;
     public $pRazonSocial;
     public $pDireccion;
     public $pTelefono;
@@ -42,7 +41,7 @@ class Proveedores extends Model
     
     
     protected $fillable = [
-        'razonSocial', 'direccion', 'telefono',
+        'idProveedor','razonSocial', 'direccion', 'telefono',
     ];
     
     public function dame($id){
@@ -53,6 +52,7 @@ class Proveedores extends Model
         // uso fill() para completarlo.
         foreach ($result as $r) {
                 $this->fill([
+                "idProveedor" => $r->idProveedor,
                 "razonSocial" => $r->razonSocial,
                 "direccion" => $r->direccion,
                 "telefono" => $r->telefono,

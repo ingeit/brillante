@@ -37,4 +37,19 @@ class GestorProveedores extends Model
         $result = DB::select('call proveedor_baja(?)',$parametro); 
         return $result;
     }
+    
+    public function modificar(Proveedores $p)
+    {
+        $params = array(
+            
+            $p->idProveedor,
+            $p->razonSocial,
+            $p->direccion,
+            $p->telefono,);
+        
+    	$result = DB::select('call proveedor_modificar(?,?,?,?)',$params);
+        dd($result);
+        
+        return $result;
+    }
 }

@@ -49,7 +49,6 @@ class ProductosController extends Controller
     
     public function update(Request $request, $id)
     {
-        dd('update');
         $gp = new GestorProductos();
         $p = new Productos();
         $p->fill($request->all());// completo los atributos del objeto Productos
@@ -66,7 +65,6 @@ class ProductosController extends Controller
 
     public function store(ProductosRequest $request) //Con ProductosRequest verifico los campos 
     {                                                // requeridos en el form
-        dd('store'); 
         $gp = new GestorProductos();
         $p = new Productos();
         $p->fill($request->all());// completo los atributos del objeto Productos

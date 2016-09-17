@@ -13,9 +13,9 @@
                     <div class="panel-heading">{{Session::get('titulo')}}</div>
                     <div class="panel-body">
                         @if(Session::has('edicion'))
-                            {!! Form::model($data,['route' => ['proveedores.update',$data->pIdProveedor],'_method'=>'PUT']) !!}
+                            {{ Form::model($data,['action' => ['ProveedoresController@update',$data->idProveedor],'method' => 'put']) }}
                         @else
-                            {!! Form::open(array('route' => 'proveedores.store')) !!}
+                            {{ Form::open(array('route' => 'proveedores.store', '_method' => 'post')) }}
                         @endif
                             <div class="form-group">
                                 {!! Form::label('razonSocial', 'Razon Social del Proveedor:'); !!} 

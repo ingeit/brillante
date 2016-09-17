@@ -66,7 +66,7 @@
                                 <tr>
                                     <td>{{$l->nombre}}</td>
                                     @if($l->cotizacion=='Dolares')
-                                    <td>u$s {{$l->precio}}</td>
+                                    <td><font color="#04B431">u$s {{$l->precio}}<font></td>
                                     @else
                                     <td>$ {{$l->precio}}</td>
                                     @endif

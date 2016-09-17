@@ -75,7 +75,17 @@ class ProveedoresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $gp = new GestorProveedores();
+        $p = new Proveedores();
+        $p->idProveedor=$id;
+        $p->fill($request->all());// completo los atributos del objeto Productos     
+        $resultado = $gp->modificar($p); // lo agrego a la base de datos
+        
+        foreach ($resultado as $r) { // obtengo el mensaje de la base de datos
+            $mensaje = $r->Mensaje;
+        }
+        Session::flash('mensaje',$mensaje); // mando el mensaje de la base datos a la vista
+        return redirect()->back(); // vuelvo al form
     }
 
     /**
