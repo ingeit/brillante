@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class Productos extends Model
 {
-    public $pIdProducto;
+
     public $pIdProveedor;
     public $pNombre;
     public $pPrecio;

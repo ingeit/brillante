@@ -13,9 +13,9 @@
                     <div class="panel-heading">{{Session::get('titulo')}}</div>
                     <div class="panel-body">
                         @if(Session::has('edicion'))
-                            {!! Form::model($data, array('route' => array('productos.update', $data->pIdProducto), 'files' => true,'_method' => 'PUT')) !!}
+                            {{ Form::model($data,['action' => ['ProductosController@update',$data->pIdProducto],'method' => 'put']) }}
                         @else
-                            {!! Form::open(array('route' => 'productos.store')) !!}
+                            {{ Form::open(array('route' => 'productos.store', '_method' => 'post')) }}
                         @endif
                             <div class="form-group">
                                 {!! Form::label('nombre', 'Nombre del Producto'); !!} 
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <button type="submit" style="float:right" class="btn btn-default">{{Session::get('boton')}}</button>
-                        {!! Form::close() !!}
+                        {{ Form::close() }}
                     </div>
                 </div>
             </div>

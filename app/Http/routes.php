@@ -50,7 +50,7 @@ $router->get('/ventas/cobrar/{id}',[
 $router->post('/ventas/detalles/',[
     'uses' => 'VentasController@mostrar',
     'as'   => 'detalleVenta'
-]);
+]); 
 
 $router->get('/ingresos/{id}/{fecha}',[
     'uses' => 'IngresosController@mostrar',
@@ -62,5 +62,11 @@ $router->get('/compras/{id}/{fecha}/{monto}',[
     'as'   => 'detalleCompra'
 ]);
 
+
+Route::get('/dolar', function() {
+  $crawler = Goutte::request('GET', 'http://www.lanacion.com.ar/dolar-hoy-t1369');
+  $url = $crawler->filter('.compra-venta .venta #dventa')->html();
+  dd($url);
+});
 /*Route::group(['middleware' => 'web'], function () {
 });*/

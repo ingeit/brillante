@@ -46,10 +46,27 @@ class ProductosController extends Controller
         Session::put('boton','Crear Producto');
         return View('productos.form', compact('proveedor'));
     }
-
+    
+    public function update(Request $request, $id)
+    {
+        dd('update');
+        $gp = new GestorProductos();
+        $p = new Productos();
+        $p->fill($request->all());// completo los atributos del objeto Productos
+        $p->idProducto=$id;
+        
+        $resultado = $gp->modificar($p); // lo agrego a la base de datos
+        
+        foreach ($resultado as $r) { // obtengo el mensaje de la base de datos
+            $mensaje = $r->Mensaje;
+        }
+        Session::flash('mensaje',$mensaje); // mando el mensaje de la base datos a la vista
+        return redirect()->back(); // vuelvo al form
+    }
 
     public function store(ProductosRequest $request) //Con ProductosRequest verifico los campos 
     {                                                // requeridos en el form
+        dd('store'); 
         $gp = new GestorProductos();
         $p = new Productos();
         $p->fill($request->all());// completo los atributos del objeto Productos
@@ -85,21 +102,7 @@ class ProductosController extends Controller
     }
 
   
-    public function update(Request $request, $id)
-    {
-        $gp = new GestorProductos();
-        $p = new Productos();
-        $p->fill($request->all());// completo los atributos del objeto Productos
-        $p->idProducto=$id;
-        
-        $resultado = $gp->modificar($p); // lo agrego a la base de datos
-        
-        foreach ($resultado as $r) { // obtengo el mensaje de la base de datos
-            $mensaje = $r->Mensaje;
-        }
-        Session::flash('mensaje',$mensaje); // mando el mensaje de la base datos a la vista
-        return redirect()->back(); // vuelvo al form
-    }
+    
 
 
     public function destroy($id)
