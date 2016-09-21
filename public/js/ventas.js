@@ -83,7 +83,6 @@ $(document).ready(function(){
                                 $('#realizarVenta').prop('disabled', false);     
                             }
                             break;    
-                        
                     }
                 }
 
@@ -97,9 +96,6 @@ $(document).ready(function(){
                             var cantidad = parseFloat(cant);
                             if (cantidad <= jsonResponse[index].stock )
                             {
-                                if (cantidad > jsonResponse[index].stockLocal && jsonResponse[index].stockDeposito  ){
-                                    alert("La cantidad supera los stocks de deposito y local");
-                                }else{
                                 importe = jsonResponse[index].precioVenta*cantidad;
                                 importe = importe.toFixed(2);
                                 importe = parseFloat(importe);
@@ -112,23 +108,24 @@ $(document).ready(function(){
                                         "<td>$ "+jsonResponse[index].precioVenta+"</td>"+
                                         "<td id='importe'>$ "+importe+"</td>"+
                                         //Control para el stockLocal en venta
-                                        // sintaxis: ( control logico ? true : false )
+                                        // sintaxis: HTML+( control logico ? true : false )+HTML
                                         //CUIDADO, lo hice con un IF ELSE IF...
-                                            (jsonResponse[index].stockLocal < cantidad  ? 
-                                            "<td><select class='form-control'><option value='local' disabled>Sin Stock Local</option><option value='deposito'>Deposito</option></select></td>"
-                                            : (jsonResponse[index].stockDeposito < cantidad  ?
+                                            (cantidad > jsonResponse[index].stockLocal ? 
+                                                (cantidad > jsonResponse[index].stockDeposito ?
+                                                    alert("No llega con el stock individual")+
+                                                    "<td><select class='form-control'><option value='local' disabled>Sin Stock Local</option><option value='deposito' disabled>Sin Stock Deposito</option></select></td>"
+                                                    : "<td><select class='form-control'><option value='local' disabled>Sin Stock Local</option><option value='deposito'>Deposito</option></select></td>")
+                                            : (cantidad > jsonResponse[index].stockDeposito ?
                                                     "<td><select class='form-control'><option value='local'>Local</option><option value='deposito' disabled>Sin Stock Deposito</option></select></td>"
-                                                    : "<td><select class='form-control'><option value='local'>Local</option><option value='deposito'>Deposito</option></select></td>"))+                  
+                                                    : "<td><select class='form-control'><option value='local'>Local</option><option value='deposito'>Deposito</option></select></td>"))+
                                         "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
                                     "</tr>"
                                     );
                                 $('#total').html((parseFloat($('#total').html())+importe).toFixed(2));
-                                }
                             }
                             else{
                                 alert("Stock no disponible");
-                            }
-                                
+                            }                          
                         }
                     });
                 }    

@@ -53,7 +53,8 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Precio</th>
+                                    <th>Precio sin iva</th>
+                                    <th>Ganancia</th>
                                     <th>Precio Venta</th>
                                     <th>Stock General</th>
                                     <th>Stock Deposito</th>
@@ -70,6 +71,7 @@
                                     @else
                                     <td>$ {{$l->precio}}</td>
                                     @endif
+                                    <td>{{$l->ganancia}}%</td>
                                     <td>$ {{$l->precioVenta}}</td>
                                     <td>{{$l->stock}}</td>
                                     <td>{{$l->stockDeposito}}</td>

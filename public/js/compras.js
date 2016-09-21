@@ -81,14 +81,22 @@ $(document).ready(function(){
                             importe = jsonResponse[index].precio*cantidad;
                             importe = importe.toFixed(2);
                             importe = parseFloat(importe);
+                            
+                            //solo para ver en la vista el signo pesos o dolar
+                            var cotizacion;
+                            if (jsonResponse[index].cotizacion === 'Dolares'){
+                                cotizacion = '<font color="#04B431">u$s';
+                            }else{
+                                cotizacion = '<font>$';
+                            }
 
                             $("#tablaCompras").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
                                 "<tr>"+
                                     "<td>"+cantidad+"</td>"+
                                     "<td>"+id+"</td>"+
                                     "<td>"+jsonResponse[index].nombre+"</td>"+
-                                    "<td>$ "+jsonResponse[index].precio+"</td>"+
-                                    "<td id='importe'>$ "+importe+"</td>"+
+                                    "<td>"+cotizacion+" "+jsonResponse[index].precio+"</font></td>"+
+                                    "<td id='importe'>"+cotizacion+" "+importe+"</td>"+
                                     "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
                                 "</tr>"
                                 );

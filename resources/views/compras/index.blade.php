@@ -44,7 +44,7 @@
                                     <th>Cant</th>
                                     <th>Cod</th>
                                     <th>Descripcion</th>
-                                    <th>Unit</th>
+                                    <th>Unit s/iva</th>
                                     <th>Importe</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -54,7 +54,7 @@
                                   <td></td>
                                   <td></td>
                                   <td></td>
-                                  <td align="right" >TOTAL: $</td>
+                                  <td align="right" >TOTAL: </td>
                                   <td id="total">0</td>
                                   <td></td>
                                 </tr>
