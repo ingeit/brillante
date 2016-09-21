@@ -25,6 +25,8 @@
                             {{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Ej: Lavandina','class'=> 'form-control','autofocus'])}}
                             {{ Form::hidden('qId', '', ['id' =>  'qId',])}}
                             <p id="stock"></p>
+                            <p id="stockDeposito"></p>
+                            <p id="stockLocal"></p>
                         </div> 
                     </dt>
                     <dt style="width: 100%;">

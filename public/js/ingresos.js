@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $.ajax({
         type: "GET",
-        url: "searchCompras/autocomplete",
+        url: "searchIngresos/autocomplete",
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
@@ -42,12 +42,12 @@ $(document).ready(function(){
                     }
                 });
 
-                //Funcion para agregar una linea de compra
+                //Funcion para agregar una linea de ingreso
                 $("#SelectCant").keyup(function (e){
-                    realizarCompra(e);
+                    realizarIngreso(e);
                 });
 
-                function realizarCompra(e){
+                function realizarIngreso(e){
                     switch(e.which) 
                     {
                         case 13: //detecta el enter
@@ -56,7 +56,8 @@ $(document).ready(function(){
                             if(cant <= 0){
                                 alert("Debe ingresar una cantidad positiva");
                                 break;
-                            } 
+                            }
+                            
                             if(cant === ''){
                                 cant = 1;
                             }   
@@ -67,7 +68,7 @@ $(document).ready(function(){
                                 $("#qId").val(null);
                                 $("#SelectCant").val(null);
                                 $("#q").focus();
-                                $('#realizarCompra').prop('disabled', false);     
+                                $('#realizarIngreso').prop('disabled', false);     
                             }
                             break;
                     }
@@ -78,21 +79,18 @@ $(document).ready(function(){
                     $.each(jsonResponse, function(index) { //la variable value es el nombre
                         if(jsonResponse[index].idProducto === id){
                             var cantidad = parseFloat(cant);
-                            importe = jsonResponse[index].precio*cantidad;
-                            importe = importe.toFixed(2);
-                            importe = parseFloat(importe);
-
-                            $("#tablaCompras").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
-                                "<tr>"+
-                                    "<td>"+cantidad+"</td>"+
-                                    "<td>"+id+"</td>"+
-                                    "<td>"+jsonResponse[index].nombre+"</td>"+
-                                    "<td>$ "+jsonResponse[index].precio+"</td>"+
-                                    "<td id='importe'>$ "+importe+"</td>"+
-                                    "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
-                                "</tr>"
-                                );
-                            $('#total').html((parseFloat($('#total').html())+importe).toFixed(2));
+                            if(jsonResponse[index].stockDeposito < cantidad){
+                                alert("No dispone de suficiente Stock");
+                            }else{
+                                $("#tablaIngresos").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
+                                    "<tr>"+
+                                        "<td>"+cantidad+"</td>"+
+                                        "<td>"+id+"</td>"+
+                                        "<td>"+jsonResponse[index].nombre+"</td>"+
+                                        "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
+                                    "</tr>"
+                                    );
+                                }
                         }
                     });
                 }    
@@ -109,48 +107,44 @@ $(document).ready(function(){
 // de jQuery y trabajo sobre el normalmente.
 function eliminarFila(obj){   
 //    $(obj).parents('tr').fadeOut('slow',function(){})
-  $('#total').html(parseInt($('#total').html())-parseInt($(obj).parents('tr').find('#importe').html()));  
   $(obj).parents('tr').remove();
   desabilitarBoton();
 }
 
 function desabilitarBoton() {
     // Existen elementos?
-    if($('#tablaCompras tr').length === 0)
+    if($('#tablaIngresos tr').length === 0)
     {
-       $('#realizarCompra').prop('disabled', true);
+       $('#realizarIngreso').prop('disabled', true);
     }
 }
 
-function cargarCompra(){ 
+function cargarIngreso(){ 
     var productos = [];
-    $('#tablaCompras').children('tr').each(function( i, val) {
+    $('#tablaIngresos').children('tr').each(function( i, val) {
     cantidad = $(this).find('td').eq(0).html();
     id = $(this).find('td').eq(1).html();
-    precio = $(this).find('td').eq(3).html();
-      productos[i] = {"cantidad": cantidad,"id": id,"precio": precio};
+      productos[i] = {"cantidad": cantidad,"id": id};
     });
-    var total = parseFloat($('#total').html());
-    enviarCompra(productos,total);
+    enviarIngreso(productos);
 }
 
 
-function enviarCompra(produc,total)
+function enviarIngreso(produc)
     {
         $.ajax({ 
             type: "POST",
-            url: "compras/realizarCompra",
+            url: "ingresos/realizarIngreso",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {productosPOSTajax: produc,total: total},
+            data: {productosPOSTajax: produc},
             dataType: "html",
             success: function(data)
                     {       
-                    $("#tablaCompras").empty();
-                    $('#total').html(0);
+                    $("#tablaIngresos").empty();
                     $("#q").focus();
-                    $('#realizarCompra').prop('disabled', true);   
+                    $('#realizarIngreso').prop('disabled', true);   
                     $("#myModal").modal('show');
                     }
             });

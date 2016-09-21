@@ -54,7 +54,7 @@ $router->get('/compras/{id}/{fecha}/{monto}',[
 ]);
 
 // ** INGRESOS ** 
-
+Route::get('searchIngresos/autocomplete', 'IngresosController@autocomplete');
 Route::post('ingresos/agregar', 'IngresosController@agregarLinea');
 Route::post('ingresos/realizarIngreso', 'IngresosController@create');
 $router->get('/ingresos/{id}/{fecha}',[
