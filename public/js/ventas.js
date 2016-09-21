@@ -82,8 +82,7 @@ $(document).ready(function(){
                                 $("#q").focus();
                                 $('#realizarVenta').prop('disabled', false);     
                             }
-                            break;
-                            
+                            break;     
                     }
                 }
 
