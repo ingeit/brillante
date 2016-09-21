@@ -83,6 +83,7 @@ $(document).ready(function(){
                                 $('#realizarVenta').prop('disabled', false);     
                             }
                             break;
+                            
                     }
                 }
 
