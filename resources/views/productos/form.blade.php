@@ -4,10 +4,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                @if(Session::has('mensaje'))
+                @if(Session::has('resultado'))
+                    @if (Session::get('codigo') == 0)
+                        <div class="alert alert-danger">
+                            {{Session::get('mensaje')}}
+                        </div>     
+                    @else
                     <div class="alert alert-success">
-                        <strong>Correcto!</strong> {{Session::get('mensaje')}}
-                    </div>           
+                        {{Session::get('mensaje')}}
+                    </div>
+                    @endif
                 @endif
                 <div class="panel panel-default">
                     <div class="panel-heading">{{Session::get('titulo')}}</div>

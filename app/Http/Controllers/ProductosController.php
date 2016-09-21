@@ -53,14 +53,10 @@ class ProductosController extends Controller
         $p = new Productos();
         $p->fill($request->all());// completo los atributos del objeto Productos
         $p->idProducto=$id;
-        
         $resultado = $gp->modificar($p); // lo agrego a la base de datos
-        
-        foreach ($resultado as $r) { // obtengo el mensaje de la base de datos
-            $mensaje = $r->Mensaje;
-        }
-        Session::flash('mensaje',$mensaje); // mando el mensaje de la base datos a la vista
-        return redirect()->back(); // vuelvo al form
+        Session::put('codigo',$resultado[0]->codigo);
+        Session::put('mensaje',$resultado[0]->mensaje);
+        return redirect()->back()->with('resultado', 'si');
     }
 
     public function store(ProductosRequest $request) //Con ProductosRequest verifico los campos 
