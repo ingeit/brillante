@@ -50,16 +50,15 @@ class ComprasController extends Controller
     public function autocomplete()
     { //Se conecta con autocomplete.js para autocompletar los inputs de busqueda con 
       // el listado de prodcutos
-	$term = Input::get('term');
-	
+        
+        // la consulta es del estilo GET /search/autocomplete?term=la
+        // el search/autocomplete es la direccion source del js autocomplete
+        // y el termino term es el que se crea para ralizar la busqueda,
+        // yo busco el valor de term
+	$term = Input::get('term'); 	
         $gp = new GestorProductos();
-        $consulta = $gp->buscar($term);
-	
-	foreach ($consulta as $query)
-	{
-	    $resultado[] = [ 'id' => $query->idProducto, 'value' => $query->nombre];
-	}
-        return Response::json($resultado);
+        $consulta = $gp->listar($term);        
+        return Response::json($consulta);
     }
 
  

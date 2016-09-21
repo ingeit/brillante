@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('scripts')
-{{ Html::script('js/liveSearchLocal.js')}}
+{{ Html::script('js/productosBuscar.js')}}
 {{ Html::script('js/highlighttable.js')}}
 {{ Html::style('css/style.css')}}
 @endsection
@@ -70,7 +70,7 @@
                                     @else
                                     <td>$ {{$l->precio}}</td>
                                     @endif
-                                    <td>$ {{$l->PrecioVenta}}</td>
+                                    <td>$ {{$l->precioVenta}}</td>
                                     <td>{{$l->stock}}</td>
                                     <td>{{$l->stockDeposito}}</td>
                                     <td>{{$l->stockLocal}}</td>

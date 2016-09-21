@@ -33,7 +33,7 @@ $(document).ready(function(){ //$(document) toma la pagina entera como variable 
                         "<tr>"+
                             "<td>"+v.nombre+"</td>"+
                             "<td>"+signo+" "+v.precio+"</td>"+
-                            "<td>$ "+v.PrecioVenta+"</td>"+
+                            "<td>$ "+v.precioVenta+"</td>"+
                             "<td>"+v.stock+"</td>"+
                             "<td>"+v.stockDeposito+"</td>"+
                             "<td>"+v.stockLocal+"</td>"+

@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $.ajax({
         type: "GET",
-        url: "search/autocomplete",
+        url: "searchCompras/autocomplete",
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
@@ -37,31 +37,20 @@ $(document).ready(function(){
                         case 13: //detecta el enter
                             //muestro el stock y despues salto a FOCUS EN CANTIDAD
                             //la variable value es el nombre
-                            var id = $('#qId').val();
-                            $.each(jsonResponse, function(index) { //la variable value es el nombre
-                                if(id === jsonResponse[index].idProducto)
-                                {
-                                    $("#stock").html("Stock Total: "+jsonResponse[index].stock+" - Local: "+jsonResponse[index].stockLocal+" - Deposito: "+jsonResponse[index].stockDeposito);
-                                }
-                            });
                             $("#SelectCant").focus();
-                        break;
-                        case 8: //detecta el borrar
-                            $("#stock").html(null);                 
                         break;
                     }
                 });
 
-                //Funcion para agregar una linea de venta
+                //Funcion para agregar una linea de compra
                 $("#SelectCant").keyup(function (e){
-                    realizarVenta(e);
+                    realizarCompra(e);
                 });
 
-                function realizarVenta(e){
+                function realizarCompra(e){
                     switch(e.which) 
                     {
                         case 13: //detecta el enter
-                            $("#stock").html(null);
                             id=$("#qId").val();
                             cant = $("#SelectCant").val();
                             if(cant === ''){
@@ -74,7 +63,7 @@ $(document).ready(function(){
                                 $("#qId").val(null);
                                 $("#SelectCant").val(null);
                                 $("#q").focus();
-                                $('#realizarVenta').prop('disabled', false);     
+                                $('#realizarCompra').prop('disabled', false);     
                             }
                             break;
                     }
@@ -83,32 +72,23 @@ $(document).ready(function(){
                 function busqueda(id,cant)
                 {  
                     $.each(jsonResponse, function(index) { //la variable value es el nombre
-                        if(jsonResponse[index].idProducto === id){                            
-                            //controlo que cantidad no supere el stock disponible
+                        if(jsonResponse[index].idProducto === id){
                             var cantidad = parseFloat(cant);
-                            if (cantidad <= jsonResponse[index].stock )
-                            {
-                                importe = jsonResponse[index].precioVenta*cantidad;
-                                importe = importe.toFixed(2);
-                                importe = parseFloat(importe);
-                                
-                                $("#tablaVentas").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
-                                    "<tr>"+
-                                        "<td>"+cantidad+"</td>"+
-                                        "<td>"+id+"</td>"+
-                                        "<td>"+jsonResponse[index].nombre+"</td>"+
-                                        "<td>$ "+jsonResponse[index].precioVenta+"</td>"+
-                                        "<td id='importe'>$ "+importe+"</td>"+
-                                        "<td><select class='form-control'><option value='local'>Local</option><option value='deposito'>Deposito</option></select></td>"+
-                                        "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
-                                    "</tr>"
-                                    );
-                                $('#total').html((parseFloat($('#total').html())+importe).toFixed(2));
-                            }
-                            else{
-                                alert("Stock no disponible");
-                            }
-                                
+                            importe = jsonResponse[index].precio*cantidad;
+                            importe = importe.toFixed(2);
+                            importe = parseFloat(importe);
+
+                            $("#tablaCompras").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
+                                "<tr>"+
+                                    "<td>"+cantidad+"</td>"+
+                                    "<td>"+id+"</td>"+
+                                    "<td>"+jsonResponse[index].nombre+"</td>"+
+                                    "<td>$ "+jsonResponse[index].precio+"</td>"+
+                                    "<td id='importe'>$ "+importe+"</td>"+
+                                    "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
+                                "</tr>"
+                                );
+                            $('#total').html((parseFloat($('#total').html())+importe).toFixed(2));
                         }
                     });
                 }    
@@ -132,31 +112,30 @@ function eliminarFila(obj){
 
 function desabilitarBoton() {
     // Existen elementos?
-    if($('#tablaVentas tr').length === 0)
+    if($('#tablaCompras tr').length === 0)
     {
-       $('#realizarVenta').prop('disabled', true);
+       $('#realizarCompra').prop('disabled', true);
     }
 }
 
-function cargarVenta(){ 
+function cargarCompra(){ 
     var productos = [];
-    $('#tablaVentas').children('tr').each(function( i, val) {
-    lugar = $(this).find('td').eq(5).find(":selected").val();
+    $('#tablaCompras').children('tr').each(function( i, val) {
     cantidad = $(this).find('td').eq(0).html();
     id = $(this).find('td').eq(1).html();
     precio = $(this).find('td').eq(3).html();
-      productos[i] = {"cantidad": cantidad,"id": id,"precio": precio,"lugar": lugar};
+      productos[i] = {"cantidad": cantidad,"id": id,"precio": precio};
     });
     var total = parseFloat($('#total').html());
-    enviarVenta(productos,total);
+    enviarCompra(productos,total);
 }
 
 
-function enviarVenta(produc,total)
+function enviarCompra(produc,total)
     {
         $.ajax({ 
             type: "POST",
-            url: "ventas/realizarVenta",
+            url: "compras/realizarCompra",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -164,10 +143,10 @@ function enviarVenta(produc,total)
             dataType: "html",
             success: function(data)
                     {       
-                    $("#tablaVentas").empty();
+                    $("#tablaCompras").empty();
                     $('#total').html(0);
                     $("#q").focus();
-                    $('#realizarVenta').prop('disabled', true);   
+                    $('#realizarCompra').prop('disabled', true);   
                     $("#myModal").modal('show');
                     }
             });

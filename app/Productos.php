@@ -66,7 +66,7 @@ class Productos extends Model
                 "precio" => $r->precio,
                 "ganancia" => $r->ganancia,
                 "cotizacion" => $r->cotizacion,
-                "pPrecioVenta" => $r->PrecioVenta,
+                "pPrecioVenta" => $r->precioVenta,
                 "pIdProducto" => $r->idProducto,
                 "pStock" => $r->stock,
                 "pStockDeposito" => $r->stockDeposito,
