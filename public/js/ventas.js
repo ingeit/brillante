@@ -66,7 +66,7 @@ $(document).ready(function(){
                             $("#stock").html(null);
                             id=$("#qId").val();
                             cant = $("#SelectCant").val();
-                            if(cant <= 0){
+                            if(cant < 0){
                                 alert("Debe ingresar una cantidad positiva");
                                 break;
                             }   
@@ -188,32 +188,31 @@ function enviarVenta(produc,total)
             data: {productosPOSTajax: produc,total: total},
             dataType: "html",
             success: function(data)
-                    {
+                {
                     var jsonResponse = JSON.parse(data);
-                    //Borramos mensajes que quedaron de ventas anteriores por las dudas    
-                    $("#mje").empty();
-                    if(jsonResponse[0]['codigo'] == 0)
+                    codigo=jsonResponse[0]['codigo'];
+                    mensaje=jsonResponse[0]['mensaje'];
+                    $("#myModal").modal('show');
+                    if(codigo == 0)
                     {
-                        $("#mje").append(
-                            "<div class='alert alert-danger'>"+
-                            jsonResponse[0]['mensaje']+
-                            "</div>" 
-                            );
+                        $("#tituloModal").append(
+                            "<div class='alert alert-danger'>ERROR</div>" 
+                        );
+                        $("#mensajeModal").append(
+                            "<p>"+mensaje+"</p>" 
+                        );
                     }else{
-                        $("#mje").append(
-                            "<div class='alert alert-success'>"+
-                            jsonResponse[0]['mensaje']+
-                            "</div>" 
-                            );
+                        $("#tituloModal").append(
+                            "<div class='alert alert-success'>CORRECTO</div>" 
+                        );
+                        $("#mensajeModal").append(
+                            "<p>"+mensaje+"</p>" 
+                        );
                     }
-                    $("#tablaVentas").empty();
-                    $('#total').html(0);
-                    $("#q").focus();
-                    $('#realizarVenta').prop('disabled', true);
-                    $("#stock").html(null);
-                    $("#stockDeposito").html(null);
-                    $("#stockLocal").html(null);
-                    }
-            });
+                    $("#myModal").on('hidden.bs.modal', function () {
+                        window.location.reload();
+                    });
+                }
+        });
     }
 

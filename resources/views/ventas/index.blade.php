@@ -10,8 +10,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <!-- div para mensaje de venta realizada o no-->
-            <div id="mje"></div>
             <div>
                  <ul class="list-inline">
                      <li>
@@ -83,10 +81,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Felicidades!!!</h4>
+        <h4 id="tituloModal" class="modal-title"></h4>
       </div>
-      <div class="modal-body">
-        <p>Venta Realizada con Exito.</p>
+      <div id="mensajeModal" class="modal-body">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
