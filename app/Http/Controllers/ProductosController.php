@@ -66,7 +66,7 @@ class ProductosController extends Controller
         $p->fill($request->all());// completo los atributos del objeto Productos
         $resultado = $gp->alta($p); // lo agrego a la base de datos
         foreach ($resultado as $r) { // obtengo el mensaje de la base de datos
-            $mensaje = $r->Mensaje;
+            $mensaje = $r->mensaje;
         }
         return redirect()->back()->with('mensaje', $mensaje);
     }
