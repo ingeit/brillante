@@ -96,32 +96,40 @@ $(document).ready(function(){
                             var cantidad = parseFloat(cant);
                             if (cantidad <= jsonResponse[index].stock )
                             {
-                                importe = jsonResponse[index].precioVenta*cantidad;
-                                importe = importe.toFixed(2);
-                                importe = parseFloat(importe);
+                                //CONTROLO que CANTIDAD no supere los STOCKS INDIVIDUALES!
+                                if(cantidad <= jsonResponse[index].stockDeposito && jsonResponse[index].stockLocal)
+                                {
+                                    importe = jsonResponse[index].precioVenta*cantidad;
+                                    importe = importe.toFixed(2);
+                                    importe = parseFloat(importe);
+
+                                    $("#tablaVentas").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
+                                        "<tr>"+
+                                            "<td>"+cantidad+"</td>"+
+                                            "<td>"+id+"</td>"+
+                                            "<td>"+jsonResponse[index].nombre+"</td>"+
+                                            "<td>$ "+jsonResponse[index].precioVenta+"</td>"+
+                                            "<td id='importe'>$ "+importe+"</td>"+
+                                            //Control para el stockLocal en venta
+                                            //sintaxis: HTML+( control logico ? true : false )+HTML
+                                            //CUIDADO, lo hice con un IF ELSE IF...
+                                                (cantidad > jsonResponse[index].stockLocal ? 
+                                                    (cantidad > jsonResponse[index].stockDeposito ?
+                                                        alert("No llega con el stock individual")+
+                                                        "<td><select class='form-control'><option value='local' disabled>Sin Stock Local</option><option value='deposito' disabled>Sin Stock Deposito</option></select></td>"
+                                                        : "<td><select class='form-control'><option value='local' disabled>Sin Stock Local</option><option value='deposito'>Deposito</option></select></td>")
+                                                : (cantidad > jsonResponse[index].stockDeposito ?
+                                                        "<td><select class='form-control'><option value='local'>Local</option><option value='deposito' disabled>Sin Stock Deposito</option></select></td>"
+                                                        : "<td><select class='form-control'><option value='local'>Local</option><option value='deposito'>Deposito</option></select></td>"))+
+                                            "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
+                                        "</tr>"
+                                        );
+                                    $('#total').html((parseFloat($('#total').html())+importe).toFixed(2));
+                                }else{
+                                    alert("No llega con el stock individual");
+                                    return;
+                                }
                                 
-                                $("#tablaVentas").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
-                                    "<tr>"+
-                                        "<td>"+cantidad+"</td>"+
-                                        "<td>"+id+"</td>"+
-                                        "<td>"+jsonResponse[index].nombre+"</td>"+
-                                        "<td>$ "+jsonResponse[index].precioVenta+"</td>"+
-                                        "<td id='importe'>$ "+importe+"</td>"+
-                                        //Control para el stockLocal en venta
-                                        // sintaxis: HTML+( control logico ? true : false )+HTML
-                                        //CUIDADO, lo hice con un IF ELSE IF...
-                                            (cantidad > jsonResponse[index].stockLocal ? 
-                                                (cantidad > jsonResponse[index].stockDeposito ?
-                                                    alert("No llega con el stock individual")+
-                                                    "<td><select class='form-control'><option value='local' disabled>Sin Stock Local</option><option value='deposito' disabled>Sin Stock Deposito</option></select></td>"
-                                                    : "<td><select class='form-control'><option value='local' disabled>Sin Stock Local</option><option value='deposito'>Deposito</option></select></td>")
-                                            : (cantidad > jsonResponse[index].stockDeposito ?
-                                                    "<td><select class='form-control'><option value='local'>Local</option><option value='deposito' disabled>Sin Stock Deposito</option></select></td>"
-                                                    : "<td><select class='form-control'><option value='local'>Local</option><option value='deposito'>Deposito</option></select></td>"))+
-                                        "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
-                                    "</tr>"
-                                    );
-                                $('#total').html((parseFloat($('#total').html())+importe).toFixed(2));
                             }
                             else{
                                 alert("Stock no disponible");
@@ -142,7 +150,7 @@ $(document).ready(function(){
 // de jQuery y trabajo sobre el normalmente.
 function eliminarFila(obj){   
 //    $(obj).parents('tr').fadeOut('slow',function(){})
-  $('#total').html(parseInt($('#total').html())-parseInt($(obj).parents('tr').find('#importe').html()));  
+  $('#total').html((parseFloat($('#total').html())-importe).toFixed(2));
   $(obj).parents('tr').remove();
   desabilitarBoton();
 }
@@ -180,12 +188,31 @@ function enviarVenta(produc,total)
             data: {productosPOSTajax: produc,total: total},
             dataType: "html",
             success: function(data)
-                    {       
+                    {
+                    var jsonResponse = JSON.parse(data);
+                    //Borramos mensajes que quedaron de ventas anteriores por las dudas    
+                    $("#mje").empty();
+                    if(jsonResponse[0]['codigo'] == 0)
+                    {
+                        $("#mje").append(
+                            "<div class='alert alert-danger'>"+
+                            jsonResponse[0]['mensaje']+
+                            "</div>" 
+                            );
+                    }else{
+                        $("#mje").append(
+                            "<div class='alert alert-success'>"+
+                            jsonResponse[0]['mensaje']+
+                            "</div>" 
+                            );
+                    }
                     $("#tablaVentas").empty();
                     $('#total').html(0);
                     $("#q").focus();
-                    $('#realizarVenta').prop('disabled', true);   
-                    $("#myModal").modal('show');
+                    $('#realizarVenta').prop('disabled', true);
+                    $("#stock").html(null);
+                    $("#stockDeposito").html(null);
+                    $("#stockLocal").html(null);
                     }
             });
     }

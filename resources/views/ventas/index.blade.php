@@ -10,6 +10,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+            <!-- div para mensaje de venta realizada o no-->
+            <div id="mje"></div>
             <div>
                  <ul class="list-inline">
                      <li>

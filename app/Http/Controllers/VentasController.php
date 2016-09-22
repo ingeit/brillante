@@ -50,14 +50,14 @@ class VentasController extends Controller
         $monto = $request->total; 
         $fecha = date("d-m-Y H:i"); 
         
-        $resultado = $request->productosPOSTajax; //obtengo el envio de datos tipo 
+        $result = $request->productosPOSTajax; //obtengo el envio de datos tipo 
         //POST que envie de ajax con el nombre  productosPOSTajax
         //como se envie, contiene varios varios arrays de arrays (matriz)
         // recorro con un foreach cada fil y obtengo las columnas con el 
         // nombre de cada una.
         $cadena = null;
         
-        foreach ($resultado as $p){
+        foreach ($result as $p){
             //hago este if solo para el formato,para que terminen sin || ( 1|2*2|2 )
             if ($cadena == null) {
                 $cadena = $cadena.$p['id']."|".$p['cantidad']."|".$p['lugar'];
@@ -77,12 +77,8 @@ class VentasController extends Controller
         //Generamos la venta y a su vez las lineas ventas en un solo SP
         $v = new Ventas($fecha,$monto,$cadena);
         $gv = new GestorVentas();
-        $result = $gv->nueva($v); // lo agrego a la base de datos
-//        foreach ($result as $r) { // mensaje de error o venta creada con exito, con todas las lineas ventas
-//            $mensaje = $r->id;
-//        }
-//        dd($mensaje);
-        
+        $consulta = $gv->nueva($v); // lo agrego a la base de datos
+        return $consulta;
     }
     
      public function agregarLinea(Request $request)
