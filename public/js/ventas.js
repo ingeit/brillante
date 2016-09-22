@@ -195,31 +195,31 @@ function enviarVenta(produc,total)
             data: {productosPOSTajax: produc,total: total},
             dataType: "html",
             success: function(data)
+            {
+                var jsonResponse = JSON.parse(data);
+                codigo=jsonResponse[0]['codigo'];
+                mensaje=jsonResponse[0]['mensaje'];
+                $("#myModal").modal('show');
+                if(codigo == 0)
                 {
-                    var jsonResponse = JSON.parse(data);
-                    codigo=jsonResponse[0]['codigo'];
-                    mensaje=jsonResponse[0]['mensaje'];
-                    $("#myModal").modal('show');
-                    if(codigo == 0)
-                    {
-                        $("#tituloModal").append(
-                            "<div class='alert alert-danger'>ERROR</div>" 
-                        );
-                        $("#mensajeModal").append(
-                            "<p>"+mensaje+"</p>" 
-                        );
-                    }else{
-                        $("#tituloModal").append(
-                            "<div class='alert alert-success'>CORRECTO</div>" 
-                        );
-                        $("#mensajeModal").append(
-                            "<p>"+mensaje+"</p>" 
-                        );
-                    }
-                    $("#myModal").on('hidden.bs.modal', function () {
-                        window.location.reload();
-                    });
+                    $("#tituloModal").append(
+                        "<div class='alert alert-danger'>ERROR</div>" 
+                    );
+                    $("#mensajeModal").append(
+                        "<p>"+mensaje+"</p>" 
+                    );
+                }else{
+                    $("#tituloModal").append(
+                        "<div class='alert alert-success'>CORRECTO</div>" 
+                    );
+                    $("#mensajeModal").append(
+                        "<p>"+mensaje+"</p>" 
+                    );
                 }
+                $("#myModal").on('hidden.bs.modal', function () {
+                    window.location.reload();
+                });
+            }
         });
     }
 

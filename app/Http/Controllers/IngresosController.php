@@ -76,13 +76,8 @@ class IngresosController extends Controller
         //Generamos la venta y a su vez las lineas ventas en un solo SP
         $i = new Ingresos($fecha,$cadena);
         $gi = new GestorIngresos();
-        $result = $gi->nuevo($i); 
-        
-        //// lo agrego a la base de datos
-//        foreach ($result as $r) { // mensaje de error o venta creada con exito, con todas las lineas ventas
-//            $mensaje = $r->id;
-//        }
-//        dd($mensaje);
+        $consulta = $gi->nuevo($i); 
+        return $consulta;
         
     }
     

@@ -15,7 +15,6 @@ class GestorCompras extends Model
             $i->cMonto,
             $i->cCadena,);
     	$result = DB::select('call compra_nueva(?,?,?)',$params);
-        dd($result);
         return $result;
     }
     

@@ -97,11 +97,8 @@ class ComprasController extends Controller
         $c = new Compras($fecha,$monto,$cadena); 
 
         $gc = new GestorCompras();
-        $gc->nueva($c); // lo agrego a la base de datos
-        
-//        foreach ($result as $r) { // mensaje de error o venta creada con exito, con todas las lineas ventas
-//            $mensaje = $r->id;
-//        }
+        $consulta=$gc->nueva($c); // lo agrego a la base de datos
+        return $consulta;
 
     }
     

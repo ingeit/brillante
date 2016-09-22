@@ -24,6 +24,9 @@
                             {{ Form::label('q', 'Producto a Ingresar') }}
                             {{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Ej: Lavandina','class'=> 'form-control','autofocus'])}}
                             {{ Form::hidden('qId', '', ['id' =>  'qId',])}}
+                            <p id="stock"></p>
+                            <p id="stockDeposito"></p>
+                            <p id="stockLocal"></p>
                         </div> 
                     </dt>
                     <dt style="width: 100%;">
@@ -65,10 +68,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Felicidades!!!</h4>
+        <h4 id="tituloModal" class="modal-title"></h4>
       </div>
-      <div class="modal-body">
-        <p>Ingreso Realizado con Exito.</p>
+      <div id="mensajeModal" class="modal-body">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

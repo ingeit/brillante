@@ -14,7 +14,6 @@ class GestorIngresos extends Model
             $i->iCadena );
         
     	$result = DB::select('call ingreso_nuevo(?,?)',$params);
-        dd($result);
         return $result;
     }
     

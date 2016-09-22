@@ -37,7 +37,19 @@ $(document).ready(function(){
                         case 13: //detecta el enter
                             //muestro el stock y despues salto a FOCUS EN CANTIDAD
                             //la variable value es el nombre
+                            var id = $('#qId').val();
+                            $.each(jsonResponse, function(index) { //la variable value es el nombre
+                                if(id === jsonResponse[index].idProducto)
+                                {
+                                    $("#stock").html("Stock Total: "+jsonResponse[index].stock);
+                                    $("#stockDeposito").html("En Deposito: "+jsonResponse[index].stockDeposito);
+                                    $("#stockLocal").html("En Local: "+jsonResponse[index].stockLocal);
+                                }
+                            });
                             $("#SelectCant").focus();
+                        break;
+                        case 8: //detecta el borrar
+                            $("#stock").html(null);                 
                         break;
                     }
                 });
@@ -51,15 +63,12 @@ $(document).ready(function(){
                     switch(e.which) 
                     {
                         case 13: //detecta el enter
+                            $("#stock").html(null);
                             id=$("#qId").val();
                             cant = $("#SelectCant").val();
                             if(cant <= 0){
                                 alert("Debe ingresar una cantidad positiva");
                                 break;
-                            }
-                            
-                            if(cant === ''){
-                                cant = 1;
                             }   
                             if (id)
                             {
@@ -141,12 +150,31 @@ function enviarIngreso(produc)
             data: {productosPOSTajax: produc},
             dataType: "html",
             success: function(data)
-                    {       
-                    $("#tablaIngresos").empty();
-                    $("#q").focus();
-                    $('#realizarIngreso').prop('disabled', true);   
-                    $("#myModal").modal('show');
-                    }
+            {
+                var jsonResponse = JSON.parse(data);
+                codigo=jsonResponse[0]['codigo'];
+                mensaje=jsonResponse[0]['mensaje'];
+                $("#myModal").modal('show');
+                if(codigo == 0)
+                {
+                    $("#tituloModal").append(
+                        "<div class='alert alert-danger'>ERROR</div>" 
+                    );
+                    $("#mensajeModal").append(
+                        "<p>"+mensaje+"</p>" 
+                    );
+                }else{
+                    $("#tituloModal").append(
+                        "<div class='alert alert-success'>CORRECTO</div>" 
+                    );
+                    $("#mensajeModal").append(
+                        "<p>"+mensaje+"</p>" 
+                    );
+                }
+                $("#myModal").on('hidden.bs.modal', function () {
+                    window.location.reload();
+                });
+            }
             });
     }
 
