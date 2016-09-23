@@ -66,6 +66,9 @@ $(document).ready(function(){
                             $("#stock").html(null);
                             id=$("#qId").val();
                             cant = $("#SelectCant").val();
+                            if(cant === ''){
+                                cant = 1;
+                            } 
                             if(cant <= 0){
                                 alert("Debe ingresar una cantidad positiva");
                                 break;
@@ -127,7 +130,7 @@ $(document).ready(function(){
 // de jQuery y trabajo sobre el normalmente.
 function eliminarFila(obj){   
 //    $(obj).parents('tr').fadeOut('slow',function(){})
-  $('#total').html(parseInt($('#total').html())-parseInt($(obj).parents('tr').find('#importe').html()));  
+  $('#total').html((parseFloat($('#total').html())-importe).toFixed(2));
   $(obj).parents('tr').remove();
   desabilitarBoton();
 }
@@ -142,6 +145,8 @@ function desabilitarBoton() {
 
 function cargarCompra(){ 
     var productos = [];
+        //deshabilitamos el boton "realizarCompra" para que con el ENTER en modal no siga generando mas Compra
+    $('#realizarCompra').prop('disabled', true);
     $('#tablaCompras').children('tr').each(function( i, val) {
     cantidad = $(this).find('td').eq(0).html();
     id = $(this).find('td').eq(1).html();

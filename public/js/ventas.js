@@ -1,4 +1,4 @@
-$(document).ready(function(){
+function iniciar(){
     $.ajax({
         type: "GET",
         url: "search/autocomplete",
@@ -41,9 +41,12 @@ $(document).ready(function(){
                             $.each(jsonResponse, function(index) { //la variable value es el nombre
                                 if(id === jsonResponse[index].idProducto)
                                 {
-                                    $("#stock").html("Stock Total: "+jsonResponse[index].stock);
-                                    $("#stockDeposito").html("En Deposito: "+jsonResponse[index].stockDeposito);
-                                    $("#stockLocal").html("En Local: "+jsonResponse[index].stockLocal);
+                                    $('#stockContainer').empty();
+                                    $("#stockContainer").append(
+                                        "<p>Stock Total: "+jsonResponse[index].stock+"</p>"+
+                                        "<p>Stock Deposito: "+jsonResponse[index].stockDeposito+"</p>"+
+                                        "<p>Stock Local: "+jsonResponse[index].stockLocal+"</p>"
+                                    );
                                 }
                             });
                             $("#SelectCant").focus();
@@ -140,13 +143,14 @@ $(document).ready(function(){
                                     "</tr>"
                                     );
                                 $('#total').html((parseFloat($('#total').html())+importe).toFixed(2));
+                                $('#stockContainer').empty();
                             }
                         }
                     });
                 }    
             }
         });
-});
+};
 
 
 // el parametro obj que recibe, es el elemento que lo llama osea (this)
@@ -172,6 +176,8 @@ function desabilitarBoton() {
 
 function cargarVenta(){ 
     var productos = [];
+    //deshabilitamos el boton "realizarVenta" para que con el ENTER en modal no siga generando mas ventas
+    $('#realizarVenta').prop('disabled', true);
     $('#tablaVentas').children('tr').each(function( i, val) {
     lugar = $(this).find('td').eq(5).find(":selected").val();
     cantidad = $(this).find('td').eq(0).html();
@@ -200,6 +206,8 @@ function enviarVenta(produc,total)
                 codigo=jsonResponse[0]['codigo'];
                 mensaje=jsonResponse[0]['mensaje'];
                 $("#myModal").modal('show');
+                $("#mensajeModal").empty();
+                $("#tituloModal").empty();
                 if(codigo == 0)
                 {
                     $("#tituloModal").append(
@@ -217,7 +225,11 @@ function enviarVenta(produc,total)
                     );
                 }
                 $("#myModal").on('hidden.bs.modal', function () {
-                    window.location.reload();
+                    $("#tablaVentas").empty();
+                    $('#total').html(0);
+                    $("#q").focus();
+                      iniciar();
+//                    window.location.reload();
                 });
             }
         });

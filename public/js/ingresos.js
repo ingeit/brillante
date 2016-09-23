@@ -130,6 +130,8 @@ function desabilitarBoton() {
 
 function cargarIngreso(){ 
     var productos = [];
+    //deshabilitamos el boton "realizarIngreso" para que con el ENTER en modal no siga generando mas ingreso
+    $('#realizarIngreso').prop('disabled', true);
     $('#tablaIngresos').children('tr').each(function( i, val) {
     cantidad = $(this).find('td').eq(0).html();
     id = $(this).find('td').eq(1).html();
