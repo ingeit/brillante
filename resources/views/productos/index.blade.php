@@ -48,7 +48,7 @@
                             </tr>
                         </thead>
                     </table>   -->
-                    <div  class="table-responsive" style="height: 250px;overflow-y: scroll;overflow-x: hidden;">              
+                    <div  class="table-responsive" style="height: 500px;overflow-y: scroll;overflow-x: hidden;">              
                         <table id="data" class="table table-striped">
                             <thead>
                                 <tr>
