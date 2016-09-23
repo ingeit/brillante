@@ -41,11 +41,14 @@ function iniciar(){
                             $.each(jsonResponse, function(index) { //la variable value es el nombre
                                 if(id === jsonResponse[index].idProducto)
                                 {
+                                    var productosStocks = [];
+                                    productosStocks = controlStock(jsonResponse[index]);
+                                    
                                     $('#stockContainer').empty();
                                     $("#stockContainer").append(
-                                        "<p>Stock Total: "+jsonResponse[index].stock+"</p>"+
-                                        "<p>Stock Deposito: "+jsonResponse[index].stockDeposito+"</p>"+
-                                        "<p>Stock Local: "+jsonResponse[index].stockLocal+"</p>"
+                                        "<p>Stock Total: <span>"+productosStocks[0]+"</span></p>"+
+                                        "<p>Stock Deposito: <span>"+productosStocks[1]+"</span></p>"+
+                                        "<p>Stock Local: <span>"+productosStocks[2]+"</span></p>"
                                     );
                                 }
                             });
@@ -91,18 +94,24 @@ function iniciar(){
 
                 function busqueda(id,cant)
                 {  
-                    $.each(jsonResponse, function(index) { //la variable value es el nombre
-                        if(jsonResponse[index].idProducto === id){   
+                    $.each(jsonResponse, function(index) { //busco en mi array local, (jsonResponse tabla productos) mi producto ingresado en el input
+                                                           //por ID, para completar los campos en la tabla de venta.
+                        if(jsonResponse[index].idProducto === id){//por eso esto.   
                             
                             //controlo que cantidad no supere el stock disponible
                             //despues en el append controlo especificamente STOCKLOCAL Y DEPOSITO
                             var cantidad = parseFloat(cant);
-                            if (cantidad <= jsonResponse[index].stock )
+                            
+                            auxStock = parseInt($("#stockContainer").find('p span:eq(0)').html());
+                            auxStockDeposito = parseInt($("#stockContainer").find('p span:eq(1)').html());
+                            auxStockLocal = parseInt($("#stockContainer").find('p span:eq(2)').html());
+                            
+                            if (cantidad <= auxStock )
                             {
                                 //CONTROLO que CANTIDAD no supere los STOCKS INDIVIDUALES!
-                                if(cantidad > jsonResponse[index].stockDeposito )
+                                if(cantidad > auxStockDeposito )
                                 { 
-                                    if(cantidad > jsonResponse[index].stockLocal)
+                                    if(cantidad > auxStockLocal )
                                     {
                                         alert("No llega con el stock individual");
                                         return;
@@ -178,6 +187,13 @@ function cargarVenta(){
     var productos = [];
     //deshabilitamos el boton "realizarVenta" para que con el ENTER en modal no siga generando mas ventas
     $('#realizarVenta').prop('disabled', true);
+    productos = ventaParcial();
+    var total = parseFloat($('#total').html());
+    enviarVenta(productos,total);
+}
+
+function ventaParcial(){
+    var productos = [];
     $('#tablaVentas').children('tr').each(function( i, val) {
     lugar = $(this).find('td').eq(5).find(":selected").val();
     cantidad = $(this).find('td').eq(0).html();
@@ -185,10 +201,39 @@ function cargarVenta(){
     precio = $(this).find('td').eq(3).html();
       productos[i] = {"cantidad": cantidad,"id": id,"precio": precio,"lugar": lugar};
     });
-    var total = parseFloat($('#total').html());
-    enviarVenta(productos,total);
+    return productos;
 }
 
+
+function controlStock(producto){
+    var productosTemp = [];
+    var descontarStock = 0;
+    descontarStock = parseInt(descontarStock);
+    var descontarStockDeposito = 0;
+    descontarStockDeposito = parseInt(descontarStockDeposito);
+    var descontarStockLocal = 0;
+    descontarStockLocal = parseInt(descontarStockLocal);
+
+    productosTemp = ventaParcial();
+    if(!jQuery.isEmptyObject(productosTemp)){
+       $.each(productosTemp, function(index) {
+           if(productosTemp[index].id === producto.idProducto){
+                descontarStock = descontarStock + parseInt(productosTemp[index].cantidad);
+                    if(productosTemp[index].lugar === 'local'){
+                        descontarStockLocal = descontarStockLocal + parseInt(productosTemp[index].cantidad);
+                    }
+                    else{
+                        descontarStockDeposito = descontarStockDeposito + parseInt(productosTemp[index].cantidad);
+                    }
+           }
+       });
+    }
+    var auxStock = (producto.stock - descontarStock);
+    var auxStockDeposito = (producto.stockDeposito - descontarStockDeposito);
+    var auxStockLocal = (producto.stockLocal - descontarStockLocal);
+    var productosStocks = [auxStock,auxStockDeposito,auxStockLocal];
+    return productosStocks;
+}
 
 function enviarVenta(produc,total)
     {
