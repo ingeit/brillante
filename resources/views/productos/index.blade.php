@@ -34,20 +34,6 @@
                 <div class="panel panel-default">
                 <div class="panel-heading">Lista de Productos</div>
                 <div class="panel-body">
-<!--                    <table class="table table-striped" style="margin-bottom: 0;margin-top: -12px;">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Precio</th>
-                                <th>Precio Venta</th>
-                                <th>Cotizacion</th>
-                                <th>Stock Global</th>
-                                <th>Stock Deposito</th>
-                                <th>Stock Local</th>
-                                <th>Acciones</th>  
-                            </tr>
-                        </thead>
-                    </table>   -->
                     <div  class="table-responsive" style="height: 500px;overflow-y: scroll;overflow-x: hidden;">              
                         <table id="data" class="table table-striped">
                             <thead>
