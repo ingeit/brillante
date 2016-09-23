@@ -103,29 +103,31 @@ function iniciar(){
                             
                             //controlo que cantidad no supere el stock disponible
                             //despues en el append controlo especificamente STOCKLOCAL Y DEPOSITO
-                            var cantidad = parseFloat(cant);
+                            var cantidad = parseInt(cant);
                             
-                            auxStock = parseInt($("#stockContainer").find('p span:eq(0)').html());
-                            auxStockDeposito = parseInt($("#stockContainer").find('p span:eq(1)').html());
-                            auxStockLocal = parseInt($("#stockContainer").find('p span:eq(2)').html());
-                            
+                            var auxStock = parseInt($("#stockContainer").find('p span:eq(0)').html());
+                            var auxStockDeposito = parseInt($("#stockContainer").find('p span:eq(1)').html());
+                            var auxStockLocal = parseInt($("#stockContainer").find('p span:eq(2)').html());
+
                             if (cantidad <= auxStock )
                             {
                                 //CONTROLO que CANTIDAD no supere los STOCKS INDIVIDUALES!
-                                if(cantidad > auxStockDeposito )
+                                if((auxStockLocal - cantidad) < 0)
                                 { 
-                                    if(cantidad > auxStockLocal )
+                                    if((auxStockDeposito - cantidad) < 0)
                                     {
                                         codigo = 0;
                                         mensaje = "No llega con el stock individual";
                                         $("#SelectCant").val(null);
                                         mostrarMensaje(codigo,mensaje);
                                         return;
-                                    }else{
-                                        agregarLineas();
+                                    }
+                                    else{
+                                        agregarLineas(auxStockDeposito,auxStockLocal);
                                     }      
-                                }else{
-                                    agregarLineas();
+                                }
+                                else{
+                                    agregarLineas(auxStockDeposito,auxStockLocal);
                                 }    
                             }
                             else{
@@ -135,7 +137,8 @@ function iniciar(){
                                 mostrarMensaje(codigo,mensaje);
                                 return;
                             }
-                            function agregarLineas(){
+                            
+                            function agregarLineas(auxStockDeposito,auxStockLocal){
                                 importe = jsonResponse[index].precioVenta*cantidad;
                                 importe = importe.toFixed(2);
                                 importe = parseFloat(importe);
@@ -150,11 +153,11 @@ function iniciar(){
                                         //Control para el stockLocal en venta
                                         //sintaxis: HTML+( control logico ? true : false )+HTML
                                         //CUIDADO, lo hice con un IF ELSE IF...
-                                            (cantidad > jsonResponse[index].stockLocal ? 
-                                                (cantidad > jsonResponse[index].stockDeposito ?
+                                            (cantidad > auxStockLocal ? 
+                                                (cantidad > auxStockDeposito ?
                                                     "<td><select class='form-control'><option value='local' disabled>Sin Stock Local</option><option value='deposito' disabled>Sin Stock Deposito</option></select></td>"
                                                     : "<td><select class='form-control'><option value='local' disabled>Sin Stock Local</option><option value='deposito'>Deposito</option></select></td>")
-                                            : (cantidad > jsonResponse[index].stockDeposito ?
+                                            : (cantidad > auxStockDeposito ?
                                                     "<td><select class='form-control'><option value='local'>Local</option><option value='deposito' disabled>Sin Stock Deposito</option></select></td>"
                                                     : "<td><select class='form-control'><option value='local'>Local</option><option value='deposito'>Deposito</option></select></td>"))+
                                         "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+

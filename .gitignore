@@ -39,3 +39,4 @@ Homestead.json
 .env
 nbproject/*
 readme.md
+composer.lock
