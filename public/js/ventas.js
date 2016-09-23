@@ -73,7 +73,10 @@ function iniciar(){
                                 cant = 1;
                             } 
                             if(cant <= 0){
-                                alert("Debe ingresar una cantidad positiva");
+                                codigo = 0;
+                                mensaje = "Debe ingresar una cantidad positiva";
+                                $("#SelectCant").val(null);
+                                mostrarMensaje(codigo,mensaje);
                                 break;
                             }   
                             if (id)
@@ -104,7 +107,10 @@ function iniciar(){
                                 { 
                                     if(cantidad > jsonResponse[index].stockLocal)
                                     {
-                                        alert("No llega con el stock individual");
+                                        codigo = 0;
+                                        mensaje = "No llega con el stock individual";
+                                        $("#SelectCant").val(null);
+                                        mostrarMensaje(codigo,mensaje);
                                         return;
                                     }else{
                                         agregarLineas();
@@ -114,7 +120,11 @@ function iniciar(){
                                 }    
                             }
                             else{
-                                alert("Stock no disponible");
+                                codigo = 0;
+                                mensaje = "Stock no disponible";
+                                $("#SelectCant").val(null);
+                                mostrarMensaje(codigo,mensaje);
+                                return;
                             }
                             function agregarLineas(){
                                 importe = jsonResponse[index].precioVenta*cantidad;
@@ -133,7 +143,6 @@ function iniciar(){
                                         //CUIDADO, lo hice con un IF ELSE IF...
                                             (cantidad > jsonResponse[index].stockLocal ? 
                                                 (cantidad > jsonResponse[index].stockDeposito ?
-                                                    alert("No llega con el stock individual")+
                                                     "<td><select class='form-control'><option value='local' disabled>Sin Stock Local</option><option value='deposito' disabled>Sin Stock Deposito</option></select></td>"
                                                     : "<td><select class='form-control'><option value='local' disabled>Sin Stock Local</option><option value='deposito'>Deposito</option></select></td>")
                                             : (cantidad > jsonResponse[index].stockDeposito ?
@@ -205,33 +214,34 @@ function enviarVenta(produc,total)
                 var jsonResponse = JSON.parse(data);
                 codigo=jsonResponse[0]['codigo'];
                 mensaje=jsonResponse[0]['mensaje'];
-                $("#myModal").modal('show');
-                $("#mensajeModal").empty();
-                $("#tituloModal").empty();
-                if(codigo == 0)
-                {
-                    $("#tituloModal").append(
-                        "<div class='alert alert-danger'>ERROR</div>" 
-                    );
-                    $("#mensajeModal").append(
-                        "<p>"+mensaje+"</p>" 
-                    );
-                }else{
-                    $("#tituloModal").append(
-                        "<div class='alert alert-success'>CORRECTO</div>" 
-                    );
-                    $("#mensajeModal").append(
-                        "<p>"+mensaje+"</p>" 
-                    );
-                }
+                mostrarMensaje(codigo,mensaje);
                 $("#myModal").on('hidden.bs.modal', function () {
                     $("#tablaVentas").empty();
                     $('#total').html(0);
                     $("#q").focus();
                       iniciar();
-//                    window.location.reload();
                 });
             }
         });
     }
-
+function mostrarMensaje(codigo,mensaje){
+    $("#myModal").modal('show');
+    $("#mensajeModal").empty();
+    $("#tituloModal").empty();
+    if(codigo == 0)
+    {
+        $("#tituloModal").append(
+            "<div class='alert alert-danger'>ERROR</div>" 
+        );
+        $("#mensajeModal").append(
+            "<p>"+mensaje+"</p>" 
+        );
+    }else{
+        $("#tituloModal").append(
+            "<div class='alert alert-success'>CORRECTO</div>" 
+        );
+        $("#mensajeModal").append(
+            "<p>"+mensaje+"</p>" 
+        );
+    }
+}

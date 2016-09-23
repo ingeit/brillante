@@ -2,6 +2,7 @@
 
 @section('scripts')
 {{ Html::script('js/ingresos.js')}}
+<script>iniciar();</script>
 {{ Html::style('css/style.css')}}
 @endsection
 
@@ -24,9 +25,8 @@
                             {{ Form::label('q', 'Producto a Ingresar') }}
                             {{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Ej: Lavandina','class'=> 'form-control','autofocus'])}}
                             {{ Form::hidden('qId', '', ['id' =>  'qId',])}}
-                            <p id="stock"></p>
-                            <p id="stockDeposito"></p>
-                            <p id="stockLocal"></p>
+                            <div id="stockContainer">
+                            </div>
                         </div> 
                     </dt>
                     <dt style="width: 100%;">
