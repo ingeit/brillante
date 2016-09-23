@@ -1,4 +1,4 @@
-$(document).ready(function(){
+function iniciar(){
     $.ajax({
         type: "GET",
         url: "searchIngresos/autocomplete",
@@ -41,9 +41,12 @@ $(document).ready(function(){
                             $.each(jsonResponse, function(index) { //la variable value es el nombre
                                 if(id === jsonResponse[index].idProducto)
                                 {
-                                    $("#stock").html("Stock Total: "+jsonResponse[index].stock);
-                                    $("#stockDeposito").html("En Deposito: "+jsonResponse[index].stockDeposito);
-                                    $("#stockLocal").html("En Local: "+jsonResponse[index].stockLocal);
+                                    $('#stockContainer').empty();
+                                    $("#stockContainer").append(
+                                        "<p>Stock Total: "+jsonResponse[index].stock+"</p>"+
+                                        "<p>Stock Deposito: "+jsonResponse[index].stockDeposito+"</p>"+
+                                        "<p>Stock Local: "+jsonResponse[index].stockLocal+"</p>"
+                                    );
                                 }
                             });
                             $("#SelectCant").focus();
@@ -66,8 +69,14 @@ $(document).ready(function(){
                             $("#stock").html(null);
                             id=$("#qId").val();
                             cant = $("#SelectCant").val();
+                            if(cant === ''){
+                                cant = 1;
+                            } 
                             if(cant <= 0){
-                                alert("Debe ingresar una cantidad positiva");
+                                codigo = 0;
+                                mensaje = "Debe ingresar una cantidad positiva";
+                                $("#SelectCant").val(null);
+                                mostrarMensaje(codigo,mensaje);
                                 break;
                             }   
                             if (id)
@@ -89,7 +98,10 @@ $(document).ready(function(){
                         if(jsonResponse[index].idProducto === id){
                             var cantidad = parseFloat(cant);
                             if(jsonResponse[index].stockDeposito < cantidad){
-                                alert("No dispone de suficiente Stock");
+                                codigo = 0;
+                                mensaje = "No dispone de suficiente Stock";
+                                mostrarMensaje(codigo,mensaje);
+                                return;
                             }else{
                                 $("#tablaIngresos").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
                                     "<tr>"+
@@ -100,12 +112,13 @@ $(document).ready(function(){
                                     "</tr>"
                                     );
                                 }
+                            $('#stockContainer').empty();
                         }
                     });
                 }    
             }
         });
-});
+};
 
 
 // el parametro obj que recibe, es el elemento que lo llama osea (this)
@@ -156,27 +169,33 @@ function enviarIngreso(produc)
                 var jsonResponse = JSON.parse(data);
                 codigo=jsonResponse[0]['codigo'];
                 mensaje=jsonResponse[0]['mensaje'];
-                $("#myModal").modal('show');
-                if(codigo == 0)
-                {
-                    $("#tituloModal").append(
-                        "<div class='alert alert-danger'>ERROR</div>" 
-                    );
-                    $("#mensajeModal").append(
-                        "<p>"+mensaje+"</p>" 
-                    );
-                }else{
-                    $("#tituloModal").append(
-                        "<div class='alert alert-success'>CORRECTO</div>" 
-                    );
-                    $("#mensajeModal").append(
-                        "<p>"+mensaje+"</p>" 
-                    );
-                }
+                mostrarMensaje(codigo,mensaje);
                 $("#myModal").on('hidden.bs.modal', function () {
-                    window.location.reload();
+                    $("#tablaIngresos").empty();
+                    $("#q").focus();
+                      iniciar();
                 });
             }
-            });
+        });
     }
-
+function mostrarMensaje(codigo,mensaje){
+    $("#myModal").modal('show');
+    $("#mensajeModal").empty();
+    $("#tituloModal").empty();
+    if(codigo == 0)
+    {
+        $("#tituloModal").append(
+            "<div class='alert alert-danger'>ERROR</div>" 
+        );
+        $("#mensajeModal").append(
+            "<p>"+mensaje+"</p>" 
+        );
+    }else{
+        $("#tituloModal").append(
+            "<div class='alert alert-success'>CORRECTO</div>" 
+        );
+        $("#mensajeModal").append(
+            "<p>"+mensaje+"</p>" 
+        );
+    }
+}
