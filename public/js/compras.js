@@ -114,8 +114,8 @@ function iniciar(){
                                     "<td>"+cantidad+"</td>"+
                                     "<td>"+id+"</td>"+
                                     "<td>"+jsonResponse[index].nombre+"</td>"+
-                                    "<td>"+cotizacion+" "+jsonResponse[index].precio+"</font></td>"+
-                                    "<td id='importe'>"+importe+"</td>"+
+                                    "<td>"+cotizacion+" "+jsonResponse[index].precio+"</td>"+
+                                    "<td>"+cotizacion+" <span id='importe'>"+importe+"</span></td>"+
                                     "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
                                 "</tr>"
                                 );
