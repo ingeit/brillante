@@ -172,31 +172,30 @@ function cargarCompra(){
 }
 
 
-function enviarCompra(produc,total)
-    {
-        $.ajax({ 
-            type: "POST",
-            url: "compras/realizarCompra",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            data: {productosPOSTajax: produc,total: total},
-            dataType: "html",
-            success: function(data)
-            {
-                var jsonResponse = JSON.parse(data);
-                codigo=jsonResponse[0]['codigo'];
-                mensaje=jsonResponse[0]['mensaje'];
-                mostrarMensaje(codigo,mensaje);
-                $("#myModal").on('hidden.bs.modal', function () {
-                    $("#tablaCompras").empty();
-                    $('#total').html(0);
-                    $("#q").focus();
-                      iniciar();
-                });
-            }
-        });
-    }
+function enviarCompra(produc,total){
+    $.ajax({ 
+        type: "POST",
+        url: "compras/realizarCompra",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {productosPOSTajax: produc,total: total},
+        dataType: "html",
+        success: function(data)
+        {
+            var jsonResponse = JSON.parse(data);
+            codigo=jsonResponse[0]['codigo'];
+            mensaje=jsonResponse[0]['mensaje'];
+            mostrarMensaje(codigo,mensaje);
+            $("#myModal").on('hidden.bs.modal', function () {
+                $("#tablaCompras").empty();
+                $('#total').html(0);
+                $("#q").focus();
+                  iniciar();
+            });
+        }
+    });
+}
 function mostrarMensaje(codigo,mensaje){
     $("#myModal").modal('show');
     $("#mensajeModal").empty();
