@@ -165,9 +165,9 @@ function iniciar(){
                                     "</tr>"
                                     );
                                 total = parseFloat($('#total').html());
-                                total += parseFloat(importe);
-                                total = total.toFixed(2);
-                                $('#total').html(total);
+                                    total += parseFloat(importe);
+                                    total = total.toFixed(2);
+                                    $('#total').html(total);
                                 $('#stockContainer').empty();
                             }
                         }
@@ -187,10 +187,10 @@ function iniciar(){
 function eliminarFila(obj){   
 //    $(obj).parents('tr').fadeOut('slow',function(){})
   total = parseFloat($('#total').html());
-  importe = parseFloat($(obj).parents('tr').find('#importe').html());
-  total -= importe;
-  total = total.toFixed(2);
-  $('#total').html(total);  
+    importe = parseFloat($(obj).parents('tr').find('#importe').html());
+    total -= importe;
+    total = total.toFixed(2);
+    $('#total').html(total);  
   $(obj).parents('tr').remove();
   desabilitarBoton();
 }

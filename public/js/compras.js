@@ -115,11 +115,14 @@ function iniciar(){
                                     "<td>"+id+"</td>"+
                                     "<td>"+jsonResponse[index].nombre+"</td>"+
                                     "<td>"+cotizacion+" "+jsonResponse[index].precio+"</font></td>"+
-                                    "<td id='importe'>"+cotizacion+" "+importe+"</td>"+
+                                    "<td id='importe'>"+importe+"</td>"+
                                     "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
                                 "</tr>"
                                 );
-                            $('#total').html((parseFloat($('#total').html())+importe).toFixed(2));
+                             total = parseFloat($('#total').html());
+                                total += parseFloat(importe);
+                                total = total.toFixed(2);
+                                $('#total').html(total);
                             $('#stockContainer').empty();
                         }
                     });
@@ -137,7 +140,11 @@ function iniciar(){
 // de jQuery y trabajo sobre el normalmente.
 function eliminarFila(obj){   
 //    $(obj).parents('tr').fadeOut('slow',function(){})
-  $('#total').html((parseFloat($('#total').html())-importe).toFixed(2));
+  total = parseFloat($('#total').html());
+    importe = parseFloat($(obj).parents('tr').find('#importe').html());
+    total -= importe;
+    total = total.toFixed(2);
+    $('#total').html(total);
   $(obj).parents('tr').remove();
   desabilitarBoton();
 }
