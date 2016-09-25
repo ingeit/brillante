@@ -2,6 +2,13 @@
 
 @section('scripts')
 {{ Html::script('js/ventaCobrar.js')}}
+@if(Session::has('resultado'))
+    <script>
+    $(function() {
+        $('#myModalMensaje').modal('show');
+    });
+    </script>
+@endif
 {{ Html::style('css/style.css')}}
 @endsection
 
@@ -89,6 +96,30 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         <a class="btn btn-success" id="botonCobrar" data-idventa="" onclick="cobrar(this)">Cobrar</a>
       </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="myModalMensaje" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>  
+        </div>
+        <div class="modal-title" align="center">
+                    @if (Session::get('codigo') == 0)
+                        <p class="alert alert-danger" >ERROR</p>  
+                    @else
+                        <p class="alert alert-success">CORRECTO</p>
+                    @endif
+                </div>
+        <div  class="modal-body" align="center">
+            <p>{{Session::get('mensaje')}}</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
     </div>
 
   </div>

@@ -90,7 +90,7 @@
             <p>{{Session::get('mensaje')}}</p>
         </div>
         <div class="modal-footer">
-            <a href="{{ route('productos.index') }}">Cerrar</a>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>
     </div>
     </div>

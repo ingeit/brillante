@@ -48,8 +48,6 @@ class GestorProveedores extends Model
             $p->telefono,);
         
     	$result = DB::select('call proveedor_modificar(?,?,?,?)',$params);
-        dd($result);
-        
         return $result;
     }
 }

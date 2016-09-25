@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\GestorProveedores;
 use App\Proveedores;
 use App\Http\Requests;
+use \Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 
@@ -33,10 +34,9 @@ class ProveedoresController extends Controller
         $p = new Proveedores();
         $p->fill($request->all());// completo los atributos del objeto Productos
         $resultado = $gp->alta($p); // lo agrego a la base de datos
-        foreach ($resultado as $r) { // obtengo el mensaje de la base de datos
-            $mensaje = $r->Mensaje;
-        }
-        return redirect()->back()->with('mensaje', $mensaje);
+        Session::put('codigo',$resultado[0]->codigo);
+        Session::put('mensaje',$resultado[0]->mensaje);
+        return Redirect::back()->with('resultado', 'si');
     }
 
     /**
@@ -80,12 +80,9 @@ class ProveedoresController extends Controller
         $p->idProveedor=$id;
         $p->fill($request->all());// completo los atributos del objeto Productos     
         $resultado = $gp->modificar($p); // lo agrego a la base de datos
-        
-        foreach ($resultado as $r) { // obtengo el mensaje de la base de datos
-            $mensaje = $r->Mensaje;
-        }
-        Session::flash('mensaje',$mensaje); // mando el mensaje de la base datos a la vista
-        return redirect()->back(); // vuelvo al form
+        Session::put('codigo',$resultado[0]->codigo);
+        Session::put('mensaje',$resultado[0]->mensaje);
+        return Redirect::back()->with('resultado', 'si');
     }
 
     /**
@@ -98,6 +95,8 @@ class ProveedoresController extends Controller
     {
         $gp = new GestorProveedores();
         $resultado = $gp->baja($id);
-        dd($resultado);
+        Session::put('codigo',$resultado[0]->codigo);
+        Session::put('mensaje',$resultado[0]->mensaje);
+        return Redirect::back()->with('resultado', 'si');
     }
 }
