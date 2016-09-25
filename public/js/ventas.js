@@ -149,7 +149,7 @@ function iniciar(){
                                         "<td>"+id+"</td>"+
                                         "<td>"+jsonResponse[index].nombre+"</td>"+
                                         "<td>$ "+jsonResponse[index].precioVenta+"</td>"+
-                                        "<td id='importe'>$ "+importe+"</td>"+
+                                        "<td id='importe'>"+importe+"</td>"+
                                         //Control para el stockLocal en venta
                                         //sintaxis: HTML+( control logico ? true : false )+HTML
                                         //CUIDADO, lo hice con un IF ELSE IF...
@@ -182,7 +182,8 @@ function iniciar(){
 // de jQuery y trabajo sobre el normalmente.
 function eliminarFila(obj){   
 //    $(obj).parents('tr').fadeOut('slow',function(){})
-  $('#total').html((parseFloat($('#total').html())-importe).toFixed(2));
+  console.log($(obj).parents('tr').find('#importe').html());
+  $('#total').html(parseInt($('#total').html())-parseInt($(obj).parents('tr').find('#importe').html()));  
   $(obj).parents('tr').remove();
   desabilitarBoton();
 }
