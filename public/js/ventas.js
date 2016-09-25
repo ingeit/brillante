@@ -139,10 +139,11 @@ function iniciar(){
                             }
                             
                             function agregarLineas(auxStockDeposito,auxStockLocal){
-                                importe = jsonResponse[index].precioVenta*cantidad;
+                                precioVenta = parseFloat(jsonResponse[index].precioVenta);
+                                cantidad = parseInt(cantidad);
+                                importe = precioVenta*cantidad;
                                 importe = importe.toFixed(2);
-                                importe = parseFloat(importe);
-
+                                
                                 $("#tablaVentas").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
                                     "<tr>"+
                                         "<td>"+cantidad+"</td>"+
@@ -163,7 +164,10 @@ function iniciar(){
                                         "<td><button class='btn btn-danger btn-sm' onclick='eliminarFila(this)'>Eliminar</button></td>"+
                                     "</tr>"
                                     );
-                                $('#total').html((parseFloat($('#total').html())+importe).toFixed(2));
+                                total = parseFloat($('#total').html());
+                                total += parseFloat(importe);
+                                total = total.toFixed(2);
+                                $('#total').html(total);
                                 $('#stockContainer').empty();
                             }
                         }
@@ -182,8 +186,11 @@ function iniciar(){
 // de jQuery y trabajo sobre el normalmente.
 function eliminarFila(obj){   
 //    $(obj).parents('tr').fadeOut('slow',function(){})
-  console.log($(obj).parents('tr').find('#importe').html());
-  $('#total').html(parseInt($('#total').html())-parseInt($(obj).parents('tr').find('#importe').html()));  
+  total = parseFloat($('#total').html());
+  importe = parseFloat($(obj).parents('tr').find('#importe').html());
+  total -= importe;
+  total = total.toFixed(2);
+  $('#total').html(total);  
   $(obj).parents('tr').remove();
   desabilitarBoton();
 }
