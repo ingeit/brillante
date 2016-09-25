@@ -75,21 +75,20 @@
 </div>
 
 <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
+    <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 id="tituloModal" class="modal-title"></h4>
-      </div>
-      <div id="mensajeModal" class="modal-body">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      </div>
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>  
+        </div>
+        <div id="tituloModal" class="modal-title" align="center">
+        </div>
+        <div id="mensajeModal" class="modal-body" align="center">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
     </div>
-
-  </div>
+    </div>
 </div>
 @endsection

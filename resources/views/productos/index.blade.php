@@ -4,6 +4,13 @@
 {{ Html::script('js/productosBuscar.js')}}
 {{ Html::script('js/highlighttable.js')}}
 {{ Html::style('css/style.css')}}
+@if(Session::has('resultado'))
+    <script>
+    $(function() {
+        $('#myModal').modal('show');
+    });
+    </script>
+@endif
 @endsection
 
 @section('content')
@@ -34,7 +41,7 @@
                 <div class="panel panel-default">
                 <div class="panel-heading">Lista de Productos</div>
                 <div class="panel-body">
-                    <div  class="table-responsive" style="height: 500px;overflow-y: scroll;overflow-x: hidden;">              
+                    <div  class="table-responsive" style="height: 500px;overflow-y: scroll;overflow-x: scroll;">              
                         <table id="data" class="table table-striped">
                             <thead>
                                 <tr>
@@ -78,5 +85,29 @@
             </div>
         </div>
     </div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>  
+        </div>
+        <div id="tituloModal" class="modal-title" align="center">
+                    @if (Session::get('codigo') == 0)
+                        <p class="alert alert-danger" >ERROR</p>  
+                    @else
+                        <p class="alert alert-success">CORRECTO</p>
+                    @endif
+                </div>
+        <div id="mensajeModal" class="modal-body" align="center">
+            <p>{{Session::get('mensaje')}}</p>
+        </div>
+        <div class="modal-footer">
+            <a href="{{ route('productos.index') }}">Cerrar</a>
+        </div>
+    </div>
+
+  </div>
+</div>
 @endsection
 

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
+use \Illuminate\Support\Facades\Redirect;
 
 class ProductosController extends Controller
 {  
@@ -56,7 +57,7 @@ class ProductosController extends Controller
         $resultado = $gp->modificar($p); // lo agrego a la base de datos
         Session::put('codigo',$resultado[0]->codigo);
         Session::put('mensaje',$resultado[0]->mensaje);
-        return redirect()->back()->with('resultado', 'si');
+        return Redirect::back()->with('resultado', 'si');
     }
 
     public function store(ProductosRequest $request) //Con ProductosRequest verifico los campos 
@@ -65,10 +66,9 @@ class ProductosController extends Controller
         $p = new Productos();
         $p->fill($request->all());// completo los atributos del objeto Productos
         $resultado = $gp->alta($p); // lo agrego a la base de datos
-        foreach ($resultado as $r) { // obtengo el mensaje de la base de datos
-            $mensaje = $r->mensaje;
-        }
-        return redirect()->back()->with('mensaje', $mensaje);
+        Session::put('codigo',$resultado[0]->codigo);
+        Session::put('mensaje',$resultado[0]->mensaje);
+        return Redirect::back()->with('resultado', 'si');
     }
 
   
@@ -103,6 +103,8 @@ class ProductosController extends Controller
     {
         $gp = new GestorProductos();
         $resultado = $gp->baja($id);
-        dd($resultado);
+        Session::put('codigo',$resultado[0]->codigo);
+        Session::put('mensaje',$resultado[0]->mensaje);
+        return Redirect::back()->with('resultado', 'si');
     }
 }

@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('scripts')
-{{ Html::script('js/autocomplete.js')}}
-{{ Html::script('js/agregarCompra.js')}}
-{{ Html::script('js/eliminarfilacompra.js')}}
+{{ Html::script('js/compras.js')}}
 {{ Html::style('css/style.css')}}
 @endsection
 
