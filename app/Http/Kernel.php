@@ -50,8 +50,8 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         
-        'administrador' => \Illuminate\Routing\Middleware\Administrador::class,
-        'cajero' => \Illuminate\Routing\Middleware\Cajero::class,
-        'vendedor' => \Illuminate\Routing\Middleware\Vendedor::class,
+        'administrador' => \App\Http\Middleware\Administrador::class,
+        'cajero' => \App\Http\Middleware\Cajero::class,
+        'vendedor' => \App\Http\Middleware\Vendedor::class,
     ];
 }
