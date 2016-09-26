@@ -1,2 +1,2 @@
-cd c:/xampp/htdocs/brillante
+cd c:/brillante
 start
