@@ -63,6 +63,9 @@ $router->get('/ingresos/{id}/{fecha}',[
     'as'   => 'detalleIngreso'
 ]);
 
+Route::get('/dolar', function(){
+    return view('dolar');
+}); 
 
 //Route::group(['middleware' => 'auth','administrador'], function () {
 //    Route::get('/', function () {
