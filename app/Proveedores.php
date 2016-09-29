@@ -25,11 +25,12 @@ class Proveedores extends Model
         self::__construct2($args[0], $args[1]);
         break;
         }
+        
     }
 
     function __construct1()
     {
-        
+
     }
     
     function __construct2($razonSocial, $direccion, $telefono)

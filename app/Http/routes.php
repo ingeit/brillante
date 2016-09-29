@@ -12,10 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->action('HomeController@index');
 }); 
+
 Route::auth();
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index'); 
 
 // ** RESOURCES ** 
 Route::resource('productos', 'ProductosController');
@@ -62,10 +63,26 @@ $router->get('/ingresos/{id}/{fecha}',[
     'as'   => 'detalleIngreso'
 ]);
 
-Route::get('/dolar', function() {
-  $crawler = Goutte::request('GET', 'http://www.lanacion.com.ar/dolar-hoy-t1369');
-  $url = $crawler->filter('.compra-venta .venta #dventa')->html();
-  dd($url);
-});
-/*Route::group(['middleware' => 'web'], function () {
-});*/
+Route::get('/dolar', function(){
+    return view('dolar');
+}); 
+
+//Route::group(['middleware' => 'auth','administrador'], function () {
+//    Route::get('/', function () {
+//        return redirect()->view('home');
+//    }); 
+//});
+//
+//Route::group(['middleware' => 'auth','cajero'], function () {
+//    Route::get('/', function () {
+//        return redirect()->view('ventas.lista');
+//    }); 
+//});
+//
+//Route::group(['middleware' => 'auth','vendedor'], function () {
+//    Route::get('/', function () {
+//        return redirect()->view('ventas.index');
+//    }); 
+//});
+
+

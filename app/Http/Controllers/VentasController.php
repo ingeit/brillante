@@ -12,9 +12,18 @@ use App\Productos;
 use App\Http\Requests\VentasRequest;
 use App\GestorVentas;
 use App\Ventas;
+use Illuminate\Support\Facades\Validator;
 
 class VentasController extends Controller
 {
+    
+     public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('vendedor');
+//        $this->middleware('isAdmin', ['except' => ['show', 'create','store']]);
+    }
+    
     public function index()
     {   
         $seccion=Input::get('seccion');
@@ -25,7 +34,6 @@ class VentasController extends Controller
             $listaVenta = $gestor->listar();
             return view('ventas.lista',compact ('listaVenta'));
         }
-        
     }
     
     public function autocomplete()
