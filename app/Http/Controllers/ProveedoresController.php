@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 
 
 class ProveedoresController extends Controller
-{
+{ 
     
     public function index()
     {

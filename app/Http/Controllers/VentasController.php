@@ -20,7 +20,7 @@ class VentasController extends Controller
      public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('vendedor');
+//        $this->middleware('vendedor');
 //        $this->middleware('isAdmin', ['except' => ['show', 'create','store']]);
     }
     
