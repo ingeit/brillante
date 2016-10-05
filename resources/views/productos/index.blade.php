@@ -18,10 +18,6 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div>
-                    <strong>Cotizacion oficial del Dolar provisto por Yahoo!</strong> {{ $precioDolar }}.
-                </div>
-                <br>
-                <div>
                     <ul class="list-inline">
                         <li>
                             <div class="form-group">

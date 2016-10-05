@@ -22,7 +22,6 @@ class ProductosController extends Controller
     {
         $gestor = new GestorProductos();
         $listaProductos = $gestor->listar('');
-        $precioDolar = $gestor->obtenerPrecioDolar();
         return view('productos.index',compact ('listaProductos','precioDolar'));
     }
     

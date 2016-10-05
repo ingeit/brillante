@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\GestorDolar;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -27,16 +27,26 @@ class HomeController extends Controller
     public function index()
     {
         $role = Auth::user()->role;
-            if($role === 'admin'){  
-                return view('home');
+        $gestor = new GestorDolar();
+            if($role === 'admin'){
+                $dolarAtualizado = $gestor->elPrecioEsActual();
+                if($dolarAtualizado === 'no'){
+                    $precio = $gestor->obtenerPrecioDolar();
+                    return view('dolar',compact('precio'));
+                }
+                else{
+                    return view('home');
+                } 
             }else if($role === 'vendedor'){
                 return redirect()->action('VentasController@index',['seccion'=>'index']);
             }else if($role === 'cajero'){
                 return redirect()->action('VentasController@index');
             }
+    }  
+    
+    public function actualizarPrecio(Request $r){
+        $gestor = new GestorDolar();
+        $mensaje = $gestor->actualizarPrecio($r->dolar);
+        return view('home');
     }
-    
-   
-    
-    
 }
