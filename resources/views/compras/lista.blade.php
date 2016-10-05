@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('scripts')
-{{ Html::script('js/highlighttable.js')}}
+{{ Html::script('js/compras.js')}}
+<script>iniciar();</script>
 {{ Html::style('css/style.css')}}
 @endsection
 
@@ -10,7 +11,8 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 
-                <div class="panel panel-default">
+                <div class="panel panel-default"><a href="{{ route('compras.index',['seccion'=>'index']) }}" type="button" class="btn btn-info">Atras<i class="glyphicon glyphicon-menu-left"></i></a>
+                    
                 <div class="panel-heading">Compras Realizadas</div>
                 <div class="panel-body">
                     <table class="table table-hover" style="margin-bottom: 0;margin-top: -12px;">
@@ -32,6 +34,9 @@
                                     <td>{{$c->fecha}}</td>
                                     <td>$ {{$c->monto}}</td> 
                                     <td><a href="{!! route('detalleCompra', ['id'=>$c->idCompra, 'fecha'=>$c->fecha,'monto'=>$c->monto]) !!}">Detalles</a></td>
+                                    <td>
+                                        <button style="float:right" class="btn btn-danger btn-sm" onclick="compraEliminar(this)" data-idcompra="{{$c->idCompra}}">Eliminar</button>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -42,5 +47,23 @@
             </div>
         </div>
     </div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>  
+        </div>
+        <div id="tituloModal" class="modal-title" align="center">
+        </div>
+        <div id="mensajeModal" class="modal-body" align="center">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+    </div>
+</div>
 @endsection
 

@@ -14,6 +14,7 @@
         <div class="col-md-10 col-md-offset-1">
 
             <div class="panel panel-default">
+            <a href="{{ route('ingresos.index',['seccion'=>'lista']) }}" type="button" class="btn btn-info">Atras<i class="glyphicon glyphicon-menu-left"></i></a>
             <div class="panel-heading">INGRESO NUMERO: {{$id}}</div>
             <div class="panel-heading">FECHA: {{$fecha}}</div>
             <div class="panel-body">

@@ -119,6 +119,7 @@ function iniciar(){
                                         codigo = 0;
                                         mensaje = "No llega con el stock individual";
                                         $("#SelectCant").val(null);
+                                        $('#stockContainer').empty();
                                         mostrarMensaje(codigo,mensaje);
                                         return;
                                     }
@@ -134,6 +135,7 @@ function iniciar(){
                                 codigo = 0;
                                 mensaje = "Stock no disponible";
                                 $("#SelectCant").val(null);
+                                $('#stockContainer').empty();
                                 mostrarMensaje(codigo,mensaje);
                                 return;
                             }
@@ -282,6 +284,7 @@ function enviarVenta(produc,total)
     }
 function mostrarMensaje(codigo,mensaje){
     $("#myModal").modal('show');
+    $("#myModal").attr("tabindex", "-1");   
     $("#mensajeModal").empty();
     $("#tituloModal").empty();
     if(codigo == 0)

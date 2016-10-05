@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use \App\GestorProductos;
 use App\Productos;
 use App\Http\Requests\VentasRequest;
@@ -127,8 +129,11 @@ class IngresosController extends Controller
     }
 
    
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $id=$request->idIngreso;
+        $gi = new GestorIngresos();
+        $resultado = $gi->baja($id);
+        return Response::json($resultado);
     }
 }

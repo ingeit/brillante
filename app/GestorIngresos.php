@@ -27,6 +27,13 @@ class GestorIngresos extends Model
         return $result;
         
     }
+    
+    public function baja($id)
+    {
+        $parametro = array($id);
+        $result = DB::select('call ingreso_eliminar(?)',$parametro); 
+        return $result;
+    }
 
     
 }

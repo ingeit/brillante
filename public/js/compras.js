@@ -217,3 +217,30 @@ function mostrarMensaje(codigo,mensaje){
         );
     }
 }
+
+function compraEliminar(obj){
+    var idCompra = $(obj).data('idcompra');
+    $(obj).parents('tr').remove();
+    $.ajax({ 
+            type: "POST",
+            url: "compras/eliminarCompra",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {idCompra: idCompra},
+            dataType: "html",
+            success: function(data)
+            {
+                var jsonResponse = JSON.parse(data);
+                codigo=jsonResponse[0]['codigo'];
+                mensaje=jsonResponse[0]['mensaje'];
+                mostrarMensaje(codigo,mensaje);
+                $("#myModal").on('hidden.bs.modal', function () {
+                    $("#tablaIngresos").empty();
+                    $("#q").focus();
+                    iniciar();
+                });
+            }
+        });
+}
+

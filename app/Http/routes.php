@@ -49,6 +49,7 @@ Route::get('searchCompras/autocomplete', 'ComprasController@autocomplete');
 Route::post('compras/realizarCompra', 'ComprasController@create');
 Route::post('compras/agregar', 'ComprasController@agregarLinea');
 Route::post('compras/realizarCompra', 'ComprasController@create');
+Route::post('compras/eliminarCompra', 'ComprasController@destroy');
 $router->get('/compras/{id}/{fecha}/{monto}',[
     'uses' => 'ComprasController@mostrar',
     'as'   => 'detalleCompra'
@@ -58,6 +59,7 @@ $router->get('/compras/{id}/{fecha}/{monto}',[
 Route::get('searchIngresos/autocomplete', 'IngresosController@autocomplete');
 Route::post('ingresos/agregar', 'IngresosController@agregarLinea');
 Route::post('ingresos/realizarIngreso', 'IngresosController@create');
+Route::post('ingresos/eliminarIngreso', 'IngresosController@destroy');
 $router->get('/ingresos/{id}/{fecha}',[
     'uses' => 'IngresosController@mostrar',
     'as'   => 'detalleIngreso'

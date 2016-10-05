@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use \Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
@@ -154,7 +154,6 @@ class VentasController extends Controller
    
     public function destroy($id)
     {
-
         $gv = new GestorVentas();
         $resultado = $gv->baja($id);
         Session::put('codigo',$resultado[0]->codigo);

@@ -199,3 +199,29 @@ function mostrarMensaje(codigo,mensaje){
         );
     }
 }
+
+function ingresoEliminar(obj){
+    var idIngreso = $(obj).data('idingreso');
+    $(obj).parents('tr').remove();
+    $.ajax({ 
+            type: "POST",
+            url: "ingresos/eliminarIngreso",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {idIngreso: idIngreso},
+            dataType: "html",
+            success: function(data)
+            {
+                var jsonResponse = JSON.parse(data);
+                codigo=jsonResponse[0]['codigo'];
+                mensaje=jsonResponse[0]['mensaje'];
+                mostrarMensaje(codigo,mensaje);
+                $("#myModal").on('hidden.bs.modal', function () {
+                    $("#tablaIngresos").empty();
+                    $("#q").focus();
+                    iniciar();
+                });
+            }
+        });
+}
