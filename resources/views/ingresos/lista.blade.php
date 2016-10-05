@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('scripts')
-{{ Html::script('js/highlighttable.js')}}
+{{ Html::script('js/ingresos.js')}}
+<script>iniciar();</script>
 {{ Html::style('css/style.css')}}
 @endsection
 
@@ -31,6 +32,9 @@
                                     <td>{{$l->idIngreso}}</td>
                                     <td>{{$l->fecha}}</td>
                                     <td><a href="{!! route('detalleIngreso', ['id'=>$l->idIngreso, 'fecha'=>$l->fecha]) !!}">Detalles</a></td>
+                                    <td>
+                                        <button style="float:right" class="btn btn-danger btn-sm" onclick="ingresoEliminar(this)" data-idingreso="{{$l->idIngreso}}">Eliminar</button>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -41,5 +45,23 @@
             </div>
         </div>
     </div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>  
+        </div>
+        <div id="tituloModal" class="modal-title" align="center">
+        </div>
+        <div id="mensajeModal" class="modal-body" align="center">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+    </div>
+</div>
 @endsection
 

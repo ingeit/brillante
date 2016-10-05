@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 use \App\GestorProductos;
 use App\Productos;
 use App\Http\Requests\VentasRequest;
@@ -146,10 +148,12 @@ class ComprasController extends Controller
     {
         //
     }
-
-   
-    public function destroy($id)
+    
+    public function destroy(Request $request)
     {
-        //
+        $id=$request->idCompra;
+        $gc = new GestorCompras();
+        $resultado = $gc->baja($id);
+        return Response::json($resultado);
     }
 }

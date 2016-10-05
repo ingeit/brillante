@@ -29,5 +29,11 @@ class GestorCompras extends Model
         
     }
 
+    public function baja($id)
+    {
+        $parametro = array($id);
+        $result = DB::select('call compra_eliminar(?)',$parametro); 
+        return $result;
+    }
     
 }
