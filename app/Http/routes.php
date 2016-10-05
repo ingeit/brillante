@@ -65,7 +65,8 @@ $router->get('/ingresos/{id}/{fecha}',[
     'as'   => 'detalleIngreso'
 ]);
 
-Route::post('dolar', 'chau@actualizarPrecio');
+Route::post('dolar', 'HomeController@actualizarPrecio');
+
 //Route::group(['middleware' => 'auth','administrador'], function () {
 //    Route::get('/', function () {
 //        return redirect()->view('home');
