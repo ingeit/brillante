@@ -13,6 +13,7 @@
         <div class="col-md-10 col-md-offset-1">
 
             <div class="panel panel-default">
+            <a href="{{ route('ventas.index',['seccion'=>'lista']) }}" type="button" class="btn btn-info">Atras<i class="glyphicon glyphicon-menu-left"></i></a>
             <div class="panel-heading">VENTA NUMERO: {{$venta[0]->idVenta}}</div>
             <div class="panel-heading">FECHA: {{$venta[0]->fecha}}</div>
             <div class="panel-body">
@@ -49,7 +50,6 @@
                 </table>
             </div>
             </div> 
-            <a href="{{ route('ventas.index',['seccion'=>'lista']) }}" type="button" class="btn btn-primary" style="float:right;">Volver Lista Ventas</a>
         </div> 
     </div>
 </div>
