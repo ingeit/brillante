@@ -61,7 +61,7 @@
         </div>
         <div id="mensajeModal" class="modal-body" align="center">
         </div>
-        <div class="modal-footer">
+        <div id="botonModal" class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>
     </div>

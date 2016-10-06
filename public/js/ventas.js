@@ -284,7 +284,6 @@ function enviarVenta(produc,total)
     }
 function mostrarMensaje(codigo,mensaje){
     $("#myModal2").modal('show');
-    $("#myModal2").attr("tabindex", "-1");   
     $("#mensajeModal").empty();
     $("#tituloModal").empty();
     if(codigo == 0)
@@ -303,25 +302,51 @@ function mostrarMensaje(codigo,mensaje){
             "<p>"+mensaje+"</p>" 
         );
     }
+    $("#botonModal").empty();
+    $("#botonModal").append(
+        "<button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>"
+    );
 }
 
 function ventaEliminar(obj){
+    /* Ventana de cuadro de confirmacion para eliminar */
+    //traigo el id de venta a eliminar para la funcion confirmarEliminar
     var idVenta = $(obj).data('idventa');
-    $(obj).parents('tr').remove();
+    $("#myModal2").modal('show'); 
+    $("#mensajeModal").empty();
+    $("#tituloModal").empty();
+    
+    $("#botonModal").empty();
+    $("#tituloModal").append(
+        "<div class='alert alert-danger'>ELIMINAR</div>" 
+    );
+    $("#mensajeModal").append(
+        "<p>¿Esta seguro que desea eliminar la venta seleccionada?</p>" 
+    );
+    $("#botonModal").append(
+        "<a class='btn btn-danger' onclick='confirmarEliminar("+idVenta+")'>Eliminar</a>"+
+        "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>"
+    );
+}
+
+function confirmarEliminar(idVenta){
     $.ajax({ 
-            type: "POST",
-            url: "ventas/eliminarVenta",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            data: {idVenta: idVenta},
-            dataType: "html",
-            success: function(data)
-            {
-                var jsonResponse = JSON.parse(data);
-                codigo=jsonResponse[0]['codigo'];
-                mensaje=jsonResponse[0]['mensaje'];
-                mostrarMensaje(codigo,mensaje);
-            }
-        });
+        type: "POST",
+        url: "ventas/eliminarVenta",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {idVenta: idVenta},
+        dataType: "html",
+        success: function(data)
+        {
+            var jsonResponse = JSON.parse(data);
+            codigo=jsonResponse[0]['codigo'];
+            mensaje=jsonResponse[0]['mensaje'];
+            mostrarMensaje(codigo,mensaje);
+            $('#myModal2').on('hidden.bs.modal', function () {
+                location.reload();
+            });
+        }
+    });
 }

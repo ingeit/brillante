@@ -216,26 +216,51 @@ function mostrarMensaje(codigo,mensaje){
             "<p>"+mensaje+"</p>" 
         );
     }
+    $("#botonModal").empty();
+    $("#botonModal").append(
+        "<button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>"
+    );
 }
 
 function compraEliminar(obj){
+    /* Ventana de cuadro de confirmacion para eliminar */
+    //traigo el id de venta a eliminar para la funcion confirmarEliminar
     var idCompra = $(obj).data('idcompra');
-    $(obj).parents('tr').remove();
-    $.ajax({ 
-            type: "POST",
-            url: "compras/eliminarCompra",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            data: {idCompra: idCompra},
-            dataType: "html",
-            success: function(data)
-            {
-                var jsonResponse = JSON.parse(data);
-                codigo=jsonResponse[0]['codigo'];
-                mensaje=jsonResponse[0]['mensaje'];
-                mostrarMensaje(codigo,mensaje);
-            }
-        });
+    $("#myModal").modal('show'); 
+    $("#mensajeModal").empty();
+    $("#tituloModal").empty();
+    
+    $("#botonModal").empty();
+    $("#tituloModal").append(
+        "<div class='alert alert-danger'>ELIMINAR</div>" 
+    );
+    $("#mensajeModal").append(
+        "<p>¿Esta seguro que desea eliminar la compra seleccionada?</p>" 
+    );
+    $("#botonModal").append(
+        "<a class='btn btn-danger' onclick='confirmarEliminar("+idCompra+")'>Eliminar</a>"+
+        "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>"
+    );
 }
 
+function confirmarEliminar(idCompra){
+    $.ajax({ 
+        type: "POST",
+        url: "compras/eliminarCompra",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {idCompra: idCompra},
+        dataType: "html",
+        success: function(data)
+        {
+            var jsonResponse = JSON.parse(data);
+            codigo=jsonResponse[0]['codigo'];
+            mensaje=jsonResponse[0]['mensaje'];
+            mostrarMensaje(codigo,mensaje);
+            $('#myModal').on('hidden.bs.modal', function () {
+                location.reload();
+            });
+        }
+    });
+}
