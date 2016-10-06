@@ -2,7 +2,9 @@
 
 @section('scripts')
 {{ Html::script('js/ingresos.js')}}
-<script>iniciar();</script>
+<script>
+    iniciar();
+</script>
 {{ Html::style('css/style.css')}}
 @endsection
 

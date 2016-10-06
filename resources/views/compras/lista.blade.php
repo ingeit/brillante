@@ -2,7 +2,9 @@
 
 @section('scripts')
 {{ Html::script('js/compras.js')}}
-<script>iniciar();</script>
+<script>
+    iniciar();
+</script>
 {{ Html::style('css/style.css')}}
 @endsection
 
