@@ -26,8 +26,12 @@ Route::resource('compras', 'ComprasController');
 Route::resource('proveedores', 'ProveedoresController');
 Route::resource('ingresos', 'IngresosController');
 
-//Autocompletar y filtrar con el input
+// ** PRODUCTOS ** Autocompletar y filtrar con el input
 Route::post('productos/filtrado', 'ProductosController@filtrado');
+Route::post('productos/eliminarProducto', 'ProductosController@destroy');
+
+// ** PROVEEDORES **
+Route::post('proveedores/eliminarProveedor', 'ProveedoresController@destroy');
 
 // ** VENTAS ** 
 Route::post('ventas/realizarVenta', 'VentasController@create');

@@ -8,6 +8,7 @@ use App\Proveedores;
 use App\Http\Requests;
 use \Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Response;
 
 
 class ProveedoresController extends Controller
@@ -91,12 +92,11 @@ class ProveedoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id=$request->idProveedor;
         $gp = new GestorProveedores();
         $resultado = $gp->baja($id);
-        Session::put('codigo',$resultado[0]->codigo);
-        Session::put('mensaje',$resultado[0]->mensaje);
-        return Redirect::back()->with('resultado', 'si');
+        return Response::json($resultado);
     }
 }

@@ -98,12 +98,11 @@ class ProductosController extends Controller
     
 
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id=$request->idProducto;
         $gp = new GestorProductos();
         $resultado = $gp->baja($id);
-        Session::put('codigo',$resultado[0]->codigo);
-        Session::put('mensaje',$resultado[0]->mensaje);
-        return Redirect::back()->with('resultado', 'si');
+        return Response::json($resultado);
     }
 }
