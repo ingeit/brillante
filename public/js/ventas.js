@@ -283,8 +283,8 @@ function enviarVenta(produc,total)
         });
     }
 function mostrarMensaje(codigo,mensaje){
-    $("#myModal").modal('show');
-    $("#myModal").attr("tabindex", "-1");   
+    $("#myModal2").modal('show');
+    $("#myModal2").attr("tabindex", "-1");   
     $("#mensajeModal").empty();
     $("#tituloModal").empty();
     if(codigo == 0)
@@ -303,4 +303,25 @@ function mostrarMensaje(codigo,mensaje){
             "<p>"+mensaje+"</p>" 
         );
     }
+}
+
+function ventaEliminar(obj){
+    var idVenta = $(obj).data('idventa');
+    $(obj).parents('tr').remove();
+    $.ajax({ 
+            type: "POST",
+            url: "ventas/eliminarVenta",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {idVenta: idVenta},
+            dataType: "html",
+            success: function(data)
+            {
+                var jsonResponse = JSON.parse(data);
+                codigo=jsonResponse[0]['codigo'];
+                mensaje=jsonResponse[0]['mensaje'];
+                mostrarMensaje(codigo,mensaje);
+            }
+        });
 }

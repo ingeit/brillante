@@ -2,13 +2,8 @@
 
 @section('scripts')
 {{ Html::script('js/ventaCobrar.js')}}
-@if(Session::has('resultado'))
-    <script>
-    $(function() {
-        $('#myModalMensaje').modal('show');
-    });
-    </script>
-@endif
+{{ Html::script('js/ventas.js')}}
+<script>iniciar();</script>
 {{ Html::style('css/style.css')}}
 @endsection
 
@@ -55,9 +50,7 @@
                                              @endif
                                         </td>
                                     <td>
-                                    {!! Form::open(['route' => ['ventas.destroy',$l->idVenta],'method'=>'delete']) !!}
-                                        <button style="float:right" class="btn btn-danger btn-sm" type="submit">Eliminar</button>
-                                    {!! Form::close() !!}
+                                        <button style="float:right" class="btn btn-danger btn-sm" onclick="ventaEliminar(this)" data-idventa="{{$l->idVenta}}">Eliminar</button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -102,28 +95,22 @@
   </div>
 </div>
 
-<div id="myModalMensaje" class="modal fade" role="dialog">
+<div id="myModal2" class="modal fade" role="dialog">
     <div class="modal-dialog">
+    <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>  
         </div>
-        <div class="modal-title" align="center">
-                    @if (Session::get('codigo') == 0)
-                        <p class="alert alert-danger" >ERROR</p>  
-                    @else
-                        <p class="alert alert-success">CORRECTO</p>
-                    @endif
-                </div>
-        <div  class="modal-body" align="center">
-            <p>{{Session::get('mensaje')}}</p>
+        <div id="tituloModal" class="modal-title" align="center">
+        </div>
+        <div id="mensajeModal" class="modal-body" align="center">
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>
     </div>
-
-  </div>
+    </div>
 </div>
 
 

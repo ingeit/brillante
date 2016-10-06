@@ -152,12 +152,11 @@ class VentasController extends Controller
     }
 
    
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id=$request->idVenta;
         $gv = new GestorVentas();
         $resultado = $gv->baja($id);
-        Session::put('codigo',$resultado[0]->codigo);
-        Session::put('mensaje',$resultado[0]->mensaje);
-        return Redirect::back()->with('resultado', 'si');
+        return Response::json($resultado);
     }
 }

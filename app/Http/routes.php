@@ -35,6 +35,7 @@ Route::get('search/autocomplete', 'VentasController@autocomplete');
 Route::post('ventas/cobrar', 'VentasController@cobrar');
 Route::post('ventas/cobrarModal', 'VentasController@cobrarModal');
 Route::get('lineasVenta','LineasVentaController@create');
+Route::post('ventas/eliminarVenta', 'VentasController@destroy');
 $router->get('/ventas/cobrar/{id}',[
     'uses' => 'VentasController@cobrar',
     'as'   => 'cobrarVenta'

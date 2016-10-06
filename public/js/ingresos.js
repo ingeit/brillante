@@ -217,11 +217,6 @@ function ingresoEliminar(obj){
                 codigo=jsonResponse[0]['codigo'];
                 mensaje=jsonResponse[0]['mensaje'];
                 mostrarMensaje(codigo,mensaje);
-                $("#myModal").on('hidden.bs.modal', function () {
-                    $("#tablaIngresos").empty();
-                    $("#q").focus();
-                    iniciar();
-                });
             }
         });
 }
