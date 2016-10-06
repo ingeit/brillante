@@ -273,7 +273,7 @@ function enviarVenta(produc,total)
                 codigo=jsonResponse[0]['codigo'];
                 mensaje=jsonResponse[0]['mensaje'];
                 mostrarMensaje(codigo,mensaje);
-                $("#myModal").on('hidden.bs.modal', function () {
+                $("#myModal2").on('hidden.bs.modal', function () {
                     $("#tablaVentas").empty();
                     $('#total').html(0);
                     $("#q").focus();

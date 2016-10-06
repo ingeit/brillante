@@ -76,6 +76,10 @@ function cobrar(obj){
         dataType: "html",
         success: function(data){
             $("#myModal").modal('toggle');
+            var jsonResponse = JSON.parse(data);
+            codigo=jsonResponse[0]['codigo'];
+            mensaje=jsonResponse[0]['mensaje'];
+            mostrarMensaje(codigo,mensaje);
             var id = $(obj).data('idventa');
             var esImpaga =  '#esImpaga'+id;
             $(esImpaga).hide();
@@ -83,3 +87,28 @@ function cobrar(obj){
     });
 }
 
+function mostrarMensaje(codigo,mensaje){
+    $("#myModal2").modal('show');
+    $("#mensajeModal").empty();
+    $("#tituloModal").empty();
+    if(codigo == 0)
+    {
+        $("#tituloModal").append(
+            "<div class='alert alert-danger'>ERROR</div>" 
+        );
+        $("#mensajeModal").append(
+            "<p>"+mensaje+"</p>" 
+        );
+    }else{
+        $("#tituloModal").append(
+            "<div class='alert alert-success'>CORRECTO</div>" 
+        );
+        $("#mensajeModal").append(
+            "<p>"+mensaje+"</p>" 
+        );
+    }
+    $("#botonModal").empty();
+    $("#botonModal").append(
+        "<button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>"
+    );
+}
