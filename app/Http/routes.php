@@ -72,7 +72,7 @@ $router->get('/ingresos/{id}/{fecha}',[
 
 Route::post('dolar', 'HomeController@actualizarPrecio');
 
-//Route::group(['middleware' => 'auth','administrador'], function () {
+//Route::group(['middleware' => 'auth','admin'], function () {
 //    Route::get('/', function () {
 //        return redirect()->view('home');
 //    }); 

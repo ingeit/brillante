@@ -26,10 +26,10 @@ class ProductosController extends Controller
         $this->middleware('auth');
         
         //los que NO son ADMINISTRADOR, solo PUEDEN entrar a index
-        $this->middleware('administrador',['except'=>['index','filtrado']]);
+        $this->middleware('admin',['except'=>['index','filtrado']]);
         
         //y aqui, el ADMIN SOLO PUEDE ENTRAR a create y destroy, los demas usuarios NO, 
-        //$this->middleware('administrador',['only'=>['create','destroy']]);
+        //$this->middleware('admin',['only'=>['create','destroy']]);
     }
     
     public function index()

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 
 use Closure;
 
-class Administrador
+class Admin
 {
     /**
      * Handle an incoming request.
