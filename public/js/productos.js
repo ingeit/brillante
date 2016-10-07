@@ -14,32 +14,45 @@ $(document).ready(function(){ //$(document) toma la pagina entera como variable 
 //      },
         //esto no se ejecuta hasta que data vaya a la consulta en el controlador a la DB y vuelva con resultados
         //recien ahi, se ejecuta success con los datos en DATA
-        success: function(data){ // SUCCES nos va a servir para simplemente LISTAR PRODUCTOS, 
-            var jsonResponse = JSON.parse(data); //parseo la busqueda
-            //
+        success: function(data){ // SUCCES nos va a servir para simplemente LISTAR PRODUCTOS,
+            var producto = JSON.parse(data); //parseo la busqueda
             //comprobamos si se pulsa una tecla
             $("#q").keyup(function(e){ // #q se refiere al ID 'q' del form input en index
                 var productoBuscado = $("#q").val(); 
                 var cadena = new RegExp(productoBuscado,"i"); //RegExp simula en LIKE % en la BD y el i es el metodo de busqueda
                 $("#resultado").empty(); //borramos la lista de productos
-                $.each(jsonResponse, function(i, v) {
-                    if(v.cotizacion === 'Dolares'){
+                $.each(producto, function(index) {
+                    if(producto[index].cotizacion === 'Dolares'){
                         var signo = "u$s";
                     }else {
                         var signo = "$";
                     }
-                    if (v.nombre.search(cadena) !== -1) { // v es cada elemento de json
-                        $("#resultado").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
-                        "<tr>"+
-                            "<td>"+v.nombre+"</td>"+
-                            "<td>"+signo+" "+v.precio+"</td>"+
-                            "<td>$ "+v.precioVenta+"</td>"+
-                            "<td>"+v.stock+"</td>"+
-                            "<td>"+v.stockDeposito+"</td>"+
-                            "<td>"+v.stockLocal+"</td>"+
-                            "<td><a style='float:left;' href='productos/"+v.idProducto+"/edit'>Editar/Eliminar</a></td>"+
-                        "</tr>"
-                        );
+                    if (producto[index].nombre.search(cadena) !== -1) { // v es cada elemento de json
+                        if(producto['rol'] === 'admin'){
+                            $("#resultado").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
+                            "<tr>"+
+                                "<td>"+producto[index].nombre+"</td>"+
+                                (producto[index].cotizacion === 'Dolares' ? "<td><font color='#04B431'>"+signo+" "+producto[index].precio+"<font></td>" : "<td>"+signo+" "+producto[index].precio+"</td>")+
+                                "<td>% "+producto[index].ganancia+"</td>"+
+                                "<td>$ "+producto[index].precioVenta+"</td>"+
+                                "<td>"+producto[index].stock+"</td>"+
+                                "<td>"+producto[index].stockDeposito+"</td>"+
+                                "<td>"+producto[index].stockLocal+"</td>"+
+                                "<td><a style='float:left;' href='productos/"+producto[index].idProducto+"/edit'>Editar</a></td>"+
+                                "<td><button style='float:right' class='btn btn-danger btn-sm' onclick='productoEliminar(this)' data-idproducto='"+producto[index].idProducto+"' >Eliminar</button></td>"+
+                            "</tr>"
+                            );
+                        }else{
+                           $("#resultado").append( // append modifica el DOM (el esqueleto html, en nuestro caso, la tabla LISTA PRODCUTOS)
+                            "<tr>"+
+                                "<td>"+producto[index].nombre+"</td>"+
+                                "<td>$ "+producto[index].precioVenta+"</td>"+
+                                "<td>"+producto[index].stock+"</td>"+
+                                "<td>"+producto[index].stockDeposito+"</td>"+
+                                "<td>"+producto[index].stockLocal+"</td>"+
+                            "</tr>"
+                            ); 
+                        }
                     }     
                 });       
             });   

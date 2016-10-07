@@ -15,31 +15,41 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use \Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class ProductosController extends Controller
 {  
     public function __construct() {
-        //$this->middleware('auth');
-        // los que NO son ADMINISTRADOR, solo PUEDEN entrar a index
-        //$this->middleware('administrador',['except'=>['index']]);
-        //
+        
+        //para saber el role de un usuario.
+        //$user = Auth::user()->role;
+        $this->middleware('auth');
+        
+        //los que NO son ADMINISTRADOR, solo PUEDEN entrar a index
+        $this->middleware('administrador',['except'=>['index','filtrado']]);
+        
         //y aqui, el ADMIN SOLO PUEDE ENTRAR a create y destroy, los demas usuarios NO, 
         //$this->middleware('administrador',['only'=>['create','destroy']]);
     }
     
     public function index()
     {
+        $user = Auth::user()->role;
         $gestor = new GestorProductos();
         $listaProductos = $gestor->listar('');
-        return view('productos.index',compact ('listaProductos','precioDolar'));
+        return view('productos.index',compact ('listaProductos','precioDolar','user'));
     }
     
     public function filtrado(Request $request){ //Se conecta con el js livesearch.js para filtrar la busqueda
+        $user = Auth::user()->role;
+        
         $cadena=$request->consulta;
-        $gestor = new GestorProductos();
-        $queries = $gestor->listar($cadena);
-        $results = array(); 
-        return Response::json($queries);
+        $gestor = new GestorProductos(); 
+        $consulta = $gestor->listar($cadena);
+        //pasamos el rol del usuario al JS para que cuando modifique el DOM no muestre ELIMINAR ni EDITAR segun ROL
+        $consulta['rol']=$user;
+
+        return Response::json($consulta);
     }
   
     public function create()
