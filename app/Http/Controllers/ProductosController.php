@@ -18,6 +18,15 @@ use \Illuminate\Support\Facades\Redirect;
 
 class ProductosController extends Controller
 {  
+    public function __construct() {
+        //$this->middleware('auth');
+        // los que NO son ADMINISTRADOR, solo PUEDEN entrar a index
+        //$this->middleware('administrador',['except'=>['index']]);
+        //
+        //y aqui, el ADMIN SOLO PUEDE ENTRAR a create y destroy, los demas usuarios NO, 
+        //$this->middleware('administrador',['only'=>['create','destroy']]);
+    }
+    
     public function index()
     {
         $gestor = new GestorProductos();
