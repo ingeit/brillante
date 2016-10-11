@@ -18,7 +18,13 @@ class GestorDolar extends Model
         $json = curl_exec($session);
         // Convert JSON to PHP object
         $phpObj =  json_decode($json);
-        return $phpObj->query->results->rate->Rate;
+        try{
+            $dolar = "$ ".$phpObj->query->results->rate->Rate;
+        } catch (\Exception $ex) {
+            $dolar = "Imposible obtener informacion dolar";
+        }
+        
+        return $dolar;
     }
     
     public function elPrecioEsActual(){

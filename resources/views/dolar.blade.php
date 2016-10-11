@@ -8,7 +8,7 @@
                 <div class="panel-heading">Precio del Dolar</div>
                 <div class="panel-body">
                     
-                    <p>Precio sugerido por Yahoo! <span>{{$precio}}</span></p>
+                    <p>Precio sugerido: <span>{{$precio}}</span></p>
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/dolar') }}">
                         {{ csrf_field() }}
 

@@ -10,6 +10,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('pdf', function (){
+
+   $pdf= PDF::loadView('pdf'); 
+   return $pdf->download('prueba.pdf');
+});
+
 
 Route::get('/', function () {
     return redirect()->action('HomeController@index');
