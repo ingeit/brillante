@@ -16,7 +16,7 @@ class Admin
      * @param  \Closure  $next
      * @return mixed
      */
-    
+    // EN TODOS LADOS ES ADMIN. OJO! hasta en la base de datos
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
