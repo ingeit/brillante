@@ -98,7 +98,7 @@ class PdfController extends Controller
         $view =  \View::make('pdf', compact('venta', 'fecha'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
-        return $pdf->stream('invoice.pdf');
+        return $pdf->download('venta.pdf');
     }
     
 }
