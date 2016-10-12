@@ -11,14 +11,13 @@ class Ingresos extends Model
     public $iCadena;
     
       
-    function __construct($fecha,$cadena)
+    function __construct($cadena)
     {
-        $this->iFecha = $fecha;
         $this->iCadena = $cadena;
     }
     
     protected $fillable = [
-        'fecha', 'cadena',
+        'cadena',
     ];
    
      

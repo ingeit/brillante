@@ -12,15 +12,14 @@ class Compras extends Model
     public $cCadena; 
     
       
-    function __construct($fecha, $monto, $cadena)
+    function __construct($monto, $cadena)
     {
-        $this->cFecha = $fecha;
         $this->cMonto = $monto;
         $this->cCadena = $cadena;
     }
     
     protected $fillable = [
-     'fecha', 'monto', 'cadena',
+     'monto', 'cadena',
     ];
    
      

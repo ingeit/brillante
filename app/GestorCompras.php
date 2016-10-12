@@ -11,10 +11,9 @@ class GestorCompras extends Model
     public function nueva(Compras $i)
     {
         $params = array(
-            $i->cFecha,
             $i->cMonto,
             $i->cCadena,);
-    	$result = DB::select('call compra_nueva(?,?,?)',$params);
+    	$result = DB::select('call compra_nueva(?,?)',$params);
         return $result;
     }
     

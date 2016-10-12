@@ -57,7 +57,6 @@ class VentasController extends Controller
         // asi se hace.. para evitar problemas de q JUSTO paso algo..
         // entonces obtengo monto y fecha (para generar una nueva venta y despues generamos el STRING de las lineas contac.
         $monto = $request->total; 
-        $fecha = date("d-m-Y H:i"); 
         
         $result = $request->productosPOSTajax; //obtengo el envio de datos tipo 
         //POST que envie de ajax con el nombre  productosPOSTajax
@@ -84,7 +83,7 @@ class VentasController extends Controller
         
         //Ahora q tenemos el monto fecha (para venta), tenemos el contac de las lineas
         //Generamos la venta y a su vez las lineas ventas en un solo SP
-        $v = new Ventas($fecha,$monto,$cadena);
+        $v = new Ventas($monto,$cadena);
         $gv = new GestorVentas();
         $consulta = $gv->nueva($v); // lo agrego a la base de datos
         return $consulta;

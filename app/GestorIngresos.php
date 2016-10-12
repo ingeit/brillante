@@ -10,10 +10,8 @@ class GestorIngresos extends Model
     public function nuevo(Ingresos $i)
     {
         $params = array(
-            $i->iFecha,
             $i->iCadena );
-        
-    	$result = DB::select('call ingreso_nuevo(?,?)',$params);
+    	$result = DB::select('call ingreso_nuevo(?)',$params);
         return $result;
     }
     

@@ -71,7 +71,6 @@ class ComprasController extends Controller
         // entonces obtengo monto y fecha (para generar una nueva venta y despues generamos el STRING de las lineas contac.
 //        $idProveedor = $request->idProveedor; 
         $monto = $request->total; 
-        $fecha = date("d-m-Y H:i"); 
         
         $resultado = $request->productosPOSTajax; //obtengo el envio de datos tipo 
         //POST que envie de ajax con el nombre  productosPOSTajax
@@ -96,8 +95,7 @@ class ComprasController extends Controller
         
         //Ahora q tenemos el monto fecha (para venta), tenemos el contac de las lineas
         //Generamos la venta y a su vez las lineas ventas en un solo SP
-        $c = new Compras($fecha,$monto,$cadena); 
-
+        $c = new Compras($monto,$cadena); 
         $gc = new GestorCompras();
         $consulta=$gc->nueva($c); // lo agrego a la base de datos
         return $consulta;

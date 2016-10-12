@@ -12,15 +12,14 @@ class Ventas extends Model
     public $vCadena;
 
     
-    function __construct($fecha, $monto, $cadena)
+    function __construct($monto, $cadena)
     {
-        $this->vFecha = $fecha;
         $this->vMonto = $monto;
         $this->vCadena = $cadena;
     }
     
     protected $fillable = [
-        'fecha', 'monto', 'cadena',
+       'monto', 'cadena',
     ];
    
      
