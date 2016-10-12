@@ -65,10 +65,10 @@ Route::get('searchIngresos/autocomplete', 'IngresosController@autocomplete');
 Route::post('ingresos/agregar', 'IngresosController@agregarLinea');
 Route::post('ingresos/realizarIngreso', 'IngresosController@create');
 Route::post('ingresos/eliminarIngreso', 'IngresosController@destroy');
-$router->get('/ingresos/{id}/{fecha}',[
+$router->post('/ingresos/detalles/',[
     'uses' => 'IngresosController@mostrar',
     'as'   => 'detalleIngreso'
-]);
+]); 
 
 Route::post('dolar', 'HomeController@actualizarPrecio');
 

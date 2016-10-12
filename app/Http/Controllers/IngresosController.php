@@ -103,11 +103,11 @@ class IngresosController extends Controller
 //        return redirect()->back(); // vuelvo a ventas
 //    }
 
-    public function mostrar($id,$fecha)
+    public function mostrar(Request $r)
     {
         $gi = new GestorIngresos();
-        $ingreso = $gi->dame($id);
-        return view('ingresos.detalle',compact('ingreso','id','fecha'));
+        $ingreso = $gi->dame($r->idIngreso);
+        return view('ingresos.detalle',compact('ingreso'));
     }
     
     public function show($id)

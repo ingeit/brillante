@@ -15,8 +15,8 @@
 
             <div class="panel panel-default">
             <a href="{{ route('ingresos.index',['seccion'=>'lista']) }}" type="button" class="btn btn-info">Atras<i class="glyphicon glyphicon-menu-left"></i></a>
-            <div class="panel-heading">INGRESO NUMERO: {{$id}}</div>
-            <div class="panel-heading">FECHA: {{$fecha}}</div>
+            <div class="panel-heading">INGRESO NUMERO: {{$ingreso[0]->idIngreso}}</div>
+            <div class="panel-heading">FECHA: {{$ingreso[0]->fecha}}</div>
             <div class="panel-body">
                 <table class="table table-hover" style="margin-bottom: 0;margin-top: -12px;">
                     <thead>
@@ -46,7 +46,7 @@
             </div>
             </div> 
             {!! Form::open(['action' => ['PdfController@crearIngreso']]) !!}
-            {{ Form::hidden('idIngreso',$id)}} 
+            {{ Form::hidden('idIngreso',$ingreso[0]->idIngreso)}} 
                 <button style="float:right" class="btn btn-success btn-sm" type="submit">Imprimir</button>
             {!! Form::close() !!}
         </div> 

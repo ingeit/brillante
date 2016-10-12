@@ -33,7 +33,12 @@
                                 <tr>
                                     <td>{{$l->idIngreso}}</td>
                                     <td>{{$l->fecha}}</td>
-                                    <td><a href="{!! route('detalleIngreso', ['id'=>$l->idIngreso, 'fecha'=>$l->fecha]) !!}">Detalles</a></td>
+                                    <td>
+                                        {!! Form::open(['action' => ['IngresosController@mostrar']]) !!}
+                                        {{ Form::hidden('idIngreso',$l->idIngreso)}} 
+                                            <button style="float:right" class="btn btn-danger btn-sm" type="submit">Detalles</button>
+                                        {!! Form::close() !!}
+                                    </td>
                                     <td>
                                         <button style="float:right" class="btn btn-danger btn-sm" onclick="ingresoEliminar(this)" data-idingreso="{{$l->idIngreso}}">Eliminar</button>
                                     </td>
