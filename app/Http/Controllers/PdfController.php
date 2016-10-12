@@ -98,7 +98,8 @@ class PdfController extends Controller
         $view =  \View::make('pdf', compact('venta', 'fecha'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
-        return $pdf->download('venta.pdf');
+        $nombreArchivo="venta numero ".$idVenta.".pdf";
+        return $pdf->download($nombreArchivo);
     }
     
 }
