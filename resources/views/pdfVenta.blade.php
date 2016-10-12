@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Venta Nº {{ $venta[0]->idVenta }}</title>
-    <link rel="stylesheet" href="assets/css/pdf.css" media="all" />
+    <link rel="stylesheet" href="css/pdf.css" media="all" />
   </head>
   <body>
     <header class="clearfix">

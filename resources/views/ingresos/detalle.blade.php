@@ -45,7 +45,10 @@
                 </table>
             </div>
             </div> 
-            <a href="{{ route('ingresos.index',['seccion'=>'lista']) }}" type="button" class="btn btn-primary" style="float:right;">Volver Lista Ingresos</a>
+            {!! Form::open(['action' => ['PdfController@crearIngreso']]) !!}
+            {{ Form::hidden('idIngreso',$id)}} 
+                <button style="float:right" class="btn btn-success btn-sm" type="submit">Imprimir</button>
+            {!! Form::close() !!}
         </div> 
     </div>
 </div>

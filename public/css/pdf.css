@@ -123,6 +123,7 @@ table td.total {
 }
 
 table td.grand {
+  text-align: right;
   border-top: 1px solid #5D6975;;
 }
 

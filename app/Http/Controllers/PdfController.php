@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\GestorVentas;
+use App\GestorIngresos;
 use App\Http\Requests;
 
 class PdfController extends Controller
@@ -23,14 +24,9 @@ class PdfController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $r)
+    public function create()
     {
-        //tengo el id Venta
-        $idVenta = $r->idVenta;
-        $gv = new GestorVentas();
-        $venta = $gv->dame($idVenta);
-        
-        dd($venta);
+
     }
 
     /**
@@ -89,16 +85,29 @@ class PdfController extends Controller
         //
     }  
     
-    public function invoice(Request $r) 
+    public function crearVenta(Request $r) 
     {
         $idVenta = $r->idVenta;
         $gv = new GestorVentas();
         $venta = $gv->dame($idVenta);
         $fecha = $venta[0]->fecha;
-        $view =  \View::make('pdf', compact('venta', 'fecha'))->render();
+        $view =  \View::make('pdfVenta', compact('venta', 'fecha'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         $nombreArchivo="venta numero ".$idVenta.".pdf";
+        return $pdf->download($nombreArchivo);
+    }
+    
+        public function crearIngreso(Request $r) 
+    {
+        $idIngreso = $r->idIngreso;
+        $gi = new GestorIngresos();
+        $ingreso = $gi->dame($idIngreso);
+        $fecha = $ingreso[0]->fecha;
+        $view =  \View::make('pdfIngreso', compact('ingreso', 'fecha'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        $nombreArchivo="ingreso numero ".$idIngreso.".pdf";
         return $pdf->download($nombreArchivo);
     }
     

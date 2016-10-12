@@ -73,9 +73,14 @@ $router->get('/ingresos/{id}/{fecha}',[
 Route::post('dolar', 'HomeController@actualizarPrecio');
 
 // ** PDF **
-$router->post('/pdf/',[
-    'uses' => 'PdfController@invoice',
-    'as'   => 'crearPdf'
+$router->post('/pdfVenta/',[
+    'uses' => 'PdfController@crearVenta',
+    'as'   => 'crearVenta'
+]); 
+
+$router->post('/pdfIngreso/',[
+    'uses' => 'PdfController@crearIngreso',
+    'as'   => 'crearIngreso'
 ]); 
 
 //Route::group(['middleware' => 'auth','admin'], function () {
