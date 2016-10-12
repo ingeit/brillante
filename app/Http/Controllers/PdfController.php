@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\GestorVentas;
 use App\Http\Requests;
 
 class PdfController extends Controller
@@ -23,9 +23,14 @@ class PdfController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $r)
     {
-        //
+        //tengo el id Venta
+        $idVenta = $r->idVenta;
+        $gv = new GestorVentas();
+        $venta = $gv->dame($idVenta);
+        
+        dd($venta);
     }
 
     /**
@@ -47,7 +52,7 @@ class PdfController extends Controller
      */
     public function show($id)
     {
-        //
+        dd($id);
     }
 
     /**
@@ -58,7 +63,7 @@ class PdfController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -82,5 +87,18 @@ class PdfController extends Controller
     public function destroy($id)
     {
         //
+    }  
+    
+    public function invoice(Request $r) 
+    {
+        $idVenta = $r->idVenta;
+        $gv = new GestorVentas();
+        $venta = $gv->dame($idVenta);
+        $fecha = $venta[0]->fecha;
+        $view =  \View::make('pdf', compact('venta', 'fecha'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream('invoice.pdf');
     }
+    
 }

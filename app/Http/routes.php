@@ -31,6 +31,7 @@ Route::resource('lineasVenta', 'LineasVentaController');
 Route::resource('compras', 'ComprasController');
 Route::resource('proveedores', 'ProveedoresController');
 Route::resource('ingresos', 'IngresosController');
+Route::resource('pdf', 'PdfController');
 
 // ** PRODUCTOS ** Autocompletar y filtrar con el input
 Route::post('productos/filtrado', 'ProductosController@filtrado');
@@ -77,6 +78,11 @@ $router->get('/ingresos/{id}/{fecha}',[
 ]);
 
 Route::post('dolar', 'HomeController@actualizarPrecio');
+
+$router->post('/pdf/',[
+    'uses' => 'PdfController@invoice',
+    'as'   => 'crearPdf'
+]); 
 
 //Route::group(['middleware' => 'auth','admin'], function () {
 //    Route::get('/', function () {

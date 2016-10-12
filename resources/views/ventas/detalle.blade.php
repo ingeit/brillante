@@ -48,6 +48,10 @@
                         </tr>
                     </tbody>
                 </table>
+                {!! Form::open(['action' => ['PdfController@invoice']]) !!}
+                {{ Form::hidden('idVenta',$venta[0]->idVenta)}} 
+                    <button style="float:right" class="btn btn-danger btn-sm" type="submit">Imprimir</button>
+                {!! Form::close() !!}
             </div>
             </div> 
         </div> 
