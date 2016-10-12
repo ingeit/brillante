@@ -36,7 +36,7 @@
                                     <td>
                                         {!! Form::open(['action' => ['IngresosController@mostrar']]) !!}
                                         {{ Form::hidden('idIngreso',$l->idIngreso)}} 
-                                            <button style="float:right" class="btn btn-danger btn-sm" type="submit">Detalles</button>
+                                            <button style="float:right" class="btn btn-default btn-sm" type="submit">Detalles</button>
                                         {!! Form::close() !!}
                                     </td>
                                     <td>

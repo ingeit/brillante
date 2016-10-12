@@ -15,8 +15,8 @@
 
             <div class="panel panel-default">
                 <a href="{{ route('compras.index',['seccion'=>'lista']) }}" type="button" class="btn btn-info">Atras<i class="glyphicon glyphicon-menu-left"></i></a>
-            <div class="panel-heading">COMPRA NUMERO: {{$id}}</div>
-            <div class="panel-heading">FECHA: {{$fecha}}</div>
+            <div class="panel-heading">COMPRA NUMERO: {{$compra[0]->idCompra}}</div>
+            <div class="panel-heading">FECHA: {{$compra[0]->fecha}}</div>
             <div class="panel-body">
                 <table class="table table-hover" style="margin-bottom: 0;margin-top: -12px;">
                     <thead>
@@ -45,13 +45,12 @@
                           <td></td>
                           <td></td>
                           <td bgcolor="337ab7"><font color="#fff">Total</td>
-                          <td bgcolor="337ab7"><font color="#fff">$ {{$monto}}</td>
+                          <td bgcolor="337ab7"><font color="#fff">$ {{$compra[0]->monto}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             </div> 
-            <a href="{{ route('compras.index',['seccion'=>'lista']) }}" type="button" class="btn btn-primary" style="float:right;">Volver Lista Compras</a>
         </div> 
     </div>
 </div>

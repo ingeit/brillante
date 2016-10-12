@@ -35,7 +35,12 @@
                                     <td>{{$c->idCompra}}</td>
                                     <td>{{$c->fecha}}</td>
                                     <td>$ {{$c->monto}}</td> 
-                                    <td><a href="{!! route('detalleCompra', ['id'=>$c->idCompra, 'fecha'=>$c->fecha,'monto'=>$c->monto]) !!}">Detalles</a></td>
+                                    <td>
+                                        {!! Form::open(['action' => ['ComprasController@mostrar']]) !!}
+                                        {{ Form::hidden('idCompra',$c->idCompra)}} 
+                                            <button style="float:right" class="btn btn-default btn-sm" type="submit">Detalles</button>
+                                        {!! Form::close() !!}
+                                    </td>
                                     <td>
                                         <button style="float:right" class="btn btn-danger btn-sm" onclick="compraEliminar(this)" data-idcompra="{{$c->idCompra}}">Eliminar</button>
                                     </td>

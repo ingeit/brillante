@@ -37,14 +37,13 @@
                                     <td>
                                         {!! Form::open(['action' => ['VentasController@mostrar']]) !!}
                                         {{ Form::hidden('idVenta',$l->idVenta)}} 
-                                            <button style="float:right" class="btn btn-danger btn-sm" type="submit">Detalles</button>
+                                            <button style="float:right" class="btn btn-default btn-sm" type="submit">Detalles</button>
                                         {!! Form::close() !!}
-                                        <!--<a href="{!! route('detalleVenta', ['id'=>$l->idVenta, 'fecha'=>$l->fecha,'monto'=>$l->monto]) !!}">Detalles</a>-->
                                     </td>
                                         <td>
                                              @if($l->estado == 'I')<!-- estado = I = Impaga; P = pagada--> 
                                         <!-- Button trigger modal -->
-                                            <button type="button" id="esImpaga{{$l->idVenta}}" class="open-venta btn btn-danger btn-sm" data-monto="{{$l->monto}}" data-venta="{{$l->idVenta}}" data-toggle="modal" data-target="#myModal">
+                                            <button type="button" id="esImpaga{{$l->idVenta}}" class="open-venta btn btn-success btn-sm" data-monto="{{$l->monto}}" data-venta="{{$l->idVenta}}" data-toggle="modal" data-target="#myModal">
                                               Cobrar
                                             </button>
                                              @endif

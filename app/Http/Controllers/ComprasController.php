@@ -123,11 +123,11 @@ class ComprasController extends Controller
 //        return redirect()->back(); // vuelvo a ventas
 //    }
 
-    public function mostrar($id,$fecha,$monto) 
+    public function mostrar(Request $r) 
     {
         $gc = new GestorCompras();
-        $compra = $gc->dame($id);
-        return view('compras.detalle',compact('compra','id','fecha','monto'));
+        $compra = $gc->dame($r->idCompra);
+        return view('compras.detalle',compact('compra'));
     }
     
     public function show($id)

@@ -55,10 +55,10 @@ Route::post('compras/realizarCompra', 'ComprasController@create');
 Route::post('compras/agregar', 'ComprasController@agregarLinea');
 Route::post('compras/realizarCompra', 'ComprasController@create');
 Route::post('compras/eliminarCompra', 'ComprasController@destroy');
-$router->get('/compras/{id}/{fecha}/{monto}',[
+$router->post('/compras/detalles/',[
     'uses' => 'ComprasController@mostrar',
     'as'   => 'detalleCompra'
-]);
+]); 
 
 // ** INGRESOS ** 
 Route::get('searchIngresos/autocomplete', 'IngresosController@autocomplete');
