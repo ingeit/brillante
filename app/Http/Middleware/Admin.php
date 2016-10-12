@@ -11,7 +11,7 @@ class Admin
 {
     /**
      * Handle an incoming request.
-     *Mira vos otro test
+     *Mira vos otro test desde la pc
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed
