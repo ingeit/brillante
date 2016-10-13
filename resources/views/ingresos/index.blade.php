@@ -14,7 +14,7 @@
             <div>
                  <ul class="list-inline">
                      <li>
-                         <a href="{{ route('ingresos.index',['seccion'=>'lista']) }}" class="btn btn-default">LISTA INGRESOS</a>
+                         <a href="{{  route('listaIngresos') }}" class="btn btn-default">LISTA INGRESOS</a>
                      </li>    
                 </ul>
             </div>

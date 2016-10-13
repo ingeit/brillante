@@ -20,20 +20,19 @@ class VentasController extends Controller
      public function __construct()
     {
         $this->middleware('auth');
-//        $this->middleware('vendedor'); 
-//        $this->middleware('isAdmin', ['except' => ['show', 'create','store']]);
+        $this->middleware('admin', ['only' => ['destroy']]);
+        $this->middleware('cajero', ['except' => ['index']]);
     }
     
     public function index()
     {   
-        $seccion=Input::get('seccion');
-        if ($seccion == 'index'){
-            return view('ventas.index');
-        }else{
-            $gestor = new GestorVentas();
-            $listaVenta = $gestor->listar();
-            return view('ventas.lista',compact ('listaVenta'));
-        }
+        return view('ventas.index');
+    }
+    
+    public function listaVentas(){
+        $gestor = new GestorVentas();
+        $listaVenta = $gestor->listar();
+        return view('ventas.lista',compact ('listaVenta'));
     }
     
     public function autocomplete()
