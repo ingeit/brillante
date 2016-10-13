@@ -54,8 +54,7 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'soporte@brillante.com', 'name' => 'Brillante Soporte'],
 
     /*
     |--------------------------------------------------------------------------
