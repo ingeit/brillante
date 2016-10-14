@@ -18,7 +18,8 @@ class IngresosController extends Controller
 {
     public function __construct() {
         $this->middleware('auth');
-        $this->middleware('admin');
+        $this->middleware('admin',['except'=>'index']);
+        $this->middleware('repositor');
     }
     
     public function index()

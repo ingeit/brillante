@@ -42,6 +42,8 @@ class HomeController extends Controller
                 return redirect()->action('VentasController@index');
             }else if($role === 'cajero'){
                 return redirect()->action('VentasController@listaVentas');
+            }else if($role === 'repositor'){
+                return redirect()->action('IngresosController@index');
             }
     }  
     
