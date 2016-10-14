@@ -82,6 +82,7 @@ class ProductosController extends Controller
         $gp = new GestorProductos();
         $p = new Productos();
         $p->fill($request->all());// completo los atributos del objeto Productos
+        dd($p);
         $resultado = $gp->alta($p); // lo agrego a la base de datos
         Session::put('codigo',$resultado[0]->codigo);
         Session::put('mensaje',$resultado[0]->mensaje);

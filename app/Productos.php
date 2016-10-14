@@ -50,7 +50,7 @@ class Productos extends Model
     
     
     protected $fillable = [
-        'idProveedor', 'nombre', 'precio','cotizacion','ganancia','pPrecioVenta','pIdProducto','pStock','pStockDeposito','pStockLocal'
+        'idProveedor','idDeposito', 'nombre', 'precio','cotizacion','ganancia','pPrecioVenta','pIdProducto','pStock','pStockDeposito','pStockLocal'
     ];
    
      public function dame($id){
@@ -62,6 +62,7 @@ class Productos extends Model
         foreach ($result as $r) {
                 $this->fill([
                 "idProveedor" => $r->idProveedor,
+                "idDeposito" => $r->idDeposito,
                 "nombre" => $r->nombre,
                 "precio" => $r->precio,
                 "ganancia" => $r->ganancia,

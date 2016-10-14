@@ -20,7 +20,7 @@ Route::get('/home', 'HomeController@index');
 // ** RESOURCES ** 
 Route::resource('productos', 'ProductosController');
 Route::resource('ventas', 'VentasController');
-Route::resource('lineasVenta', 'LineasVentaController');
+
 Route::resource('compras', 'ComprasController');
 Route::resource('proveedores', 'ProveedoresController');
 Route::resource('ingresos', 'IngresosController');
@@ -38,7 +38,7 @@ Route::post('ventas/realizarVenta', 'VentasController@create');
 Route::get('search/autocomplete', 'VentasController@autocomplete');
 Route::post('ventas/cobrar', 'VentasController@cobrar');
 Route::post('ventas/cobrarModal', 'VentasController@cobrarModal');
-Route::get('lineasVenta','LineasVentaController@create');
+
 Route::post('ventas/eliminarVenta', 'VentasController@destroy');
 $router->get('/ventasLista',[
     'uses' => 'VentasController@listaVentas',
