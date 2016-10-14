@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Auth;
 class ProductosController extends Controller
 {  
     public function __construct() {
-        
         //para saber el role de un usuario.
         //$user = Auth::user()->role;
         $this->middleware('auth');
