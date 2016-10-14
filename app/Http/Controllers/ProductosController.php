@@ -23,7 +23,6 @@ class ProductosController extends Controller
         //para saber el role de un usuario.
         //$user = Auth::user()->role;
         $this->middleware('auth');
-        
         //los que NO son ADMINISTRADOR, solo PUEDEN entrar a index
         $this->middleware('admin',['except'=>['index','filtrado']]);
         
