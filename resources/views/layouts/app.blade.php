@@ -81,6 +81,9 @@ header("Expires: 0 "); // Proxies. ?>
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Salir</a></li>
+                                @if(Auth::user()->role === 'admin')
+                                <li><a href="{{ url('/register') }}">Registrar nuevo usuario</a></li>
+                                @endif
                             </ul>
                         </li>
                     @endif    
