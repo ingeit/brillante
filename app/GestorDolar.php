@@ -32,8 +32,7 @@ class GestorDolar extends Model
         $dolar = $data[2];
         $dolar=substr($dolar, 0, 5);
         $dolar = "$ ".$dolar;
-        return $dolar;
-        
+        return $dolar;        
     }
     
     public function elPrecioEsActual(){
