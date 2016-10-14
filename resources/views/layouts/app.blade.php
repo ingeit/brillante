@@ -58,6 +58,7 @@ header("Expires: 0 "); // Proxies. ?>
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    
                     <li><a href="{{ route('productos.index') }}">Productos</a></li>
                     <li><a href="{{ route('proveedores.index') }}">Proveedores</a></li>
                     <li><a href="{{ route('ventas.index') }}">Ventas</a></li>
@@ -82,7 +83,7 @@ header("Expires: 0 "); // Proxies. ?>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Salir</a></li>
                             </ul>
                         </li>
-                    @endif
+                    @endif    
                 </ul>
             </div>
         </div>
