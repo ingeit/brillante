@@ -16,13 +16,14 @@ class GestorProductos extends Model
         $params = array(
             
             $p->idProveedor,
+            $p->idDeposito,
             $p->nombre,
             $p->precio,
             $p->cotizacion,
             $p->ganancia,);
         
         
-    	$result = DB::select('call producto_alta(?,?,?,?,?)',$params); 
+    	$result = DB::select('call producto_alta(?,?,?,?,?,?)',$params); 
         return $result;
     }
     
