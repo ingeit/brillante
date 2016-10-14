@@ -68,6 +68,7 @@ header("Expires: 0 "); // Proxies. ?>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
+                    
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Acceder</a></li>
                         <li><a href="{{ url('/register') }}">Registrarse</a></li>
