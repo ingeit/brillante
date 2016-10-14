@@ -16,6 +16,11 @@ use App\Ingresos;
 
 class IngresosController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+    
     public function index()
     {   
         return view('ingresos.index');

@@ -20,6 +20,11 @@ use App\Compras;
 
 class ComprasController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+    
     public function index()
     {   
         return View('compras.index'); 

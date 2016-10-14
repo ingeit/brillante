@@ -21,7 +21,7 @@ class VentasController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('admin', ['only' => ['destroy']]);
-        $this->middleware('cajero', ['except' => ['index']]);
+        $this->middleware('cajero', ['except' => ['index','agregarLinea','autocomplete','create']]);
     }
     
     public function index()
