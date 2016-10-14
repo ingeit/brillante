@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\GestorProductos;
 use App\Productos;
 use App\GestorProveedores;
+use App\GestorDepositos;
 use App\Http\Requests\ProductosRequest;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
@@ -60,9 +61,16 @@ class ProductosController extends Controller
         {
             $proveedor[$c->idProveedor] = $c->razonSocial;
         }
+        $gd = new GestorDepositos();
+        $consultadeposito = $gd->listar('');
+        $deposito = array();
+        foreach ($consultadeposito as $cd) //Convertimos los proveedores en un array Key => Value de la sig. forma
+        {
+            $deposito[$cd->idDeposito] = $cd->nombre;
+        }
         Session::put('titulo','Crear Producto');
         Session::put('boton','Crear Producto');
-        return View('productos.form', compact('proveedor'));
+        return View('productos.form', compact('proveedor','deposito'));
     }
     
     public function update(Request $request, $id)

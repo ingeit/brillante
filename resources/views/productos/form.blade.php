@@ -45,6 +45,10 @@
                                 {!! Form::select('idProveedor', $proveedor, null, ['class' => 'form-control','required', 'placeholder' => 'Elija un Proveedor']) !!}
                             </div>
                             <div class="form-group">
+                                {!! Form::label('deposito', 'Deposito:') !!}
+                                {!! Form::select('idDeposito', $deposito, null, ['class' => 'form-control','required', 'placeholder' => 'Elija un Deposito']) !!}
+                            </div>
+                            <div class="form-group">
                                 {!! Form::label('cotizacion', 'Cotizado en:') !!}
                                 <div class="radio">
                                     <label>
