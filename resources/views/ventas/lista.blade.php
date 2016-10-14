@@ -13,7 +13,7 @@
             <div class="col-md-10 col-md-offset-1">
                 
                 <div class="panel panel-default">
-                <a href="{{ route('ventas.index',['seccion'=>'index']) }}" type="button" class="btn btn-info">Atras<i class="glyphicon glyphicon-menu-left"></i></a>
+                <a href="{{ route('ventas.index')}}" type="button" class="btn btn-info">Atras<i class="glyphicon glyphicon-menu-left"></i></a>
                 <div class="panel-heading">Ventas Realizadas</div>
                 <div class="panel-body">
                     <table class="table table-hover" style="margin-bottom: 0;margin-top: -12px;">

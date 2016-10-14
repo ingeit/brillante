@@ -24,9 +24,14 @@ class Cajero
     public function handle($request, Closure $next)
     {
         if (!Auth::guest()) {
-            if(Auth::user()->role === 'cajero'){
-              return $next($request);  
-            }  
+            if ($this->auth->user()->role === 'admin') {
+                return $next($request);  
+            }
+            else{
+                if($this->auth->user()->role === 'cajero'){
+                    return $next($request); 
+                }
+            }
         }
         return redirect('/');
     }

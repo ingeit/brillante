@@ -23,11 +23,15 @@ class Vendedor
     
     public function handle($request, Closure $next)
     {
-//        dd(Auth::user()->role);
         if (!Auth::guest()) {
-            if($this->auth->user()->role === 'vendedor'){
-              return $next($request);  
-            }  
+            if ($this->auth->user()->role === 'admin') {
+                return $next($request);  
+            }
+            else{
+                if($this->auth->user()->role === 'vendedor'){
+                    return $next($request); 
+                }
+            }
         }
         return redirect('/');
     }

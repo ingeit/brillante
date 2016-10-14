@@ -40,6 +40,11 @@ Route::post('ventas/cobrar', 'VentasController@cobrar');
 Route::post('ventas/cobrarModal', 'VentasController@cobrarModal');
 Route::get('lineasVenta','LineasVentaController@create');
 Route::post('ventas/eliminarVenta', 'VentasController@destroy');
+$router->get('/ventasLista',[
+    'uses' => 'VentasController@listaVentas',
+    'as'   => 'listaVentas'
+]);
+
 $router->get('/ventas/cobrar/{id}',[
     'uses' => 'VentasController@cobrar',
     'as'   => 'cobrarVenta'
@@ -58,7 +63,11 @@ Route::post('compras/eliminarCompra', 'ComprasController@destroy');
 $router->post('/compras/detalles/',[
     'uses' => 'ComprasController@mostrar',
     'as'   => 'detalleCompra'
-]); 
+]);
+$router->get('/comprasLista',[
+    'uses' => 'ComprasController@listaCompras',
+    'as'   => 'listaCompras'
+]);
 
 // ** INGRESOS ** 
 Route::get('searchIngresos/autocomplete', 'IngresosController@autocomplete');
@@ -69,6 +78,10 @@ $router->post('/ingresos/detalles/',[
     'uses' => 'IngresosController@mostrar',
     'as'   => 'detalleIngreso'
 ]); 
+$router->get('/ingresosLista',[
+    'uses' => 'IngresosController@listaIngresos',
+    'as'   => 'listaIngresos'
+]);
 
 Route::post('dolar', 'HomeController@actualizarPrecio');
 

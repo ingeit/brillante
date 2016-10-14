@@ -18,15 +18,13 @@ class IngresosController extends Controller
 {
     public function index()
     {   
-        $seccion=Input::get('seccion');
-        if ($seccion == 'index'){
-            return view('ingresos.index');
-        }else{
-            $gestor = new GestorIngresos();
-            $listaIngreso = $gestor->listar();
-            return view('ingresos.lista',compact ('listaIngreso'));
-        }
-        
+        return view('ingresos.index');
+    }
+    
+    public function listaIngresos(){
+        $gestor = new GestorIngresos();
+        $listaIngreso = $gestor->listar();
+        return view('ingresos.lista',compact ('listaIngreso'));
     }
     
     public function autocomplete()

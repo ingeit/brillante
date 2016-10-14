@@ -22,31 +22,14 @@ class ComprasController extends Controller
 {
     public function index()
     {   
-        $seccion=Input::get('seccion');
-        if ($seccion == 'index'){
-            
-//            $gp = new GestorProveedores();
-//            $consulta = $gp->buscar('');
-//            $proveedor = array();
-//            foreach ($consulta as $c) //Convertimos los proveedores en un array Key => Value de la sig. forma
-//            {
-//                $proveedor[$c->idProveedor] = $c->razonSocial;
-//            }
-            return View('compras.index');
-        }else{
-            //$p = new Proveedores();
-            $gestor = new GestorCompras();
-            $listaCompra = $gestor->listar();
-            //obtenemos el nombre del proveedor para la VISTA
-            foreach ($listaCompra as $lc){
-                //$idProveedor=($lc->idProveedor);
-                //$p->dame($idProveedor);
-                //agregamos un nuevo KEY => VALUE al array asi:
-               // $lc->razonSocial = $p->razonSocial;
-            }
-            return view('compras.lista',compact ('listaCompra'));
-        }
-        
+        return View('compras.index'); 
+    }
+    
+    public function listaCompras()
+    {
+        $gestor = new GestorCompras();
+        $listaCompra = $gestor->listar();
+        return view('compras.lista',compact ('listaCompra'));  
     }
     
     public function autocomplete()
