@@ -36,6 +36,7 @@
                         <table id="data" class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>Deposito</th>
                                     <th>Nombre</th>
                                     @if($user == 'admin')
                                         <th>Precio sin iva</th>
@@ -53,6 +54,7 @@
                             <tbody id="resultado">
                                 @foreach ($listaProductos as $l)
                                 <tr>
+                                    <td>{{$l->idDeposito}}</td>
                                     <td>{{$l->nombre}}</td>
                                     @if($user == 'admin')
                                         @if($l->cotizacion=='Dolares')

@@ -22,12 +22,17 @@ class Repositor
         $this->auth = $auth;
     }
     
-    public function handle($request, Closure $next)
+public function handle($request, Closure $next)
     {
         if (!Auth::guest()) {
-            if(Auth::user()->role === 'repositor'){
-              return $next($request);  
-            }  
+            if ($this->auth->user()->role === 'admin') {
+                return $next($request);  
+            }
+            else{
+                if($this->auth->user()->role === 'repositor'){
+                    return $next($request); 
+                }
+            }
         }
         return redirect('/');
     }
