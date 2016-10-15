@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
+            @if (Auth::user()->role == 'admin' )
                 <div class="panel-heading">Resgistrar usuario</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
@@ -108,6 +109,9 @@
                         </div>
                     </form>
                 </div>
+            @else
+                <h1>NO TIENE PERMISOS PARA REGISTAR UN NUEVO USUARIO</h1>
+            @endif
             </div>
         </div>
     </div>
