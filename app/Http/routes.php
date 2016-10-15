@@ -14,6 +14,17 @@ Route::get('/', function () {
     return redirect()->action('HomeController@index');
 }); 
 
+Route::get('/dolar', function () {
+    if (Auth::user()->role == 'admin'){
+        $gestor = new App\GestorDolar();
+        $precio = $gestor->obtenerPrecioDolar();
+        return view('dolar',compact('precio')); 
+    }else{
+        return "NO TIENE PERMISOS PARA ACTUALIZAR DOLAR";
+    }
+
+}); 
+
 Route::auth();
 Route::get('/home', 'HomeController@index'); 
 

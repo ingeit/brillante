@@ -57,8 +57,9 @@ header("Expires: 0 "); // Proxies. ?>
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                    
+                    @if (Auth::user()->role == 'admin')
+                        <li><a href="{{ url('/dolar') }}">Actualizar Dolar</a></li>
+                    @endif
                     <li><a href="{{ route('productos.index') }}">Productos</a></li>
                     <li><a href="{{ route('proveedores.index') }}">Proveedores</a></li>
                     <li><a href="{{ route('ventas.index') }}">Ventas</a></li>
