@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\GestorVentas;
 use App\GestorIngresos;
 use App\Http\Requests;
+use App\GestorDepositos;
 
 class PdfController extends Controller
 {
@@ -92,15 +93,17 @@ class PdfController extends Controller
     
     public function crearVenta(Request $r) 
     {
+        $gd = new GestorDepositos();
+        $deposito = $gd->listar();
         $idVenta = $r->idVenta;
         $gv = new GestorVentas();
         $venta = $gv->dame($idVenta);
         $fecha = $venta[0]->fecha;
-        $view =  \View::make('pdfVenta', compact('venta', 'fecha'))->render();
+        $view =  \View::make('pdfVenta', compact('venta', 'fecha','deposito'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         $nombreArchivo="venta numero ".$idVenta.".pdf";
-        return $pdf->download($nombreArchivo);
+        return $pdf->stream($nombreArchivo);
     }
     
         public function crearIngreso(Request $r) 

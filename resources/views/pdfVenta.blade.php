@@ -19,32 +19,32 @@
       </div>
       <div id="project">
         <h2>COMPROBANTE DE VENTA</h2>
-        <h4>Fecha de emision: {{ $fecha }}</h4>
+        <h3>Fecha de emision: {{ $fecha }}</h3>
       </div>
     </header>
     <main>
       <table>
-        <thead>
+        <thead class="cabecera">
           <tr>
-            <th class="service">CANTIDAD</th>
+            <th class="cant">CANTIDAD</th>
             <th class="desc">DESCRIPCION</th>
-            <th>RETIRA EN</th>
+            <th width="200px" text-align="left">RETIRA EN</th>
             <th>PRECIO UNIT.</th>
             <th>IMPORTE</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="cuerpo">
         @foreach ($venta as $v)
           <tr>
             <td class="cant">{{$v->cantidad}}</td>
             <td class="desc">{{$v->nombre}}</td>
-            <td class="service">{{$v->lugar}}</td>
+            <td class="service" width="200px">{{"(".$deposito[($v->idDeposito)-1]->nombre.")"." ".$deposito[($v->idDeposito)-1]->direccion}}</td>
             <td class="unit">$ {{$v->precio}}</td>
             <td class="total">$ {{$importe = number_format(($v->cantidad)*($v->precio), 2, '.', '')}}</td>
           </tr>
          @endforeach
           <tr>
-            <td colspan="4" class="grand total">TOTAL</td>
+            <td colspan="4"  font-size="55px">TOTAL</td>
             <td class="grand total">$ {{$v->monto}}</td>
           </tr>
         </tbody>
