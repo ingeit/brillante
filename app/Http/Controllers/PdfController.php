@@ -103,7 +103,7 @@ class PdfController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         $nombreArchivo="venta numero ".$idVenta.".pdf";
-        return $pdf->stream($nombreArchivo);
+        return $pdf->download($nombreArchivo);
     }
     
         public function crearIngreso(Request $r) 
