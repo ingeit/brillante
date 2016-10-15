@@ -16,7 +16,7 @@
                             <label for="dolar" class="col-md-4 control-label">Introducir el valor del Dolar</label>
 
                             <div class="col-md-6">
-                                <input id="dolar" type="text" class="form-control" name="dolar">
+                                <input id="dolar" type="number" step="0.01" class="form-control" name="dolar">
                             </div>
                         </div>
 

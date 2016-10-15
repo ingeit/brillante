@@ -38,7 +38,11 @@
           <tr>
             <td class="cant">{{$v->cantidad}}</td>
             <td class="desc">{{$v->nombre}}</td>
-            <td class="service" width="200px">{{"(".$deposito[($v->idDeposito)-1]->nombre.")"." ".$deposito[($v->idDeposito)-1]->direccion}}</td>
+            @if ($v->lugar == 'deposito')
+                <td class="service" width="200px">{{"(".$deposito[($v->idDeposito)-1]->nombre.")"." ".$deposito[($v->idDeposito)-1]->direccion}}</td>
+            @else
+                <td class="service" width="200px">{{"(".$deposito[2]->nombre.")"." ".$deposito[2]->direccion}}</td>
+            @endif
             <td class="unit">$ {{$v->precio}}</td>
             <td class="total">$ {{$importe = number_format(($v->cantidad)*($v->precio), 2, '.', '')}}</td>
           </tr>
