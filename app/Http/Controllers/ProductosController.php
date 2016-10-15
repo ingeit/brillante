@@ -115,9 +115,16 @@ class ProductosController extends Controller
         {
             $proveedor[$c->idProveedor] = $c->razonSocial;
         }
+        $gd = new GestorDepositos();
+        $consultadeposito = $gd->listar('');
+        $deposito = array();
+        foreach ($consultadeposito as $cd) //Convertimos los proveedores en un array Key => Value de la sig. forma
+        {
+            $deposito[$cd->idDeposito] = $cd->nombre;
+        }
         Session::put('titulo','Modificar Producto');
         Session::put('boton','Modificar Producto');
-        return view('productos.form',compact('data','proveedor'));
+        return view('productos.form',compact('data','proveedor','deposito'));
     }
 
   

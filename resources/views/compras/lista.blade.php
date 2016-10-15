@@ -13,7 +13,8 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 
-                <div class="panel panel-default"><a href="{{ route('compras.index',['seccion'=>'index']) }}" type="button" class="btn btn-info">Atras<i class="glyphicon glyphicon-menu-left"></i></a>
+                <div class="panel panel-default">
+                    <a href="{{URL::previous() }}" type="button" class="btn btn-info">Atras<i class="glyphicon glyphicon-menu-left"></i></a>
                     
                 <div class="panel-heading">Compras Realizadas</div>
                 <div class="panel-body">
