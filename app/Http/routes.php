@@ -107,22 +107,9 @@ $router->post('/pdfIngreso/',[
     'as'   => 'crearIngreso'
 ]); 
 
-//Route::group(['middleware' => 'auth','admin'], function () {
-//    Route::get('/', function () {
-//        return redirect()->view('home');
-//    }); 
-//});
-//
-//Route::group(['middleware' => 'auth','cajero'], function () {
-//    Route::get('/', function () {
-//        return redirect()->view('ventas.lista');
-//    }); 
-//});
-//
-//Route::group(['middleware' => 'auth','vendedor'], function () {
-//    Route::get('/', function () {
-//        return redirect()->view('ventas.index');
-//    }); 
-//});
 
+
+Route::get('data', function () {
+    return view('client');
+}); 
 
