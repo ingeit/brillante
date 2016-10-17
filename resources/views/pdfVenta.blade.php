@@ -23,16 +23,16 @@
       </div>
       <div >
             <div >
-                SEÑOR/ES: {{ $nombre }}
+                SEÑOR/ES: <span style='margin-left: 21px'>{{ $nombre }}</span>
             </div>
             <div >
-                DOMICILIO: {{ $domicilio }}
+                DOMICILIO: <span style='margin-left: 14px'>{{ $domicilio }}</span>
             </div>
             <div >
-                LOCALIDAD: {{ $localidad }}
+                LOCALIDAD: <span style='margin-left: 8px'>{{ $localidad }}</span>
             </div>
             <div >
-                CUIL/CUIT: {{ $cuil }}
+                CUIL/CUIT: <span style='margin-left: 18px'>{{ $cuil }}</span>
             </div>
       </div>
     </header>

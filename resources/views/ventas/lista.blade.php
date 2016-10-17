@@ -50,9 +50,11 @@
                                             </button>
                                              @endif
                                         </td>
+                                    @if (Auth::user()->role == 'admin')
                                     <td>
                                         <button style="float:right" class="btn btn-danger btn-sm" onclick="ventaEliminar(this)" data-idventa="{{$l->idVenta}}">Eliminar</button>
                                     </td>
+                                    @endif
                                 </tr>
                                 @endforeach
                             </tbody>

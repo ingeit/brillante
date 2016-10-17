@@ -48,31 +48,39 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="panel-heading">DATOS PARA IMPRIMIR FACTURA C</div>
+            </div> 
+            <div class="panel-heading">DATOS PARA IMPRIMIR FACTURA C</div>
                 <div class="panel-body">
                     
                     {!! Form::open(['target'=> '_blank','action' => ['PdfController@crearVenta']]) !!}
                     {{ Form::hidden('idVenta',$venta[0]->idVenta)}} 
-                    <div class="form-group">
-                        {!! Form::label('nombre', 'Señor/es'); !!} 
-                        {{ Form::text('nombre',null,['autofocus', 'class'=> 'form-control','placeholder'=>'Ingrese el nombre']) }}
+                    <div class="form-group row">
+                        {!! Form::label('nombre', 'Señor/es:',['class'=>'col-xs-1 col-form-label']); !!} 
+                        <div class="col-xs-10">
+                            {{ Form::text('nombre',null,['autofocus', 'class'=> 'form-control','placeholder'=>'Ingrese el nombre']) }}
+                        </div>
                     </div>
-                    <div class="form-group">
-                        {!! Form::label('domicilio', 'Domicilio'); !!} 
-                        {{ Form::text('domicilio',null,['autofocus', 'class'=> 'form-control','placeholder'=>'Ingrese el domicilio']) }}
+                    <div class="form-group row">
+                        {!! Form::label('domicilio', 'Domicilio:',['class'=>'col-xs-1 col-form-label']); !!} 
+                        <div class="col-xs-10">
+                            {{ Form::text('domicilio',null,['autofocus', 'class'=> 'form-control','placeholder'=>'Ingrese el domicilio']) }}
+                        </div>
                     </div>
-                    <div class="form-group">
-                        {!! Form::label('localidad', 'Localidad'); !!} 
-                        {{ Form::text('localidad',null,['autofocus', 'class'=> 'form-control','placeholder'=>'Ingrese la localidad']) }}
+                    <div class="form-group row">
+                        {!! Form::label('localidad', 'Localidad:',['class'=>'col-xs-1 col-form-label']); !!} 
+                        <div class="col-xs-10">
+                            {{ Form::text('localidad',null,['autofocus', 'class'=> 'form-control','placeholder'=>'Ingrese la localidad']) }}
+                        </div> 
                     </div>  
-                    <div class="form-group">
-                        {!! Form::label('cuil', 'CUIL/CUIT'); !!} 
-                        {{ Form::text('cuil',null,['autofocus', 'class'=> 'form-control','placeholder'=>'Ingrese el CUIL/CUIT del cliente']) }}
+                    <div class="form-group row">
+                        {!! Form::label('cuil', 'CUIL/CUIT:',['class'=>'col-xs-1 col-form-label']); !!} 
+                        <div class="col-xs-10">
+                            {{ Form::text('cuil',null,['autofocus', 'class'=> 'form-control','placeholder'=>'Ingrese el CUIL/CUIT del cliente']) }}
+                        </div>
                     </div>                
                     <button style="float:right" class="btn btn-success btn-sm" type="submit">Imprimir</button>
                     {!! Form::close() !!}
                 </div>
-            </div> 
             </div> 
         </div>
     </div>
