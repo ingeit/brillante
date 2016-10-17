@@ -1,3 +1,28 @@
+//WebSocket
+var host   = 'ws://rickybruno.sytes.net:8889';
+var socket = null;
+try {
+    socket = new WebSocket(host);
+    socket.onopen = function () {
+        console.log('connection is opened');
+        return socket;
+    };
+    socket.onmessage = function (msg) {
+        var jsonResponse = JSON.parse(msg.data);
+        console.log(jsonResponse.id);
+        console.log(jsonResponse.fecha);
+        console.log(jsonResponse.total);
+        return;
+    };
+    socket.onclose = function () {
+        console.log('connection is closed');
+        return;
+    };
+} catch (e) {
+    console.log(e);
+}
+//Fin Web Socket
+
 function iniciar(){
     $.ajax({
         type: "GET",
@@ -272,6 +297,14 @@ function enviarVenta(produc,total)
                 var jsonResponse = JSON.parse(data);
                 codigo=jsonResponse[0]['codigo'];
                 mensaje=jsonResponse[0]['mensaje'];
+                
+                    if(parseInt(codigo) !== 0){ // si es distinto que cero, ser realizo la venta y mando los datos WS
+                    totalSP=jsonResponse[0]['totalSP'];
+                    fechaSP=jsonResponse[0]['fecha'];
+                    var person = {id:parseInt(codigo), fecha:fechaSP, total:totalSP};
+                    socket.send(JSON.stringify(person));
+                    }
+                    
                 mostrarMensaje(codigo,mensaje);
                 $("#myModal2").on('hidden.bs.modal', function () {
                     $("#tablaVentas").empty();

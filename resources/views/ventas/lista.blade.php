@@ -3,7 +3,9 @@
 @section('scripts')
 {{ Html::script('js/ventaCobrar.js')}}
 {{ Html::script('js/ventas.js')}}
-<script>iniciar();</script>
+<script>
+    iniciar();
+</script>
 {{ Html::style('css/style.css')}}
 @endsection
 
