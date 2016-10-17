@@ -21,6 +21,20 @@
         <h2>COMPROBANTE DE VENTA</h2>
         <h3>Fecha de emision: {{ $fecha }}</h3>
       </div>
+      <div >
+            <div >
+                SEÑOR/ES: {{ $nombre }}
+            </div>
+            <div >
+                DOMICILIO: {{ $domicilio }}
+            </div>
+            <div >
+                LOCALIDAD: {{ $localidad }}
+            </div>
+            <div >
+                CUIL/CUIT: {{ $cuil }}
+            </div>
+      </div>
     </header>
     <main>
       <table>

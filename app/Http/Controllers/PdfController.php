@@ -96,14 +96,18 @@ class PdfController extends Controller
         $gd = new GestorDepositos();
         $deposito = $gd->listar();
         $idVenta = $r->idVenta;
+        $nombre = strtoupper($r->nombre);
+        $domicilio = strtoupper($r->domicilio);
+        $localidad = strtoupper($r->localidad);
+        $cuil = $r->cuil;
         $gv = new GestorVentas();
         $venta = $gv->dame($idVenta);
         $fecha = $venta[0]->fecha;
-        $view =  \View::make('pdfVenta', compact('venta', 'fecha','deposito'))->render();
+        $view =  \View::make('pdfVenta', compact('venta', 'fecha','deposito','nombre','domicilio','localidad','cuil'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         $nombreArchivo="venta numero ".$idVenta.".pdf";
-        return $pdf->download($nombreArchivo);
+        return $pdf->stream($nombreArchivo);
     }
     
         public function crearIngreso(Request $r) 
