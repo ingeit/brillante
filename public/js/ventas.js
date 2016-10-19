@@ -9,9 +9,31 @@ try {
     };
     socket.onmessage = function (msg) {
         var jsonResponse = JSON.parse(msg.data);
-        console.log(jsonResponse.id);
-        console.log(jsonResponse.fecha);
-        console.log(jsonResponse.total);
+        var csrf_token = $('meta[name="csrf-token"]').attr('content');
+        var new_item = $("<tr>"+
+                "<td style='color:blue;font-weight: bold;'>"+jsonResponse.id+"</td>"+
+                "<td style='color:blue;font-weight: bold;'>"+jsonResponse.fecha+"</td>"+
+                "<td style='color:blue;font-weight: bold;'>"+jsonResponse.total+"</td>"+
+                "<td>"+
+                    '<form method="POST" action="http://rickybruno.sytes.net:8001/ventas/detalles" accept-charset="UTF-8">'+
+                        '<input name="_token" type="hidden" value="'+csrf_token+'">'+
+                        '<input name="idVenta" type="hidden" value="'+jsonResponse.id+'"> '+
+                        '<button style="float:right" class="btn btn-default btn-sm" type="submit">Detalles</button>'+
+                    '</form>'+
+                "</td>"+
+                "<td>"+
+                    '<button type="button" id="esImpaga'+jsonResponse.id+'"class="open-venta btn btn-success btn-sm" data-monto="'+jsonResponse.total+'"data-venta="'+jsonResponse.id+'"data-toggle="modal" data-target="#myModal">'+
+                      'Cobrar'+
+                    '</button>'+
+                "</td>"+
+                "@if (Auth::user()->role == 'admin')"+
+                "<td>"+
+                    '<button style="float:right" class="btn btn-danger btn-sm" onclick="ventaEliminar(this)" data-idventa="'+jsonResponse.id+'">Eliminar</button>'+
+                "</td>"+
+                "@endif"+
+            "</tr>").hide();
+        $("#resultado").prepend(new_item);
+        new_item.show(2000);
         return;
     };
     socket.onclose = function () {
