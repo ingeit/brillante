@@ -61,10 +61,12 @@ header("Expires: 0 "); // Proxies. ?>
                     <li><a href="{{ route('ventas.index') }}">Ventas</a></li>
                     <li><a href="{{ route('compras.index') }}">Compras</a></li>
                     <li><a href="{{ route('ingresos.index') }}">Ingreso Local</a></li>
-                    @if (Auth::user()->role == 'admin')
-                        <li><a href="{{ route('proveedores.index') }}">Proveedores</a></li>
-                        <li><a href="{{ url('/dolar') }}">Actualizar Dolar</a></li>
-                    @endif
+                    @if (!Auth::guest())
+                        @if (Auth::user()->role == 'admin')
+                            <li><a href="{{ route('proveedores.index') }}">Proveedores</a></li>
+                            <li><a href="{{ url('/dolar') }}">Actualizar Dolar</a></li>
+                        @endif
+                    @endif    
                 </ul>
 
                 <!-- Right Side Of Navbar -->
