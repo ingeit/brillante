@@ -31,7 +31,7 @@ Route::get('/home', 'HomeController@index');
 // ** RESOURCES ** 
 Route::resource('productos', 'ProductosController');
 Route::resource('ventas', 'VentasController');
-
+Route::resource('perdidasProducto', 'PerdidasProductoController');
 Route::resource('compras', 'ComprasController');
 Route::resource('proveedores', 'ProveedoresController');
 Route::resource('ingresos', 'IngresosController');
@@ -41,10 +41,15 @@ Route::resource('pdf', 'PdfController');
 Route::post('productos/filtrado', 'ProductosController@filtrado');
 Route::post('productos/eliminarProducto', 'ProductosController@destroy');
 
+// ** PERDIDAS PRODUCTO ** 
+Route::get('searchPerdidas/autocomplete', 'PerdidasProductoController@autocomplete');
+Route::post('perdidas/realizarPerdida', 'PerdidasProductoController@create');
+
 // ** PROVEEDORES **
 Route::post('proveedores/eliminarProveedor', 'ProveedoresController@destroy');
 
 // ** VENTAS ** 
+Route::post('ventas/eliminarVenta', 'VentasController@destroy');
 Route::post('ventas/realizarVenta', 'VentasController@create');
 Route::get('search/autocomplete', 'VentasController@autocomplete');
 Route::post('ventas/cobrar', 'VentasController@cobrar');
@@ -105,11 +110,5 @@ $router->post('/pdfVenta/',[
 $router->post('/pdfIngreso/',[
     'uses' => 'PdfController@crearIngreso',
     'as'   => 'crearIngreso'
-]); 
-
-
-
-Route::get('data', function () {
-    return view('client');
-}); 
+]);
 

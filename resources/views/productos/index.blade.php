@@ -26,6 +26,9 @@
                             <li>
                                 <a href="{{ route('productos.create') }}" class="btn btn-default">Nuevo Producto</a>
                             </li>
+                            <li>
+                                <a href="{{ route('perdidasProducto.index') }}" class="btn btn-default">Perdidas Producto</a>
+                            </li>
                         @endif
                     </ul>
                 </div>
