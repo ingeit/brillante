@@ -29,6 +29,9 @@
                             <li>
                                 <a href="{{ route('perdidasProducto.index') }}" class="btn btn-default">Perdidas Producto</a>
                             </li>
+                            <li>
+                                <a href="{{ route('transformacion.index') }}" class="btn btn-default">Generar Producto suelto</a>
+                            </li>
                         @endif
                     </ul>
                 </div>

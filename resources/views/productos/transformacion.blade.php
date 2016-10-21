@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('scripts')
-{{ Html::script('js/perdidas.js')}}
+{{ Html::script('js/transformacion.js')}}
 <script>
     iniciar();
 </script>
@@ -17,11 +17,7 @@
                 <dl class="list">
                     <dt style="width: 100%;">
                         <div class="form-group">
-                            @if(Session::get('titulo') == 'Perdida')
-                            {{ Form::label('q', 'Agregar Productos a Descontar') }}
-                            @else
-                            {{ Form::label('q', 'Agregar Productos a Transformar') }}
-                            @endif
+                            {{ Form::label('q', 'Agregar Productos a descontar') }}
                             {{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Ej: Lavandina','class'=> 'form-control','autofocus'])}}
                             {{ Form::hidden('qId', '', ['id' =>  'qId',])}}
                             <div id="stockContainer">
@@ -56,11 +52,7 @@
                     </div>
                 </div>     
             </div> 
-            @if(Session::get('titulo') == 'Perdida')
-                <button type="button" class="btn btn-primary" id="realizarPerdida" style="float:right;" onclick="cargarPerdida()" disabled="disabled">Realizar Perdida</button>
-            @else
-                <button type="button" class="btn btn-primary" id="realizarPerdida" style="float:right;" onclick="cargarPerdida_transformar()" disabled="disabled">Siguiente paso</button>
-            @endif
+            <button type="button" class="btn btn-primary" id="realizarPerdida" style="float:right;"  disabled="disabled">Realizar Perdida</button>
         </div>
     </div>
 </div>

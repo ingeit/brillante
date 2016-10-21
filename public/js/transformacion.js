@@ -198,14 +198,6 @@ function cargarPerdida(){
     enviarPerdida(productos);
 }
 
-function cargarPerdida_transformar(){ 
-    var productos = [];
-    //deshabilitamos el boton "realizarPerdida" para que con el ENTER en modal no siga generando mas perdidas
-    $('#realizarPerdida').prop('disabled', true);
-    productos = perdidaParcial();
-    enviarPerdida_transformar(productos);
-}
-
 function perdidaParcial(){
     var productos = [];
     $('#tablaPerdidas').children('tr').each(function( i, val) {
@@ -272,16 +264,6 @@ function enviarPerdida(produc)
             }
         });
     }
-    
-function enviarPerdida_transformar(produc){
-        $.post({ 
-            url: "perdidas/realizarPerdidaTransformar",
-            data: {productosPOSTajax: produc}
-        });
-    }
-    
-    
-    
 function mostrarMensaje(codigo,mensaje){
     $("#myModal2").modal('show');
     $("#mensajeModal").empty();

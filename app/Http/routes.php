@@ -32,6 +32,7 @@ Route::get('/home', 'HomeController@index');
 Route::resource('productos', 'ProductosController');
 Route::resource('ventas', 'VentasController');
 Route::resource('perdidasProducto', 'PerdidasProductoController');
+Route::resource('transformacion', 'TransformacionController');
 Route::resource('compras', 'ComprasController');
 Route::resource('proveedores', 'ProveedoresController');
 Route::resource('ingresos', 'IngresosController');
@@ -41,9 +42,17 @@ Route::resource('pdf', 'PdfController');
 Route::post('productos/filtrado', 'ProductosController@filtrado');
 Route::post('productos/eliminarProducto', 'ProductosController@destroy');
 
-// ** PERDIDAS PRODUCTO ** 
+// ** PERDIDAS/Transformacion PRODUCTO ** 
 Route::get('searchPerdidas/autocomplete', 'PerdidasProductoController@autocomplete');
 Route::post('perdidas/realizarPerdida', 'PerdidasProductoController@create');
+Route::post('perdidas/realizarPerdidaTransformar', 'PerdidasProductoController@store');
+
+Route::get('searchTransformacion/autocomplete', 'TransformacionController@autocomplete');
+Route::post('perdidas/realizarPerdida', 'TransformacionController@create');
+$router->get('productos/transformacion/{id}',[
+    'uses' => 'TransformacionController@create',
+    'as'   => 'id'
+]);
 
 // ** PROVEEDORES **
 Route::post('proveedores/eliminarProveedor', 'ProveedoresController@destroy');

@@ -23,6 +23,7 @@ class PerdidasProductoController extends Controller
     
     public function index()
     {
+        Session::put('titulo','Perdida');
         return view('productos.perdida');
     }
     
@@ -92,7 +93,34 @@ class PerdidasProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $result = $request->productosPOSTajax; //obtengo el envio de datos tipo 
+        //POST que envie de ajax con el nombre  productosPOSTajax
+        //como se envie, contiene varios varios arrays de arrays (matriz)
+        // recorro con un foreach cada fil y obtengo las columnas con el 
+        // nombre de cada una.
+        $cadena = null;
+
+        
+        foreach ($result as $p){
+            //hago este if solo para el formato,para que terminen sin || ( 1|2*2|2 )
+            if ($cadena == null) {
+                $cadena = $cadena.$p['id']."|".$p['cantidad']."|".$p['lugar'];
+            }
+            else{
+                $cadena = $cadena."*".$p['id']."|".$p['cantidad']."|".$p['lugar'];
+            }  
+        }
+        
+        //concat tiene las lineas de venta primero ID despues cantidad
+        // resultado de una concatenacion primero id producto $$ cantidad producto
+        // || siguiente producto.
+        
+        //Ahora q tenemos el monto fecha (para venta), tenemos el contac de las lineas
+        //Generamos la venta y a su vez las lineas ventas en un solo SP
+        
+        //p de perdida en tipo, tambien hay TRANSFORMACION
+        return view('ventas.index');
+//        return $cadena;
     }
 
     /**
