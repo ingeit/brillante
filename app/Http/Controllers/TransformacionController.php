@@ -35,21 +35,7 @@ class TransformacionController extends Controller
     public function create($id)
     {
         $perdida=$id;
-        return view('productos.transformacion',compact('perdida'));
-    }
-    
-    public function autocomplete()
-    { //Se conecta con autocomplete.js para autocompletar los inputs de busqueda con 
-      // el listado de prodcutos
-        
-        // la consulta es del estilo GET /search/autocomplete?term=la
-        // el search/autocomplete es la direccion source del js autocomplete
-        // y el termino term es el que se crea para ralizar la busqueda,
-        // yo busco el valor de term
-	$term = Input::get('term'); 	
-        $gp = new GestorProductos();
-        $consulta = $gp->listar($term);        
-        return Response::json($consulta);
+        dd($id);
     }
 
     /**

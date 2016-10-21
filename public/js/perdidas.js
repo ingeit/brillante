@@ -273,10 +273,20 @@ function enviarPerdida(produc)
         });
     }
     
-function enviarPerdida_transformar(produc){
-        $.post({ 
+function enviarPerdida_transformar(produc)
+    {
+        $.ajax({ 
+            type: "POST",
             url: "perdidas/realizarPerdidaTransformar",
-            data: {productosPOSTajax: produc}
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {productosPOSTajax: produc},
+            dataType: "html",
+            success: function(data)
+            {
+                window.location.href = "productos/transformacion/"+data;
+            }
         });
     }
     

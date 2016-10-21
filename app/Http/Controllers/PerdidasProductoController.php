@@ -119,8 +119,7 @@ class PerdidasProductoController extends Controller
         //Generamos la venta y a su vez las lineas ventas en un solo SP
         
         //p de perdida en tipo, tambien hay TRANSFORMACION
-        return view('ventas.index');
-//        return $cadena;
+        return $cadena;
     }
 
     /**
