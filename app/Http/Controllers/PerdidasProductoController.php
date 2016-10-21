@@ -77,6 +77,8 @@ class PerdidasProductoController extends Controller
         
         //Ahora q tenemos el monto fecha (para venta), tenemos el contac de las lineas
         //Generamos la venta y a su vez las lineas ventas en un solo SP
+        
+        //p de perdida en tipo, tambien hay TRANSFORMACION
         $params = array($cadena,'p','@codigo','@mensaje');
     	$resultado=DB::select('call perdida_producto_nuevo(?,?,?,?)',$params);
         return $resultado;
