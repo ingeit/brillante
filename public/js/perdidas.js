@@ -178,74 +178,67 @@ function iniciar(){
 // de jQuery y trabajo sobre el normalmente.
 function eliminarFila(obj){   
 //    $(obj).parents('tr').fadeOut('slow',function(){})
-  $(obj).parents('tr').remove();
-  desabilitarBoton();
+$(obj).parents('tr').remove();
+desabilitarBoton();
 }
 
 function desabilitarBoton() {
-    // Existen elementos?
-    if($('#tablaPerdidas tr').length === 0)
-    {
-       $('#realizarPerdida').prop('disabled', true);
-    }
+// Existen elementos?
+if($('#tablaPerdidas tr').length === 0)
+{
+   $('#realizarPerdida').prop('disabled', true);
+}
 }
 
 function cargarPerdida(){ 
-    var productos = [];
-    //deshabilitamos el boton "realizarPerdida" para que con el ENTER en modal no siga generando mas perdidas
-    $('#realizarPerdida').prop('disabled', true);
-    productos = perdidaParcial();
-    enviarPerdida(productos);
+var productos = [];
+//deshabilitamos el boton "realizarPerdida" para que con el ENTER en modal no siga generando mas perdidas
+$('#realizarPerdida').prop('disabled', true);
+productos = perdidaParcial();
+enviarPerdida(productos);
 }
 
-function cargarPerdida_transformar(){ 
-    var productos = [];
-    //deshabilitamos el boton "realizarPerdida" para que con el ENTER en modal no siga generando mas perdidas
-    $('#realizarPerdida').prop('disabled', true);
-    productos = perdidaParcial();
-    enviarPerdida_transformar(productos);
-}
 
 function perdidaParcial(){
-    var productos = [];
-    $('#tablaPerdidas').children('tr').each(function( i, val) {
-    lugar = $(this).find('td').eq(3).find(":selected").val();
-    cantidad = $(this).find('td').eq(0).html();
-    id = $(this).find('td').eq(1).html();
-      productos[i] = {"cantidad": cantidad,"id": id,"lugar": lugar};
-    });
-    return productos;
+var productos = [];
+$('#tablaPerdidas').children('tr').each(function( i, val) {
+lugar = $(this).find('td').eq(3).find(":selected").val();
+cantidad = $(this).find('td').eq(0).html();
+id = $(this).find('td').eq(1).html();
+  productos[i] = {"cantidad": cantidad,"id": id,"lugar": lugar};
+});
+return productos;
 }
 
 
 function controlStock(producto){
-    var productosTemp = [];
-    var descontarStock = 0;
-    descontarStock = parseInt(descontarStock);
-    var descontarStockDeposito = 0;
-    descontarStockDeposito = parseInt(descontarStockDeposito);
-    var descontarStockLocal = 0;
-    descontarStockLocal = parseInt(descontarStockLocal);
+var productosTemp = [];
+var descontarStock = 0;
+descontarStock = parseInt(descontarStock);
+var descontarStockDeposito = 0;
+descontarStockDeposito = parseInt(descontarStockDeposito);
+var descontarStockLocal = 0;
+descontarStockLocal = parseInt(descontarStockLocal);
 
-    productosTemp = perdidaParcial();
-    if(!jQuery.isEmptyObject(productosTemp)){
-       $.each(productosTemp, function(index) {
-           if(productosTemp[index].id === producto.idProducto){
-                descontarStock = descontarStock + parseInt(productosTemp[index].cantidad);
-                    if(productosTemp[index].lugar === 'local'){
-                        descontarStockLocal = descontarStockLocal + parseInt(productosTemp[index].cantidad);
-                    }
-                    else{
-                        descontarStockDeposito = descontarStockDeposito + parseInt(productosTemp[index].cantidad);
-                    }
-           }
-       });
-    }
-    var auxStock = (producto.stock - descontarStock);
-    var auxStockDeposito = (producto.stockDeposito - descontarStockDeposito);
-    var auxStockLocal = (producto.stockLocal - descontarStockLocal);
-    var productosStocks = [auxStock,auxStockDeposito,auxStockLocal];
-    return productosStocks;
+productosTemp = perdidaParcial();
+if(!jQuery.isEmptyObject(productosTemp)){
+   $.each(productosTemp, function(index) {
+       if(productosTemp[index].id === producto.idProducto){
+            descontarStock = descontarStock + parseInt(productosTemp[index].cantidad);
+                if(productosTemp[index].lugar === 'local'){
+                    descontarStockLocal = descontarStockLocal + parseInt(productosTemp[index].cantidad);
+                }
+                else{
+                    descontarStockDeposito = descontarStockDeposito + parseInt(productosTemp[index].cantidad);
+                }
+       }
+   });
+}
+var auxStock = (producto.stock - descontarStock);
+var auxStockDeposito = (producto.stockDeposito - descontarStockDeposito);
+var auxStockLocal = (producto.stockLocal - descontarStockLocal);
+var productosStocks = [auxStock,auxStockDeposito,auxStockLocal];
+return productosStocks;
 }
 
 function enviarPerdida(produc)
@@ -271,26 +264,7 @@ function enviarPerdida(produc)
                 });
             }
         });
-    }
-    
-function enviarPerdida_transformar(produc)
-    {
-        $.ajax({ 
-            type: "POST",
-            url: "perdidas/realizarPerdidaTransformar",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            data: {productosPOSTajax: produc},
-            dataType: "html",
-            success: function(data)
-            {
-                window.location.href = "productos/transformacion/"+data;
-            }
-        });
-    }
-    
-    
+    } 
     
 function mostrarMensaje(codigo,mensaje){
     $("#myModal2").modal('show');

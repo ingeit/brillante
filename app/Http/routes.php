@@ -42,17 +42,13 @@ Route::resource('pdf', 'PdfController');
 Route::post('productos/filtrado', 'ProductosController@filtrado');
 Route::post('productos/eliminarProducto', 'ProductosController@destroy');
 
-// ** PERDIDAS/Transformacion PRODUCTO ** 
+// ** PERDIDAS ** 
 Route::get('searchPerdidas/autocomplete', 'PerdidasProductoController@autocomplete');
 Route::post('perdidas/realizarPerdida', 'PerdidasProductoController@create');
-Route::post('perdidas/realizarPerdidaTransformar', 'PerdidasProductoController@store');
 
+// **/Transformacion PRODUCTO
 Route::get('searchTransformacion/autocomplete', 'TransformacionController@autocomplete');
-Route::post('perdidas/realizarPerdida', 'TransformacionController@create');
-$router->get('productos/transformacion/{id}',[
-    'uses' => 'TransformacionController@create',
-    'as'   => 'id'
-]);
+Route::post('transformacion/realizarTransformacion', 'TransformacionController@create');
 
 // ** PROVEEDORES **
 Route::post('proveedores/eliminarProveedor', 'ProveedoresController@destroy');
