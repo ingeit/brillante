@@ -13,15 +13,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+            <a href="{{ route('productos.index') }}" type="button" class="btn btn-info">Atras<i class="glyphicon glyphicon-menu-left"></i></a>
             <div>
                 <dl class="list">
                     <dt style="width: 100%;">
                         <div class="form-group">
-                            @if(Session::get('titulo') == 'Perdida')
                             {{ Form::label('q', 'Agregar Productos a Descontar') }}
-                            @else
-                            {{ Form::label('q', 'Agregar Productos a Transformar') }}
-                            @endif
                             {{ Form::text('q', '', ['id' =>  'q', 'placeholder' =>  'Ej: Lavandina','class'=> 'form-control','autofocus'])}}
                             {{ Form::hidden('qId', '', ['id' =>  'qId',])}}
                             <div id="stockContainer">
@@ -56,11 +53,7 @@
                     </div>
                 </div>     
             </div> 
-            @if(Session::get('titulo') == 'Perdida')
                 <button type="button" class="btn btn-primary" id="realizarPerdida" style="float:right;" onclick="cargarPerdida()" disabled="disabled">Realizar Perdida</button>
-            @else
-                <button type="button" class="btn btn-primary" id="realizarPerdida" style="float:right;" onclick="cargarPerdida_transformar()" disabled="disabled">Siguiente paso</button>
-            @endif
         </div>
     </div>
 </div>
