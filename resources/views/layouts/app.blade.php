@@ -21,8 +21,10 @@ header("Expires: 0 "); // Proxies. ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <link rel="stylesheet" href="//codeorigin.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <link rel="stylesheet" href="css/style.css">
     <style>
         body {
@@ -69,9 +71,52 @@ header("Expires: 0 "); // Proxies. ?>
                             <div style="margin-top: -20px"><span>{{ Auth::user()->role }}</span></div>
                         </div>
                     </li>
-                    <li><a href="{{ route('productos.index') }}">Productos</a></li>
-                    <li><a href="{{ route('ventas.index') }}">Ventas</a></li>
-                    <li><a href="{{ route('compras.index') }}">Compras</a></li>
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Productos</a>
+                                <div class="collapsible-body" style="">
+                                    <ul>
+                                    <li><a href="{{ route('productos.index') }}">Lista</a></li>
+                                    
+                                        <li>
+                                            <a href="{{ route('productos.create') }}">Nuevo Producto</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('perdidasProducto.index') }}">Perdidas Producto</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('transformacion.index') }}">Generar Producto suelto</a>
+                                        </li>
+                                    
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Ventas</a>
+                                <div class="collapsible-body" style="">
+                                    <ul>
+                                    <li><a href="{{ route('ventas.index') }}">Nueva</a></li>
+                                    <li><a href="{{ route('listaVentas') }}">Lista Ventas</a></li> 
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Compras</a>
+                                <div class="collapsible-body" style="">
+                                    <ul>
+                                    <li><a href="{{ route('compras.index') }}">Nueva</a></li> 
+                                    <li><<a href="{{  route('listaCompras') }}">Lista Compras</a></li> 
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
                     <li><a href="{{ route('ingresos.index') }}">Ingreso Local</a></li>
                     @if (!Auth::guest())
                         @if (Auth::user()->role == 'admin')
@@ -105,7 +150,7 @@ header("Expires: 0 "); // Proxies. ?>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     <script src="/js/js-query/jquery-ui.min.js"></script>
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
     <script>$(document).ready(function(){
         $('.button-collapse').sideNav({
             menuWidth: 250, // Default is 240
