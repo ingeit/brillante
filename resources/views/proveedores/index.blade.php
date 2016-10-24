@@ -10,13 +10,6 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div>
-                    <ul class="list-inline">
-                        <li>
-                            <a href="{{ route('proveedores.create') }}" class="btn btn-default">Nuevo Proveedor</a>
-                        </li>
-                    </ul>
-                </div>
                 <div class="panel panel-default">
                 <div class="panel-heading">Lista de Proveedores</div>
                 <div class="panel-body">

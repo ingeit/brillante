@@ -22,7 +22,7 @@ header("Expires: 0 "); // Proxies. ?>
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <link rel="stylesheet" href="//codeorigin.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
     <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <link rel="stylesheet" href="css/style.css">
@@ -41,28 +41,9 @@ header("Expires: 0 "); // Proxies. ?>
     <header>
         <nav>
             <div class="nav-wrapper">
-                <a href="{{ url('/') }}" class="brand-logo">BRILLANTE®</a>
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Acceder</a></li>
-                            <li><a href="{{ url('/register') }}">Registrarse</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Salir</a></li>
-                                    @if(Auth::user()->role === 'admin')
-                                    <li><a href="{{ url('/register') }}">Registrar nuevo usuario</a></li>
-                                    @endif
-                                </ul>
-                            </li>
-                        @endif    
-                </ul>
-                <ul class="side-nav fixed" id="mobile-demo">
+                <a href="{{ url('/') }}" class="brand-logo" style="margin-left: 3%;">BRILLANTE®</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse" style="margin-left: 3%;"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                <ul class="side-nav fixed" id="mobile-demo">        
                     <li>
                         <div class="userView">
                             <img class="background" src="img/office.jpg">
@@ -71,23 +52,19 @@ header("Expires: 0 "); // Proxies. ?>
                             <div style="margin-top: -20px"><span>{{ Auth::user()->role }}</span></div>
                         </div>
                     </li>
-                    <li class="no-padding">
+                    <li class="no-padding" style="margin-top: -8px;">
                         <ul class="collapsible collapsible-accordion">
-                            <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Productos</a>
+                            <li class="bold"><a style="text-decoration: none;" class="collapsible-header  waves-effect waves-teal">Productos <span class="caret"></span></a>
                                 <div class="collapsible-body" style="">
                                     <ul>
                                     <li><a href="{{ route('productos.index') }}">Lista</a></li>
-                                    
-                                        <li>
-                                            <a href="{{ route('productos.create') }}">Nuevo Producto</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('perdidasProducto.index') }}">Perdidas Producto</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('transformacion.index') }}">Generar Producto suelto</a>
-                                        </li>
-                                    
+                                    @if (!Auth::guest())
+                                        @if (Auth::user()->role == 'admin')
+                                        <li><a href="{{ route('productos.create') }}">Nuevo Producto</a></li>
+                                        <li><a href="{{ route('perdidasProducto.index') }}">Perdidas Producto</a></li>
+                                        <li><a href="{{ route('transformacion.index') }}">Generar Producto suelto</a></li>
+                                        @endif
+                                    @endif
                                     </ul>
                                 </div>
                             </li>
@@ -95,7 +72,7 @@ header("Expires: 0 "); // Proxies. ?>
                     </li>
                     <li class="no-padding">
                         <ul class="collapsible collapsible-accordion">
-                            <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Ventas</a>
+                            <li class="bold"><a style="text-decoration: none;" class="collapsible-header  waves-effect waves-teal">Ventas <span class="caret"></span></a>
                                 <div class="collapsible-body" style="">
                                     <ul>
                                     <li><a href="{{ route('ventas.index') }}">Nueva</a></li>
@@ -105,38 +82,49 @@ header("Expires: 0 "); // Proxies. ?>
                             </li>
                         </ul>
                     </li>
-                    <li class="no-padding">
-                        <ul class="collapsible collapsible-accordion">
-                            <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Compras</a>
-                                <div class="collapsible-body" style="">
-                                    <ul>
-                                    <li><a href="{{ route('compras.index') }}">Nueva</a></li> 
-                                    <li><<a href="{{  route('listaCompras') }}">Lista Compras</a></li> 
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="{{ route('ingresos.index') }}">Ingreso Local</a></li>
                     @if (!Auth::guest())
                         @if (Auth::user()->role == 'admin')
-                            <li><a href="{{ route('proveedores.index') }}">Proveedores</a></li>
+                            <li class="no-padding">
+                                <ul class="collapsible collapsible-accordion">
+                                    <li class="bold"><a  style="text-decoration: none;" class="collapsible-header  waves-effect waves-teal">Compras <span class="caret"></span></a>
+                                        <div class="collapsible-body" style="">
+                                            <ul>
+                                            <li><a href="{{ route('compras.index') }}">Nueva</a></li> 
+                                            <li><a href="{{  route('listaCompras') }}">Lista Compras</a></li> 
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="no-padding">
+                                <ul class="collapsible collapsible-accordion">
+                                    <li class="bold"><a style="text-decoration: none;" class="collapsible-header  waves-effect waves-teal">Ingreso Local <span class="caret"></span></a>
+                                        <div class="collapsible-body" style="">
+                                            <ul>
+                                            <li><a href="{{ route('ingresos.index') }}">Nuevo</a></li> 
+                                            <li><a href="{{  route('listaIngresos') }}">Lista Ingresos</a></li> 
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="no-padding">
+                                <ul class="collapsible collapsible-accordion">
+                                    <li class="bold"><a style="text-decoration: none;" class="collapsible-header  waves-effect waves-teal">Proveedores <span class="caret"></span></a>
+                                        <div class="collapsible-body" style="">
+                                            <ul>
+                                            <li><a href="{{ route('proveedores.index') }}">Listar</a></li> 
+                                            <li><a href="{{ route('proveedores.create') }}">Nuevo</a></li> 
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
                             <li><a href="{{ url('/dolar') }}">Actualizar Dolar</a></li>
+                            <li><a href="{{ url('/register') }}">Registrar nuevo usuario</a></li>
                         @endif
                     @endif
-                    <li class="divider"></li> 
-                    <li class="no-padding">
-                        <ul class="collapsible collapsible-accordion">
-                            <li class="bold"><a class="collapsible-header  waves-effect waves-teal">{{ Auth::user()->username }}</a>
-                                <div class="collapsible-body" style="">
-                                    <ul>
-                                    <li><a href="{{ url('/logout') }}">Salir</a></li>
-                                    <li><a href="{{ url('/register') }}">Registrar nuevo usuario</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
+                    <li><a href="{{ url('/logout') }}">Salir</a></li>
                 </ul>
             </div>
         </nav>
@@ -149,6 +137,7 @@ header("Expires: 0 "); // Proxies. ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     <script src="/js/js-query/jquery-ui.min.js"></script>
+    @yield('scripts')
     <!-- Compiled and minified JavaScript -->
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script>$(document).ready(function(){
@@ -159,6 +148,5 @@ header("Expires: 0 "); // Proxies. ?>
         });
     });
     </script>
-    @yield('scripts')
 </body>
 </html>

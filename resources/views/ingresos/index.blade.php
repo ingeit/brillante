@@ -12,13 +12,6 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div>
-                 <ul class="list-inline">
-                     <li>
-                         <a href="{{  route('listaIngresos') }}" class="btn btn-default">LISTA INGRESOS</a>
-                     </li>    
-                </ul>
-            </div>
-            <div>
                 <dl class="list">
                     <dt style="width: 100%;">
                         <div class="form-group">
