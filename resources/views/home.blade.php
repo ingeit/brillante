@@ -93,15 +93,20 @@
                     <div class="panel-body">
                       <table class="table table-striped table-bordered table-condensed">
                        <thead>
-                        <tr>
-                          <th>Title</th>
-                          <th>Total Sold</th>
-                          <th>Total Quantity</th>
-                        </tr><tr>
-                       </tr></thead>
+                            <tr>
+                              <th>Nombre</th>
+                              <th>Cantidad Vendida</th>
+                            </tr>
+                       </thead>
                        <tbody>
-                                   </tbody><tbody>
-                      </tbody></table>
+                           @foreach($datos as $d)
+                            <tr>
+                               <td>{{$d->nombre}}</td>
+                               <td>{{$d->cantidad}}</td>
+                            </tr>  
+                           @endforeach
+                      </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>

@@ -36,7 +36,8 @@ class HomeController extends Controller
                     return view('dolar',compact('precio'));
                 }
                 else{
-                    return view('home');
+                    $datos = \Illuminate\Support\Facades\DB::table('productosMasVendidos')->get();
+                    return view('home',compact('datos'));
                 } 
             }else if($role === 'vendedor'){
                 return redirect()->action('VentasController@index');
