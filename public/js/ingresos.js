@@ -19,7 +19,7 @@ function iniciar(){
                         productos.push({value:jsonResponse[index].nombre,id:jsonResponse[index].idProducto});
                 });
                 // llamo la funcion autocomplete
-                $( "#q" ).autocomplete({ //Tomo el input de id = q y uso la funcion ya definida por jQuery
+                $( "#q" ).autocompletar({ //Tomo el input de id = q y uso la funcion ya definida por jQuery
                     source: productos, //array creado arriba, ya no mas busqueda todo el tiempo
                     minLength: 1,     //caracter minimo para empezar a autocompletar
                     cacheLength: 0, //evita que se guarde el cache
