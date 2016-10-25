@@ -78,3 +78,46 @@ header{
     position: relative;
     margin-bottom: 1.5rem;
 }
+
+.box-header{
+    position: relative;
+    padding: 1rem;
+}
+
+.box-header h3{
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.box-header small{
+    opacity: .6;
+}
+
+    
+
+.box-body{
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.box-body span{
+    color: rgba(255,255,255,.87);
+}
+
+.box-body .rounded{
+    background-color: #fff;
+    border-radius: 500px;
+    padding-bottom: .25rem;
+    padding-top: .25rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-right: 1rem;
+}
+
+.box-body i{
+    margin-right: 1px;
+}
+
+    
+    

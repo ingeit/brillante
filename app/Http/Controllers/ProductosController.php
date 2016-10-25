@@ -40,6 +40,7 @@ class ProductosController extends Controller
         return view('productos.index',compact ('listaProductos','precioDolar','user'));
     }
     
+    
     public function filtrado(Request $request){ //Se conecta con el js livesearch.js para filtrar la busqueda
         $user = Auth::user()->role;
         
@@ -52,7 +53,8 @@ class ProductosController extends Controller
         return Response::json($consulta);
     }
   
-    public function create()
+  
+    public function crear()
     {    
         $gp = new GestorProveedores();
         $consulta = $gp->buscar('');
@@ -72,6 +74,7 @@ class ProductosController extends Controller
         Session::put('boton','Crear Producto');
         return View('productos.form', compact('proveedor','deposito'));
     }
+   
     
     public function update(Request $request, $id)
     {

@@ -25,6 +25,7 @@ Route::get('/dolar', function () {
 
 }); 
 
+
 Route::auth();
 Route::get('/home', 'HomeController@index'); 
 
@@ -41,6 +42,10 @@ Route::resource('pdf', 'PdfController');
 // ** PRODUCTOS ** Autocompletar y filtrar con el input
 Route::post('productos/filtrado', 'ProductosController@filtrado');
 Route::post('productos/eliminarProducto', 'ProductosController@destroy');
+$router->get('crearProducto',[
+    'uses' => 'ProductosController@crear',
+    'as'   => 'productos.crear'
+]);
 
 // ** PERDIDAS ** 
 Route::get('searchPerdidas/autocomplete', 'PerdidasProductoController@autocomplete');

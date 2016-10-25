@@ -1,10 +1,15 @@
 @extends('layouts.app')
 
+@section('scripts')
+{{ Html::script('js/dashboard.js')}}
+@endsection
+
+
 @section('content')
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-offset-1 col-lg-10 col-lg-offset-1">
             <div class="row">
                 <div class="col-md-3">
                     <div class="panel panel-box clearfix">
@@ -55,7 +60,23 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="box">
-                        <canvas id="myChart" width="400" height="400"></canvas>
+                        <div class="box-header"><h3>Ganancias</h3><small>Una vista general sobre las Gancias</small></div>
+                        <canvas id="misGannciasChart" width="400" height="150"></canvas>
+                        <div class="box-body" style="background-color: #2196f3;"><span class="rounded" style="color: #2196f3!important;"><i class="fa fa-caret-up" style="color: #2196f3!important;"></i> 20%</span> <span>Sobre el ultimo mes</span></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="box">
+                        <div class="box-header"><h3>Compras</h3><small>Ultimas Compras</small></div>
+                        <canvas id="misComprasChart" width="400" height="150"></canvas>
+                        <div class="box-body" style="background-color: #ef193c;"><span class="rounded" style="color: #ef193c!important;"><i class="fa fa-caret-down" style="color: #ef193c!important;"></i> 20%</span> <span>Sobre el ultimo mes</span></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="box">
+                        <div class="box-header"><h3>Ventas </h3><small>Ultimas Ventas Realizadas</small></div>
+                        <canvas id="misVentasChart" width="400" height="150"></canvas>
+                        <div class="box-body" style="background-color: #22b66e;"><span class="rounded" style="color: #22b66e!important;"><i class="fa fa-caret-up" style="color: #22b66e!important;"></i> 80%</span> <span>Sobre el ultimo mes</span></div>
                     </div>
                 </div>
             </div>
@@ -130,61 +151,3 @@
 </div>
 @endsection
 
-@section('scripts')
-<script>
-   
-
-var ctx = $("#myChart");
-var myLineChart = new Chart(ctx, 
-    {
-    type: 'line',
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-            {
-                label: 'Dataset',
-                data: [25, 21, 18, 20, 30, 40, 45],
-                fill: true,
-                backgroundColor: '#2196f3',
-                borderColor: '#2196f3',
-                borderWidth: 2,
-                borderCapStyle: 'butt',
-                borderDash: [],
-                borderDashOffset: 0.0,
-                borderJoinStyle: 'miter',
-                pointBorderColor: '#2196f3',
-                pointBackgroundColor: '#fff',
-                pointBorderWidth: 2,
-                pointHoverRadius: 4,
-                pointHoverBackgroundColor: '#2196f3',
-                pointHoverBorderColor: '#fff',
-                pointHoverBorderWidth: 2,
-                pointRadius: [0,4,4,4,4,4,0],
-                pointHitRadius: 10,
-                spanGaps: false
-            }
-        ]
-    },
-    options: {
-      scales: {
-              xAxes: [{
-                 display: false
-              }],
-              yAxes: [{
-                 display: false,
-                 ticks:{
-                       min: 0,
-                       max: 60
-                 }
-              }]
-      },
-      legend: {
-              display: false
-      }
-    }
-  }
-);
-
-</script>
-
-@endsection
