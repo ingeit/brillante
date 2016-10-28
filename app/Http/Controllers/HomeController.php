@@ -51,6 +51,7 @@ class HomeController extends Controller
     public function actualizarPrecio(Request $r){
         $gestor = new GestorDolar();
         $mensaje = $gestor->actualizarPrecio($r->dolar);
-        return view('home');
+        $datos = \Illuminate\Support\Facades\DB::table('productosMasVendidos')->get();
+        return view('home',compact('datos'));
     }
 }
