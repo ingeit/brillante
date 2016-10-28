@@ -1,13 +1,44 @@
-var misGannciasChart = $("#misGannciasChart");
-var myLineChart = new Chart(misGannciasChart, 
+
+$.ajax({
+        type: "GET",
+        url: "/test",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        //la variable que va a la consulta se llama term, emulando la consulta
+        // GET que hace el jQuery cuando busca, va vacia porque quiero todos
+        // los productos
+        data: {term: ''},
+        dataType: "html",
+        success: function(data) //cuando finaliza la consulta
+        { 
+            var jsonResponse = JSON.parse(data);
+            var nombreDeLosMeses = []; 
+            $.each(jsonResponse, function(index) { 
+                    nombreDeLosMeses[index] = jsonResponse[index].Mes;
+                   // nombreDeLosMeses.push({value:jsonResponse[index].Mes});
+            });
+            
+            var valorDeLosMeses = []; //creo el array de productos que le voy a dar a autocomplete()
+            $.each(jsonResponse, function(index) { //la variable value es el nombre
+                    valorDeLosMeses[index] = jsonResponse[index].Cantidad;
+            });
+            console.log(valorDeLosMeses);
+            productosVendidos(nombreDeLosMeses,valorDeLosMeses);
+        }
+});
+
+function productosVendidos(nombreDeLosMeses,valorDeLosMeses){
+var productosVendidosChart = $("#productosVendidosChart");
+var myLineChart = new Chart(productosVendidosChart, 
     {
     type: 'line',
     data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: nombreDeLosMeses,
         datasets: [
             {
-                label: 'Dataset',
-                data: [25, 21, 18, 20, 30, 40, 45],
+                label: 'Cantidad',
+                data: valorDeLosMeses,
                 fill: true,
                 backgroundColor: '#2196f3',
                 borderColor: '#2196f3',
@@ -38,7 +69,7 @@ var myLineChart = new Chart(misGannciasChart,
                  display: false,
                  ticks:{
                        min: 0,
-                       max: 60
+                       max: 800
                  }
               }]
       },
@@ -48,7 +79,7 @@ var myLineChart = new Chart(misGannciasChart,
     }
   }
 );
-
+}
 var misComprasChart = $("#misComprasChart");
 var myLineChart = new Chart(misComprasChart, 
     {

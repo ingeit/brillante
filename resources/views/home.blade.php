@@ -60,8 +60,8 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="box">
-                        <div class="box-header"><h3>Ganancias</h3><small>Una vista general sobre las Gancias</small></div>
-                        <canvas id="misGannciasChart" width="400" height="150"></canvas>
+                        <div class="box-header"><h3>Productos</h3><small>Cantidad de Productos Vendidos por Mes</small></div>
+                        <canvas id="productosVendidosChart" width="400" height="150"></canvas>
                         <div class="box-body" style="background-color: #2196f3;"><span class="rounded" style="color: #2196f3!important;"><i class="fa fa-caret-up" style="color: #2196f3!important;"></i> 20%</span> <span>Sobre el ultimo mes</span></div>
                     </div>
                 </div>

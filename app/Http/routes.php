@@ -26,6 +26,12 @@ Route::get('/dolar', function () {
 }); 
 
 
+Route::get('/test', function(){
+    DB::statement("SET lc_time_names = 'es_AR'");
+    $datos = \Illuminate\Support\Facades\DB::table('cantidadProductosVendidosMes')->get();
+    return json_encode($datos);
+}); 
+
 Route::auth();
 Route::get('/home', 'HomeController@index'); 
 
