@@ -81,7 +81,9 @@ $router->get('/ventas/cobrar/{id}',[
     'uses' => 'VentasController@cobrar',
     'as'   => 'cobrarVenta'
 ]);
-$router->post('/ventas/detalles/',[
+
+
+$router->post('/ventasdetalles',[
     'uses' => 'VentasController@mostrar',
     'as'   => 'detalleVenta'
 ]); 
@@ -92,7 +94,7 @@ Route::post('compras/realizarCompra', 'ComprasController@create');
 Route::post('compras/agregar', 'ComprasController@agregarLinea');
 Route::post('compras/realizarCompra', 'ComprasController@create');
 Route::post('compras/eliminarCompra', 'ComprasController@destroy');
-$router->post('/compras/detalles/',[
+$router->post('/comprasdetalles',[
     'uses' => 'ComprasController@mostrar',
     'as'   => 'detalleCompra'
 ]);
@@ -106,7 +108,7 @@ Route::get('searchIngresos/autocomplete', 'IngresosController@autocomplete');
 Route::post('ingresos/agregar', 'IngresosController@agregarLinea');
 Route::post('ingresos/realizarIngreso', 'IngresosController@create');
 Route::post('ingresos/eliminarIngreso', 'IngresosController@destroy');
-$router->post('/ingresos/detalles/',[
+$router->post('/ingresosdetalles',[
     'uses' => 'IngresosController@mostrar',
     'as'   => 'detalleIngreso'
 ]); 
@@ -127,4 +129,5 @@ $router->post('/pdfIngreso/',[
     'uses' => 'PdfController@crearIngreso',
     'as'   => 'crearIngreso'
 ]);
+
 

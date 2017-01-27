@@ -32,7 +32,8 @@ class HomeController extends Controller
             if($role === 'admin'){
                 $dolarAtualizado = $gestor->elPrecioEsActual();
                 if($dolarAtualizado === 'no'){
-                    $precio = $gestor->obtenerPrecioDolar();
+                    //$precio = $gestor->obtenerPrecioDolar();
+                    $precio = 16;
                     return view('dolar',compact('precio'));
                 }
                 else{

@@ -10,9 +10,11 @@
 @endsection
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
+
+ 
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col m10 offset-s1">
                 
                 <div class="panel panel-default">
                 <a href="{{URL::previous() }}" type="button" class="btn btn-info">Atras<i class="glyphicon glyphicon-menu-left"></i></a>
@@ -37,8 +39,8 @@
                                     <td>{{$l->fecha}}</td>
                                     <td>$ {{$l->monto}}</td>
                                     <td>
-                                        {!! Form::open(['action' => ['VentasController@mostrar']]) !!}
-                                        {{ Form::hidden('idVenta',$l->idVenta)}} 
+                                        {{ Form::open(array('route' => 'detalleVenta', '_method' => 'post')) }}
+                                        {!! Form::hidden('idVenta',$l->idVenta)!!} 
                                             <button style="float:right" class="btn btn-default btn-sm" type="submit">Detalles</button>
                                         {!! Form::close() !!}
                                     </td>

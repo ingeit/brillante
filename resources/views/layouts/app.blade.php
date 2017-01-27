@@ -14,14 +14,15 @@ header("Expires: 0 "); // Proxies. ?>
     <title>Laravel</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">-->
     <link rel="stylesheet" href="fonts/roboto/Roboto-Thin.ttf">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
+    
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="//codeorigin.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="css/jquery-ui-1.10.4.custom.css" />
     <!--Import Google Icon Font-->
     <!--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <!--Import materialize.css-->
@@ -63,7 +64,7 @@ header("Expires: 0 "); // Proxies. ?>
                                         @if (Auth::user()->role == 'admin')
                                         <li><a href="{{ route('productos.crear') }}">Nuevo Producto</a></li>
                                         <li><a href="{{ route('perdidasProducto.index') }}">Perdidas Producto</a></li>
-                                        <li><a href="{{ route('transformacion.index') }}">Generar Producto suelto</a></li>
+                                        <li><a href="{{ route('transformacion.index') }}">Generar Producto Fraccionado</a></li>
                                         @endif
                                     @endif
                                     </ul>
@@ -134,11 +135,11 @@ header("Expires: 0 "); // Proxies. ?>
     @yield('content')
 
     <!-- JavaScripts -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/chart/Chart.bundle.js"></script>
     <script src="/js/js-query/jquery-ui.min.js"></script>
-    @yield('scripts')
+    
     <script>$.widget.bridge('autocompletar', $.ui.autocomplete);</script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     
@@ -150,7 +151,17 @@ header("Expires: 0 "); // Proxies. ?>
             edge: 'left', // Choose the horizontal origin
             //closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
         });
+        $('select:not([multiple])').material_select();
+        
     });
     </script>
+
+    <!--Se agregan estos dos elementos js para que junto con los css se haga responsive los elements
+    con respecto a un div y no a la resolucion.-->
+    <script src="js/ResizeSensor.js"></script>
+    <script src="js/ElementQueries.js"></script>
+
+    @yield('scripts')
+
 </body>
 </html>

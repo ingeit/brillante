@@ -9,9 +9,9 @@
 @endsection
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col m10 offset-s1">
                 
                 <div class="panel panel-default">
                     <a href="{{URL::previous() }}" type="button" class="btn btn-info">Atras<i class="glyphicon glyphicon-menu-left"></i></a>

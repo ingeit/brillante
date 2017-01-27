@@ -36,10 +36,38 @@ header{
 .bg-red{
   background-color: #FF7857;
 }
+
+.panel{
+    display: table;
+    content: " ";
+    background: white;
+    box-shadow: 0 1px 2px rgba(0,0,0,.15), 0 -1px 0 rgba(0,0,0,.02);
+}
+
+.paneles{
+    background: white;
+    box-shadow: 0 1px 2px rgba(0,0,0,.15), 0 -1px 0 rgba(0,0,0,.02);
+}
+
+.tablasestadistica{
+    text-align: center;
+}
+
+.tablasestadistica:nth-child(1) .panel-default >.panel-heading {
+    background-color: #2196f3;
+}
+
+.tablasestadistica:nth-child(2) .panel-default >.panel-heading {
+    background-color: #ef193c;
+}
+
+.tablasestadistica:nth-child(3) .panel-default >.panel-heading {
+    background-color: #22b66e;
+}
+
 .panel-default >.panel-heading{
-  background-color: #f5f5f5;
-  border-bottom: 2px solid #3498DB;
-  font-size: 15px;
+  color:white;
+  font-size: 1em;
   text-transform: uppercase;
   letter-spacing: .5px;
   padding: 15px;
@@ -51,7 +79,7 @@ header{
 }.panel-value{
   width: 60%;
 }.panel-icon{
-  padding: 30px;
+  padding: 30px 0;
   width: 40%;
   border-radius: 0;
 }.panel-icon{
@@ -66,7 +94,7 @@ header{
   margin-top: 15px;
 }
 .panel-icon i{
-  line-height:65px;
+  line-height:71px;
   font-size: 40px;
   color: #fff;
 }
@@ -119,5 +147,123 @@ header{
     margin-right: 1px;
 }
 
-    
-    
+
+
+.dashboardPanels[min-width~="1px"] > div{
+    width: 100% !important;
+    margin: 1% 0%;
+}
+
+.dashboardPanels[min-width~="479px"] > div{
+    width: 48% !important;
+    margin: 1%;
+}
+
+.dashboardPanels[min-width~="854px"] > div{
+    width: 25% !important;
+    margin: 0%;
+}
+
+
+.dashboardCharts[min-width~="1px"] > div{
+    width: 99% !important;
+    margin: 1% 0%;
+}
+
+.dashboardCharts[min-width~="479px"] > div{
+    width: 70% !important;
+    margin: 1% 0%;
+    float: none;
+    margin: auto;
+}
+
+.dashboardCharts[min-width~="618px"] > div{
+    width: 48% !important;
+    margin: 1%;
+    float: left;
+}
+
+.dashboardCharts[min-width~="950px"] > div{
+    width: 33.3%!important;
+    margin: auto;
+    float: left;
+}
+
+.tablasestadisticas[min-width~="1px"] > div{
+    width: 99% !important;
+    margin: 1% 0%;
+}
+
+.tablasestadisticas[min-width~="479px"] > div{
+    width: 70% !important;
+    margin-left: 15% !important;
+}
+
+.tablasestadisticas[min-width~="618px"] > div{
+    width: 48% !important;
+    margin: 1% !important;
+    float: left;
+}
+
+.tablasestadisticas[min-width~="950px"] > div{
+    width: 33.3%!important;
+    margin: auto !important;
+    float: left;
+}
+
+
+div.col.s12.pestanias div#menu1,div.col.s12.pestanias div#menu2 {
+    background: white;
+    padding: 1%;
+}
+
+.pestanias{
+    margin-top: 1%;
+}
+
+.pestanias ul{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+div#menu2 div:nth-child(4){
+    margin-top: 2%;
+}
+
+#menu1,#menu2{
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+}
+
+
+.contenedor{
+    float: none !important;
+    margin: 0 auto !important;
+    background: white !important;
+    border-radius: 8px;
+    margin-top: 1%;
+}
+
+
+@media only screen and (min-width: 992px) {
+  .contenedor {
+    overflow: auto !important;
+  }
+}
+
+.header {
+    color: #ee6e73;
+    font-weight: 300;
+    margin: 0;
+    background: white;
+    padding: 1% 1%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+form{
+    background: white;
+    padding: 1%;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}

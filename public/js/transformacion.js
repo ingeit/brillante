@@ -1,3 +1,5 @@
+  
+
 function iniciar(){
 $.ajax({
         type: "GET",
@@ -37,13 +39,13 @@ $.ajax({
                         case 13: //detecta el enter
                             //muestro el stock y despues salto a FOCUS EN CANTIDAD
                             //la variable value es el nombre
-                            var id = $('#qId').val();
+                            var idtemp = $('#qId').val();
+                            var id = parseInt(idtemp);
                             $.each(jsonResponse, function(index) { //la variable value es el nombre
                                 if(id === jsonResponse[index].idProducto)
                                 {
                                     var productosStocks = [];
                                     productosStocks = controlStock(jsonResponse[index]);
-                                    
                                     $('#stockContainer').empty();
                                     $("#stockContainer").append(
                                         "<p>Stock Total: <span>"+productosStocks[0]+"</span></p>"+
@@ -70,7 +72,8 @@ $.ajax({
                     {
                         case 13: //detecta el enter
                             $("#stock").html(null);
-                            id=$("#qId").val();
+                            var idtemp=$("#qId").val();
+                            var id = parseInt(idtemp);
                             cant = $("#SelectCant").val();
                             if(cant === ''){
                                 cant = 1;
@@ -154,9 +157,9 @@ $.ajax({
                                                 (cantidad > auxStockDeposito ?
                                                     "<td><select class='form-control'><option value='local' disabled>Sin Stock Local</option><option value='deposito' disabled>Sin Stock Deposito</option></select></td>"
                                                     : "<td><select class='form-control'><option value='local' disabled>Sin Stock Local</option><option value='deposito'>Deposito</option></select></td>")
-                                            : (cantidad > auxStockDeposito ?
+                                            : (cantidad > auxStockDeposito ? 
                                                     "<td><select class='form-control'><option value='local'>Local</option><option value='deposito' disabled>Sin Stock Deposito</option></select></td>"
-                                                    : "<td><select class='form-control'><option value='local'>Local</option><option value='deposito'>Deposito</option></select></td>"))+
+                                                    : "<td><select class='browser-default'><option value='local'>Local</option><option value='deposito'>Deposito</option></select></td>"))+
                                         "<td><button class='btn btn-danger btn-sm' onclick='eliminarFilaPerdida(this)'>Eliminar</button></td>"+
                                     "</tr>"
                                     );
@@ -188,7 +191,7 @@ $.ajax({
                         productos.push({value:jsonResponse[index].nombre,id:jsonResponse[index].idProducto});
                 });
                 // llamo la funcion autocomplete
-                $( "#q2" ).autocomplete({ //Tomo el input de id = q y uso la funcion ya definida por jQuery
+                $( "#q2" ).autocompletar({ //Tomo el input de id = q y uso la funcion ya definida por jQuery
                     source: productos, //array creado arriba, ya no mas busqueda todo el tiempo
                     minLength: 1,     //caracter minimo para empezar a autocompletar
                     cacheLength: 0, //evita que se guarde el cache
@@ -206,7 +209,8 @@ $.ajax({
                         case 13: //detecta el enter
                             //muestro el stock y despues salto a FOCUS EN CANTIDAD
                             //la variable value es el nombre
-                            var id = $('#qId2').val();
+                            var idtemp = $('#qId2').val();
+                            var id = parseInt(idtemp);
                             $.each(jsonResponse, function(index) { //la variable value es el nombre
                                 if(id === jsonResponse[index].idProducto)
                                 {
@@ -239,7 +243,8 @@ $.ajax({
                     {
                         case 13: //detecta el enter
                             $("#stock").html(null);
-                            id=$("#qId2").val();
+                            var idtemp=$("#qId2").val();
+                            var id = parseInt(idtemp);
                             cant = $("#SelectCant2").val();
                             if(cant === ''){
                                 cant = 1;
@@ -383,39 +388,35 @@ function enviarTransformacion(producT,producP)
                 codigo=jsonResponse[0]['codigo'];
                 mensaje=jsonResponse[0]['mensaje'];
                 mostrarMensaje(codigo,mensaje);
-                $("#myModal").on('hidden.bs.modal', function () {
-                    $("#tablaTransformaciones").empty();
-                    $("#tablaPerdidas").empty();
-                    $("#q").focus();
-                      iniciar();
-                });
+                //Reseteamos todas las vistas incluyendo las pestañas
+                $("#tablaTransformaciones").empty();
+                $("#tablaPerdidas").empty();
+                $("#q").focus();
+                iniciar();
+                $('ul.tabs').tabs('select_tab', 'menu1'); // con esto resteamos a la pestaña 1
             }
         });
     }
 function mostrarMensaje(codigo,mensaje){
-    $("#myModal").modal('show');
+    $('#modal1').openModal();
     $("#mensajeModal").empty();
     $("#tituloModal").empty();
     if(codigo == 0)
     {
         $("#tituloModal").append(
-            "<div class='alert alert-danger'>ERROR</div>" 
+            "ERROR"
         );
         $("#mensajeModal").append(
-            "<p>"+mensaje+"</p>" 
+            mensaje 
         );
     }else{
         $("#tituloModal").append(
-            "<div class='alert alert-success'>CORRECTO</div>" 
+            "CORRECTO" 
         );
         $("#mensajeModal").append(
-            "<p>"+mensaje+"</p>" 
+           mensaje 
         );
     }
-    $("#botonModal").empty();
-    $("#botonModal").append(
-        "<button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>"
-    );
 }
 
 
@@ -428,7 +429,7 @@ function mostrarMensaje(codigo,mensaje){
 function eliminarFilaPerdida(obj){   
 //    $(obj).parents('tr').fadeOut('slow',function(){})
   $(obj).parents('tr').remove();
-  desabilitarBotonPerdida();
+//  desabilitarBotonPerdida();
 }
 
 function cargarPerdida(){ 
@@ -450,3 +451,4 @@ function perdidaParcial(){
     });
     return productos;
 }
+
